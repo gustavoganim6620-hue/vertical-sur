@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Vertical Sur – Servicios en Altura & Mantenimiento Integral</title>
+  <title>Vertical Sur – Servicios en Altura & Mantenimiento Integral | General Roca, Río Negro</title>
+  <meta name="description" content="Empresa especializada en trabajos en altura, mantenimiento y construcción en General Roca, Río Negro. Antenas, Starlink, plomería, electricidad, gas y más.">
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
     :root {
@@ -16,386 +17,209 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Barlow', sans-serif;
-      background: var(--white);
-      color: var(--navy);
-      overflow-x: hidden;
-    }
+    body { font-family: 'Barlow', sans-serif; background: var(--white); color: var(--navy); overflow-x: hidden; }
 
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 5vw;
-      height: 70px;
+      padding: 0 5vw; height: 70px;
       background: rgba(27,42,74,0.97);
       backdrop-filter: blur(8px);
       border-bottom: 2px solid var(--orange);
     }
-    .nav-logo {
-      display: flex; align-items: center; gap: 10px; text-decoration: none;
-    }
-    .nav-logo-text {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900; font-size: 1.5rem; color: var(--white); letter-spacing: 1px;
-    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo-text { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.5rem; color: var(--white); letter-spacing: 1px; }
     .nav-logo-text span { color: var(--orange); }
-    .nav-tagline {
-      font-size: 0.6rem; color: var(--sky); letter-spacing: 2px;
-      text-transform: uppercase; display: block; margin-top: -4px;
-    }
-    nav ul {
-      list-style: none; display: flex; gap: 2rem;
-    }
-    nav ul a {
-      text-decoration: none; color: #cdd8e8;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 600; font-size: 0.95rem; letter-spacing: 1px;
-      text-transform: uppercase; transition: color .2s;
-    }
+    .nav-tagline { font-size: 0.6rem; color: var(--sky); letter-spacing: 2px; text-transform: uppercase; display: block; margin-top: -4px; }
+    nav ul { list-style: none; display: flex; gap: 1.6rem; align-items: center; }
+    nav ul a { text-decoration: none; color: #cdd8e8; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 0.95rem; letter-spacing: 1px; text-transform: uppercase; transition: color .2s; }
     nav ul a:hover { color: var(--orange); }
-    .nav-cta {
-      background: var(--orange); color: var(--white) !important;
-      padding: 8px 18px; border-radius: 3px; transition: background .2s !important;
-    }
-    .nav-cta:hover { background: #e07d10 !important; color: var(--white) !important; }
+    .nav-cta { background: var(--orange); color: var(--white) !important; padding: 8px 18px; border-radius: 3px; transition: background .2s !important; }
+    .nav-cta:hover { background: #e07d10 !important; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .nav-hamburger span { display: block; width: 26px; height: 2px; background: var(--white); border-radius: 2px; transition: all .3s; }
+    .nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
     /* ── HERO ── */
-    .hero {
-      position: relative; min-height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background: linear-gradient(160deg, #0d1f3c 0%, #1B2A4A 45%, #24406a 100%);
-    }
-    /* Sky texture */
-    .hero-bg::after {
-      content: '';
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 80% 50% at 70% 30%, rgba(90,174,224,0.18) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 30% at 20% 60%, rgba(247,147,30,0.08) 0%, transparent 70%);
-    }
-    /* Diagonal stripe accent */
-    .hero-stripe {
-      position: absolute; left: 0; bottom: 0; width: 100%; height: 8px;
-      background: var(--orange);
-    }
-    .hero-content {
-      position: relative; z-index: 2; text-align: center; padding: 120px 5vw 80px;
-      max-width: 900px;
-    }
-
-    /* Logo in hero */
-    .hero-logo-wrap {
-      margin-bottom: 2rem;
-      opacity: 0; animation: fadeUp .8s .2s forwards;
-    }
-    .hero-logo-box {
-      display: inline-block;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 8px;
-      padding: 20px 36px;
-    }
-    .logo-main {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900; font-size: clamp(3rem, 8vw, 5.5rem);
-      color: var(--white); letter-spacing: 2px; line-height: 1;
-    }
+    .hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: linear-gradient(160deg, #0d1f3c 0%, #1B2A4A 45%, #24406a 100%); }
+    .hero-bg::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 50% at 70% 30%, rgba(90,174,224,0.18) 0%, transparent 70%), radial-gradient(ellipse 40% 30% at 20% 60%, rgba(247,147,30,0.08) 0%, transparent 70%); }
+    .hero-stripe { position: absolute; left: 0; bottom: 0; width: 100%; height: 8px; background: var(--orange); }
+    .hero-content { position: relative; z-index: 2; text-align: center; padding: 120px 5vw 80px; max-width: 900px; }
+    .hero-logo-wrap { margin-bottom: 2rem; opacity: 0; animation: fadeUp .8s .2s forwards; }
+    .hero-logo-box { display: inline-block; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 20px 36px; }
+    .logo-main { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(3rem, 8vw, 5.5rem); color: var(--white); letter-spacing: 2px; line-height: 1; }
     .logo-main span { color: var(--orange); }
-    .logo-sub {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 600; font-size: clamp(0.7rem, 2vw, 0.95rem);
-      color: var(--sky); letter-spacing: 4px; text-transform: uppercase;
-      margin-top: 4px;
-    }
+    .logo-sub { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: clamp(0.7rem, 2vw, 0.95rem); color: var(--sky); letter-spacing: 4px; text-transform: uppercase; margin-top: 4px; }
     .logo-sub em { color: var(--orange); font-style: normal; }
-    .logo-line {
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--orange), transparent);
-      margin: 8px 0;
-    }
-
-    .hero h1 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700; font-size: clamp(1.4rem, 4vw, 2.2rem);
-      color: var(--white); letter-spacing: 1px; margin-bottom: 1rem;
-      opacity: 0; animation: fadeUp .8s .5s forwards;
-    }
-    .hero p {
-      color: #a0b4cc; font-size: 1.05rem; line-height: 1.7; max-width: 620px; margin: 0 auto 2.5rem;
-      opacity: 0; animation: fadeUp .8s .7s forwards;
-    }
-    .hero-btns {
-      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
-      opacity: 0; animation: fadeUp .8s .9s forwards;
-    }
-    .btn-primary {
-      background: var(--orange); color: var(--white);
-      padding: 14px 32px; border-radius: 3px; text-decoration: none;
-      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
-      font-size: 1rem; letter-spacing: 1.5px; text-transform: uppercase;
-      transition: all .2s; box-shadow: 0 4px 20px rgba(247,147,30,0.4);
-    }
+    .logo-line { height: 2px; background: linear-gradient(90deg, transparent, var(--orange), transparent); margin: 8px 0; }
+    .hero h1 { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: clamp(1.4rem, 4vw, 2.2rem); color: var(--white); letter-spacing: 1px; margin-bottom: 1rem; opacity: 0; animation: fadeUp .8s .5s forwards; }
+    .hero p { color: #a0b4cc; font-size: 1.05rem; line-height: 1.7; max-width: 620px; margin: 0 auto 2.5rem; opacity: 0; animation: fadeUp .8s .7s forwards; }
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; opacity: 0; animation: fadeUp .8s .9s forwards; }
+    .btn-primary { background: var(--orange); color: var(--white); padding: 14px 32px; border-radius: 3px; text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 1.5px; text-transform: uppercase; transition: all .2s; box-shadow: 0 4px 20px rgba(247,147,30,0.4); display: inline-block; }
     .btn-primary:hover { background: #e07d10; transform: translateY(-2px); }
-    .btn-outline {
-      border: 2px solid rgba(255,255,255,0.3); color: var(--white);
-      padding: 12px 28px; border-radius: 3px; text-decoration: none;
-      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
-      font-size: 1rem; letter-spacing: 1.5px; text-transform: uppercase;
-      transition: all .2s;
-    }
+    .btn-outline { border: 2px solid rgba(255,255,255,0.3); color: var(--white); padding: 12px 28px; border-radius: 3px; text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 1.5px; text-transform: uppercase; transition: all .2s; }
     .btn-outline:hover { border-color: var(--orange); color: var(--orange); }
-
-    /* floating badges */
-    .hero-badges {
-      display: flex; gap: 1.5rem; justify-content: center; margin-top: 3rem; flex-wrap: wrap;
-      opacity: 0; animation: fadeUp .8s 1.1s forwards;
-    }
-    .badge {
-      display: flex; align-items: center; gap: 8px;
-      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 100px; padding: 8px 18px;
-      font-size: 0.82rem; color: #c0d0e0; letter-spacing: .5px;
-    }
+    .hero-badges { display: flex; gap: 1.5rem; justify-content: center; margin-top: 3rem; flex-wrap: wrap; opacity: 0; animation: fadeUp .8s 1.1s forwards; }
+    .badge { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 100px; padding: 8px 18px; font-size: 0.82rem; color: #c0d0e0; letter-spacing: .5px; }
     .badge-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); flex-shrink: 0; }
 
-    @keyframes fadeUp {
-      from { opacity:0; transform: translateY(24px); }
-      to   { opacity:1; transform: translateY(0); }
-    }
+    @keyframes fadeUp { from { opacity:0; transform: translateY(24px); } to { opacity:1; transform: translateY(0); } }
 
     /* ── SECTIONS SHARED ── */
     section { scroll-margin-top: 70px; }
     .section-inner { max-width: 1100px; margin: 0 auto; padding: 100px 5vw; }
-    .section-label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.8rem; font-weight: 700; letter-spacing: 4px;
-      text-transform: uppercase; color: var(--orange); margin-bottom: .5rem;
-    }
-    .section-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(2rem, 5vw, 3rem); font-weight: 800;
-      color: var(--navy); line-height: 1.1; margin-bottom: 1.2rem;
-    }
+    .section-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--orange); margin-bottom: .5rem; }
+    .section-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; color: var(--navy); line-height: 1.1; margin-bottom: 1.2rem; }
     .section-title span { color: var(--orange); }
-    .section-lead {
-      font-size: 1.05rem; color: #4a5a6a; line-height: 1.8; max-width: 620px;
-    }
+    .section-lead { font-size: 1.05rem; color: #4a5a6a; line-height: 1.8; max-width: 620px; }
 
     /* ── QUIENES SOMOS ── */
     #quienes { background: var(--white); }
-    .who-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem;
-    }
-    .who-visual {
-      position: relative;
-    }
-    .who-card {
-      background: var(--navy); border-radius: 6px; padding: 2.5rem;
-      position: relative; overflow: hidden;
-    }
-    .who-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 4px;
-      background: var(--orange);
-    }
-    .who-card::after {
-      content: '"';
-      position: absolute; bottom: -20px; right: 20px;
-      font-size: 10rem; color: rgba(247,147,30,0.08);
-      font-family: Georgia, serif; line-height: 1;
-    }
-    .who-card p {
-      color: #c0d0e0; font-size: 1.05rem; line-height: 1.8; position: relative; z-index: 1;
-    }
+    .who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem; }
+    .who-card { background: var(--navy); border-radius: 6px; padding: 2.5rem; position: relative; overflow: hidden; }
+    .who-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--orange); }
+    .who-card::after { content: '"'; position: absolute; bottom: -20px; right: 20px; font-size: 10rem; color: rgba(247,147,30,0.08); font-family: Georgia, serif; line-height: 1; }
+    .who-card p { color: #c0d0e0; font-size: 1.05rem; line-height: 1.8; position: relative; z-index: 1; }
     .who-card strong { color: var(--orange); }
-    .who-stats {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem;
-    }
-    .stat {
-      text-align: center; padding: 1.2rem;
-      background: rgba(90,174,224,0.08); border-radius: 4px;
-      border: 1px solid rgba(90,174,224,0.15);
-    }
-    .stat-num {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 2.2rem; font-weight: 900; color: var(--orange); display: block;
-    }
+    .who-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+    .stat { text-align: center; padding: 1.2rem; background: rgba(90,174,224,0.08); border-radius: 4px; border: 1px solid rgba(90,174,224,0.15); }
+    .stat-num { font-family: 'Barlow Condensed', sans-serif; font-size: 2.2rem; font-weight: 900; color: var(--orange); display: block; }
     .stat-label { font-size: 0.78rem; color: #8899aa; text-transform: uppercase; letter-spacing: 1px; }
     .who-text p { color: #4a5a6a; line-height: 1.8; margin-bottom: 1rem; }
     .who-list { list-style: none; margin-top: 1rem; }
-    .who-list li {
-      display: flex; align-items: flex-start; gap: 10px;
-      padding: 6px 0; color: #3a4a5a; font-size: 0.97rem;
-    }
-    .who-list li::before {
-      content: '▶'; color: var(--orange); font-size: 0.6rem; margin-top: 5px; flex-shrink: 0;
-    }
+    .who-list li { display: flex; align-items: flex-start; gap: 10px; padding: 6px 0; color: #3a4a5a; font-size: 0.97rem; }
+    .who-list li::before { content: '▶'; color: var(--orange); font-size: 0.6rem; margin-top: 5px; flex-shrink: 0; }
 
     /* ── SERVICIOS ── */
     #servicios { background: var(--light); }
     .services-intro { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
-    .services-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;
-    }
-    .service-card {
-      background: var(--white); border-radius: 6px; overflow: hidden;
-      box-shadow: 0 2px 16px rgba(27,42,74,0.07);
-      transition: transform .25s, box-shadow .25s;
-      border: 1px solid rgba(27,42,74,0.06);
-    }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+    .service-card { background: var(--white); border-radius: 6px; overflow: hidden; box-shadow: 0 2px 16px rgba(27,42,74,0.07); transition: transform .25s, box-shadow .25s; border: 1px solid rgba(27,42,74,0.06); }
     .service-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(27,42,74,0.14); }
-    .service-head {
-      padding: 1.5rem 1.5rem 1rem;
-      background: var(--navy); position: relative; overflow: hidden;
-    }
-    .service-head::after {
-      content: '';
-      position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
-      background: var(--orange);
-    }
+    .service-head { padding: 1.5rem 1.5rem 1rem; background: var(--navy); position: relative; overflow: hidden; }
+    .service-head::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--orange); }
     .service-icon { font-size: 2.2rem; margin-bottom: .5rem; display: block; }
-    .service-category {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.3rem; font-weight: 800; color: var(--white); letter-spacing: 1px;
-    }
+    .service-category { font-family: 'Barlow Condensed', sans-serif; font-size: 1.3rem; font-weight: 800; color: var(--white); letter-spacing: 1px; }
     .service-body { padding: 1.5rem; }
     .service-items { list-style: none; }
-    .service-items li {
-      padding: 7px 0;
-      border-bottom: 1px solid rgba(27,42,74,0.06);
-      color: #3a4a5a; font-size: 0.93rem;
-      display: flex; align-items: center; gap: 10px;
-    }
+    .service-items li { padding: 7px 0; border-bottom: 1px solid rgba(27,42,74,0.06); color: #3a4a5a; font-size: 0.93rem; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
     .service-items li:last-child { border-bottom: none; }
-    .service-items li::before {
-      content: '';
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--orange); flex-shrink: 0;
-    }
+    .service-items li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); flex-shrink: 0; }
+    .matriculado { font-size: 0.72rem; color: var(--orange); font-weight: 700; background: rgba(247,147,30,0.1); border-radius: 3px; padding: 2px 7px; white-space: nowrap; }
 
     /* ── POR QUÉ NOSOTROS ── */
     #porque { background: var(--navy); }
     #porque .section-title { color: var(--white); }
     #porque .section-lead { color: #8899aa; }
-    .why-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 3rem;
-    }
-    .why-card {
-      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 6px; padding: 2rem;
-      transition: background .25s, border-color .25s;
-    }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+    .why-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 2rem; transition: background .25s, border-color .25s; }
     .why-card:hover { background: rgba(247,147,30,0.08); border-color: rgba(247,147,30,0.3); }
     .why-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
-    .why-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.15rem; font-weight: 700; color: var(--white); margin-bottom: .5rem;
-    }
+    .why-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--white); margin-bottom: .5rem; }
     .why-desc { font-size: 0.9rem; color: #7a8fa8; line-height: 1.6; }
+
+    /* ── TRABAJOS REALIZADOS ── */
+    #trabajos { background: var(--white); }
+    .works-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+    .work-card { background: var(--light); border-radius: 8px; overflow: hidden; border: 1px solid rgba(27,42,74,0.08); transition: transform .25s, box-shadow .25s; }
+    .work-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(27,42,74,0.12); }
+    .work-visual { height: 160px; display: flex; align-items: center; justify-content: center; background: var(--navy); position: relative; overflow: hidden; }
+    .work-visual::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(247,147,30,0.15) 0%, transparent 60%); }
+    .work-emoji { font-size: 4rem; position: relative; z-index: 1; }
+    .work-body { padding: 1.3rem 1.5rem; }
+    .work-tag { display: inline-block; font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: .4rem; }
+    .work-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.15rem; font-weight: 800; color: var(--navy); margin-bottom: .4rem; }
+    .work-desc { font-size: 0.88rem; color: #5a6a7a; line-height: 1.6; }
+    .work-location { display: flex; align-items: center; gap: 5px; font-size: 0.78rem; color: var(--gray); margin-top: .7rem; }
+    .works-cta { margin-top: 3rem; background: linear-gradient(135deg, var(--navy) 0%, #243a5e 100%); border-radius: 8px; padding: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; border-left: 5px solid var(--orange); }
+    .works-cta h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--white); margin-bottom: .4rem; }
+    .works-cta p { color: #8899aa; font-size: 0.92rem; }
+
+    /* ── FAQ ── */
+    #faq { background: var(--light); }
+    #faq .section-title { color: var(--navy); }
+    .faq-list { margin-top: 3rem; display: flex; flex-direction: column; gap: 1rem; max-width: 800px; }
+    .faq-item { background: var(--white); border-radius: 6px; border: 1px solid rgba(27,42,74,0.09); overflow: hidden; transition: box-shadow .2s; }
+    .faq-item:hover { box-shadow: 0 4px 20px rgba(27,42,74,0.08); }
+    .faq-question { width: 100%; padding: 1.3rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; background: none; border: none; cursor: pointer; text-align: left; }
+    .faq-q-text { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--navy); letter-spacing: .3px; }
+    .faq-icon { width: 28px; height: 28px; border-radius: 50%; background: var(--orange); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 700; flex-shrink: 0; transition: transform .3s; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height .35s ease; padding: 0 1.5rem; }
+    .faq-answer-inner { padding: .9rem 0 1.3rem; color: #4a5a6a; font-size: 0.97rem; line-height: 1.8; border-top: 1px solid rgba(27,42,74,0.07); }
+    .faq-item.open .faq-answer { max-height: 500px; }
 
     /* ── CONTACTO ── */
     #contacto { background: var(--white); }
-    .contact-grid {
-      display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: start; margin-top: 3rem;
-    }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: start; margin-top: 3rem; }
     .contact-info-cards { display: flex; flex-direction: column; gap: 1rem; }
-    .info-card {
-      display: flex; align-items: flex-start; gap: 1rem;
-      background: var(--light); border-radius: 6px; padding: 1.3rem 1.5rem;
-      border-left: 4px solid var(--orange);
-      transition: box-shadow .2s;
-    }
+    .info-card { display: flex; align-items: flex-start; gap: 1rem; background: var(--light); border-radius: 6px; padding: 1.3rem 1.5rem; border-left: 4px solid var(--orange); transition: box-shadow .2s; }
     .info-card:hover { box-shadow: 0 4px 20px rgba(247,147,30,0.15); }
     .info-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 2px; }
     .info-title { font-weight: 600; color: var(--navy); margin-bottom: 3px; }
     .info-val { color: #4a5a6a; font-size: 0.95rem; }
     .info-val a { color: var(--orange); text-decoration: none; }
     .info-val a:hover { text-decoration: underline; }
-
+    .social-strip { display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; }
+    .social-btn { display: flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 4px; text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.92rem; letter-spacing: .5px; text-transform: uppercase; transition: transform .2s, box-shadow .2s; }
+    .social-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.18); }
+    .social-btn svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
+    .social-wa { background: #25D366; color: white; }
+    .social-ig { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color: white; }
+    .social-fb { background: #1877F2; color: white; }
     .contact-form { background: var(--light); border-radius: 8px; padding: 2.5rem; }
-    .contact-form h3 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.5rem; font-weight: 800; color: var(--navy); margin-bottom: 1.5rem;
-    }
+    .contact-form h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--navy); margin-bottom: 1.5rem; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
     .form-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 1rem; }
     .form-group label { font-size: 0.82rem; font-weight: 600; color: #4a5a6a; text-transform: uppercase; letter-spacing: .5px; }
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-      padding: 11px 14px; border: 1px solid #dde5ef; border-radius: 4px;
-      font-family: 'Barlow', sans-serif; font-size: 0.95rem; color: var(--navy);
-      background: var(--white); transition: border-color .2s, box-shadow .2s;
-      outline: none;
-    }
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus {
-      border-color: var(--orange); box-shadow: 0 0 0 3px rgba(247,147,30,0.12);
-    }
+    .form-group input, .form-group textarea, .form-group select { padding: 11px 14px; border: 1px solid #dde5ef; border-radius: 4px; font-family: 'Barlow', sans-serif; font-size: 0.95rem; color: var(--navy); background: var(--white); transition: border-color .2s, box-shadow .2s; outline: none; }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(247,147,30,0.12); }
     .form-group textarea { resize: vertical; min-height: 110px; }
-    .btn-send {
-      width: 100%; padding: 14px; background: var(--orange); color: var(--white);
-      border: none; border-radius: 4px; cursor: pointer;
-      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
-      font-size: 1.05rem; letter-spacing: 2px; text-transform: uppercase;
-      transition: background .2s, transform .15s;
-    }
+    .btn-send { width: 100%; padding: 14px; background: var(--orange); color: var(--white); border: none; border-radius: 4px; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.05rem; letter-spacing: 2px; text-transform: uppercase; transition: background .2s, transform .15s; }
     .btn-send:hover { background: #e07d10; transform: translateY(-1px); }
 
     /* ── FOOTER ── */
-    footer {
-      background: #0d1f3c;
-      padding: 3rem 5vw 1.5rem;
-      border-top: 3px solid var(--orange);
-    }
-    .footer-inner {
-      max-width: 1100px; margin: 0 auto;
-      display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 2rem;
-      padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.07);
-    }
+    footer { background: #0d1f3c; padding: 3rem 5vw 1.5rem; border-top: 3px solid var(--orange); }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
     .footer-brand .logo-main { font-size: 2rem; }
     .footer-brand .logo-sub { font-size: 0.7rem; margin-top: 2px; }
     .footer-brand p { color: #6a7f94; font-size: 0.85rem; margin-top: 1rem; max-width: 240px; line-height: 1.6; }
-    .footer-links h4 {
-      font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem;
-      color: var(--orange); letter-spacing: 2px; text-transform: uppercase; margin-bottom: .8rem;
-    }
+    .footer-social { display: flex; gap: .8rem; margin-top: 1.2rem; }
+    .footer-social a { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; transition: background .2s, border-color .2s; text-decoration: none; }
+    .footer-social a:hover { background: var(--orange); border-color: var(--orange); }
+    .footer-social svg { width: 16px; height: 16px; fill: white; }
+    .footer-links h4 { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; color: var(--orange); letter-spacing: 2px; text-transform: uppercase; margin-bottom: .8rem; }
     .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: .4rem; }
     .footer-links a { color: #7a8fa8; font-size: 0.9rem; text-decoration: none; transition: color .2s; }
     .footer-links a:hover { color: var(--orange); }
-    .footer-bottom { max-width: 1100px; margin: 1.5rem auto 0; text-align: center; color: #4a5a6a; font-size: 0.8rem; }
+    .footer-bottom { max-width: 1100px; margin: 1.5rem auto 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; color: #4a5a6a; font-size: 0.8rem; }
 
     /* ── WHATSAPP FLOAT ── */
-    .wa-float {
-      position: fixed; bottom: 28px; right: 28px; z-index: 200;
-      width: 58px; height: 58px; border-radius: 50%;
-      background: #25D366;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 20px rgba(37,211,102,0.5);
-      text-decoration: none; transition: transform .2s;
-    }
+    .wa-float { position: fixed; bottom: 28px; right: 28px; z-index: 200; width: 58px; height: 58px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,0.5); text-decoration: none; transition: transform .2s; }
     .wa-float:hover { transform: scale(1.1); }
     .wa-float svg { width: 30px; height: 30px; fill: white; }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } }
     @media (max-width: 768px) {
-      nav ul { display: none; }
-      .who-grid, .contact-grid { grid-template-columns: 1fr; }
+      nav ul { display: none; position: fixed; top: 70px; left: 0; right: 0; background: rgba(27,42,74,0.99); flex-direction: column; padding: 1.5rem 5vw 2rem; gap: 1rem; border-bottom: 2px solid var(--orange); }
+      nav ul.open { display: flex; }
+      nav ul a { font-size: 1.1rem; }
+      .nav-hamburger { display: flex; }
+      .who-grid { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
       .services-intro { flex-direction: column; align-items: flex-start; }
+      .works-cta { flex-direction: column; }
+      .social-strip { gap: .7rem; }
     }
+    @media (max-width: 480px) { .footer-bottom { flex-direction: column; text-align: center; } }
 
-    /* scroll reveal */
+    /* ── SCROLL REVEAL ── */
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s, transform .7s; }
     .reveal.visible { opacity: 1; transform: none; }
   </style>
@@ -407,15 +231,20 @@
   <a href="#inicio" class="nav-logo">
     <div>
       <span class="nav-logo-text">VERTICAL <span>SUR</span></span>
-      <span class="nav-tagline">Servicios en Altura & Mantenimiento</span>
+      <span class="nav-tagline">Servicios en Altura &amp; Mantenimiento</span>
     </div>
   </a>
-  <ul>
+  <ul id="nav-menu">
     <li><a href="#quienes">Quiénes somos</a></li>
     <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#porque">¿Por qué nosotros?</a></li>
+    <li><a href="#trabajos">Trabajos</a></li>
+    <li><a href="#porque">Por qué nosotros</a></li>
+    <li><a href="#faq">FAQ</a></li>
     <li><a href="#contacto" class="nav-cta">Contacto</a></li>
   </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Abrir menú">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -430,16 +259,16 @@
         <div class="logo-sub">SERVICIOS <em>EN ALTURA</em> &amp; MANTENIMIENTO INTEGRAL</div>
       </div>
     </div>
-    <h1>Soluciones profesionales para trabajos en altura y mantenimiento</h1>
-    <p>Desde el montaje de antenas y torres hasta el mantenimiento de edificios y galpones. Trabajamos con seguridad, experiencia y compromiso en Buenos Aires y alrededores.</p>
+    <h1>Soluciones profesionales para trabajos en altura, mantenimiento y construcción</h1>
+    <p>Desde el montaje de antenas y torres hasta plomería, electricidad y obras. Trabajamos con seguridad, experiencia y compromiso en General Roca y toda la región del Alto Valle.</p>
     <div class="hero-btns">
       <a href="#servicios" class="btn-primary">Ver nuestros servicios</a>
       <a href="#contacto" class="btn-outline">Solicitar presupuesto</a>
     </div>
     <div class="hero-badges">
       <div class="badge"><span class="badge-dot"></span>Personal asegurado (ART)</div>
-      <div class="badge"><span class="badge-dot"></span>Cumplimiento normas Ley 19.587</div>
-      <div class="badge"><span class="badge-dot"></span>Buenos Aires y GBA</div>
+      <div class="badge"><span class="badge-dot"></span>Técnicos matriculados</div>
+      <div class="badge"><span class="badge-dot"></span>General Roca, Río Negro</div>
     </div>
   </div>
 </section>
@@ -450,8 +279,8 @@
     <div class="who-grid">
       <div class="who-visual reveal">
         <div class="who-card">
-          <p>En <strong>Vertical Sur</strong> somos un equipo de profesionales especializados en <strong>trabajos en altura</strong> y <strong>mantenimiento integral</strong> de edificios, instalaciones y estructuras industriales.</p>
-          <p style="margin-top:1rem;">Contamos con años de experiencia en el rubro, personal capacitado y certificado, y el compromiso de entregar cada trabajo con los más altos estándares de calidad y <strong>seguridad</strong>.</p>
+          <p>En <strong>Vertical Sur</strong> somos un equipo de profesionales especializados en <strong>trabajos en altura</strong>, <strong>mantenimiento integral</strong> y <strong>obras de construcción</strong> para edificios, instalaciones y estructuras industriales.</p>
+          <p style="margin-top:1rem;">Contamos con años de experiencia, personal capacitado y certificado, y el compromiso de entregar cada trabajo con los más altos estándares de calidad y <strong>seguridad</strong>.</p>
           <div class="who-stats">
             <div class="stat"><span class="stat-num">+8</span><span class="stat-label">Años de experiencia</span></div>
             <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Personal asegurado</span></div>
@@ -463,12 +292,12 @@
       <div class="who-text reveal">
         <div class="section-label">Quiénes somos</div>
         <h2 class="section-title">Experiencia y seguridad <span>en cada trabajo</span></h2>
-        <p class="section-lead">Somos una empresa argentina con base en Buenos Aires, enfocada en brindar servicios de altura y mantenimiento con la máxima responsabilidad profesional.</p>
+        <p class="section-lead">Somos una empresa patagónica con base en General Roca, Río Negro, enfocada en brindar servicios de altura, mantenimiento y construcción con la máxima responsabilidad profesional.</p>
         <ul class="who-list">
           <li>Personal técnico capacitado y certificado en trabajos en altura</li>
           <li>Cumplimiento estricto de la Ley 19.587 y Decreto 351/79</li>
           <li>Cobertura de ART y seguro de vida para todo el equipo</li>
-          <li>Equipos e insumos de primera calidad</li>
+          <li>Técnicos matriculados en plomería, gas y electricidad</li>
           <li>Presupuesto sin cargo y respuesta rápida</li>
           <li>Atención personalizada en cada proyecto</li>
         </ul>
@@ -488,6 +317,7 @@
       </div>
     </div>
     <div class="services-grid">
+
       <!-- Servicios en Altura -->
       <div class="service-card reveal">
         <div class="service-head">
@@ -502,34 +332,131 @@
             <li>Cartelería en altura</li>
             <li>Limpieza de vidrios en edificios</li>
             <li>Trabajos con cuerdas y rappel</li>
+            <li>Pintura en altura</li>
           </ul>
         </div>
       </div>
-      <!-- Mantenimiento -->
+
+      <!-- Mantenimiento y Reparaciones -->
       <div class="service-card reveal">
         <div class="service-head">
           <span class="service-icon">🔧</span>
-          <div class="service-category">Mantenimiento Integral</div>
+          <div class="service-category">Mantenimiento &amp; Reparaciones</div>
         </div>
         <div class="service-body">
           <ul class="service-items">
-            <li>Impermeabilización y filtraciones de techos</li>
-            <li>Plomería</li>
-            <li>Albañilería general</li>
-            <li>Pintura en altura</li>
+            <li>Reparaciones generales</li>
+            <li>Filtraciones e impermeabilización</li>
+            <li>Plomería <span class="matriculado">Matriculados</span></li>
+            <li>Gas <span class="matriculado">Matriculados</span></li>
+            <li>Cloacas</li>
             <li>Mantenimiento de galpones</li>
           </ul>
         </div>
       </div>
-      <!-- Tarjeta CTA -->
-      <div class="service-card reveal" style="background: var(--navy); grid-column: span 1;">
+
+      <!-- Obras y Construcción -->
+      <div class="service-card reveal">
+        <div class="service-head">
+          <span class="service-icon">🏚️</span>
+          <div class="service-category">Obras &amp; Construcción</div>
+        </div>
+        <div class="service-body">
+          <ul class="service-items">
+            <li>Albañilería general</li>
+            <li>Herrería</li>
+            <li>Hojalatería</li>
+            <li>Electricidad <span class="matriculado">Matriculados</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="service-card reveal" style="background: var(--navy);">
         <div style="padding: 2.5rem; text-align:center;">
           <div style="font-size:2.5rem; margin-bottom:1rem;">📋</div>
           <h3 style="font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1.4rem; color:var(--white); margin-bottom:.8rem;">¿Necesitás un presupuesto?</h3>
           <p style="color:#7a8fa8; font-size:0.92rem; margin-bottom:1.5rem; line-height:1.6;">Contactanos y te respondemos en menos de 24 horas con un presupuesto sin cargo.</p>
-          <a href="#contacto" class="btn-primary" style="display:inline-block;">Consultar ahora</a>
+          <a href="#contacto" class="btn-primary">Consultar ahora</a>
         </div>
       </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TRABAJOS REALIZADOS -->
+<section id="trabajos">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center; max-width:660px; margin:0 auto 0;">
+      <div class="section-label">Nuestro portfolio</div>
+      <h2 class="section-title">Trabajos <span>Realizados</span></h2>
+      <p class="section-lead" style="margin:0 auto;">Algunos de los proyectos que llevamos a cabo con éxito. Cada trabajo es una muestra de nuestro compromiso con la calidad y la seguridad.</p>
+    </div>
+    <div class="works-grid">
+      <div class="work-card reveal">
+        <div class="work-visual"><span class="work-emoji">📡</span></div>
+        <div class="work-body">
+          <span class="work-tag">Telecomunicaciones</span>
+          <div class="work-title">Instalación de Starlink en chacra</div>
+          <p class="work-desc">Montaje e instalación de antena Starlink con cableado estructurado y configuración de red en zona rural.</p>
+          <div class="work-location">📍 General Roca, Río Negro</div>
+        </div>
+      </div>
+      <div class="work-card reveal">
+        <div class="work-visual"><span class="work-emoji">🗼</span></div>
+        <div class="work-body">
+          <span class="work-tag">Torres y antenas</span>
+          <div class="work-title">Montaje de torre de comunicación</div>
+          <p class="work-desc">Instalación completa de torre metálica de 15m con antenas de radiofrecuencia y sistema de tierra.</p>
+          <div class="work-location">📍 Allen, Río Negro</div>
+        </div>
+      </div>
+      <div class="work-card reveal">
+        <div class="work-visual"><span class="work-emoji">🏭</span></div>
+        <div class="work-body">
+          <span class="work-tag">Mantenimiento industrial</span>
+          <div class="work-title">Mantenimiento integral de galpón</div>
+          <p class="work-desc">Reparación de techo, impermeabilización, reposición de chapas y pintura completa de estructura metálica.</p>
+          <div class="work-location">📍 Cipolletti, Río Negro</div>
+        </div>
+      </div>
+      <div class="work-card reveal">
+        <div class="work-visual"><span class="work-emoji">💡</span></div>
+        <div class="work-body">
+          <span class="work-tag">Luminarias</span>
+          <div class="work-title">Reposición de luminarias en altura</div>
+          <p class="work-desc">Cambio y mantenimiento de luminarias de playa de estacionamiento a 8 metros de altura.</p>
+          <div class="work-location">📍 General Roca, Río Negro</div>
+        </div>
+      </div>
+      <div class="work-card reveal">
+        <div class="work-visual"><span class="work-emoji">🏗️</span></div>
+        <div class="work-body">
+          <span class="work-tag">Impermeabilización</span>
+          <div class="work-title">Impermeabilización de terraza</div>
+          <p class="work-desc">Reparación de filtraciones y aplicación de membrana asfáltica en edificio de 4 pisos.</p>
+          <div class="work-location">📍 General Roca, Río Negro</div>
+        </div>
+      </div>
+      <div class="work-card reveal">
+        <div class="work-visual"><span class="work-emoji">🪟</span></div>
+        <div class="work-body">
+          <span class="work-tag">Limpieza en altura</span>
+          <div class="work-title">Limpieza de vidrios en edificio</div>
+          <p class="work-desc">Limpieza integral de fachada vidriada de edificio corporativo con técnicas de acceso por cuerdas.</p>
+          <div class="work-location">📍 Neuquén capital</div>
+        </div>
+      </div>
+    </div>
+    <div class="works-cta reveal">
+      <div>
+        <h3>¿Querés ver más trabajos o consultar por el tuyo?</h3>
+        <p>Hablanos por WhatsApp y te mostramos más proyectos similares al tuyo. Presupuesto sin cargo.</p>
+      </div>
+      <a href="https://wa.me/5492984520559?text=Hola%20Vertical%20Sur%2C%20quiero%20consultar%20por%20un%20presupuesto" target="_blank" class="btn-primary" style="white-space:nowrap; flex-shrink:0;">
+        💬 Consultanos por WhatsApp
+      </a>
     </div>
   </div>
 </section>
@@ -577,35 +504,111 @@
   </div>
 </section>
 
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center; max-width:660px; margin:0 auto 0;">
+      <div class="section-label">Todo lo que necesitás saber</div>
+      <h2 class="section-title">Preguntas <span>Frecuentes</span></h2>
+      <p class="section-lead" style="margin:0 auto;">Respondemos las dudas más comunes de nuestros clientes antes de contratar.</p>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-text">¿En qué zonas trabajan?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Nuestra base está en <strong>General Roca, Río Negro (Chacra 142)</strong>. Trabajamos en toda la zona del Alto Valle: Allen, Cipolletti, Neuquén capital y localidades cercanas. Para proyectos de mayor envergadura también nos desplazamos a otras zonas de la Patagonia.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-text">¿Cómo solicito un presupuesto?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Por <strong>WhatsApp al +54 9 2984 520559</strong>, por mail a <strong>verticalsur.rn@gmail.com</strong> o completando el formulario de esta página. El presupuesto es <strong>sin cargo</strong> y respondemos en menos de 24 horas hábiles.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-text">¿El personal está asegurado y matriculado?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Sí. Todo el equipo tiene <strong>ART y seguro de vida</strong> vigentes. Los trabajos de plomería, gas y electricidad son realizados por <strong>técnicos con matrícula habilitante</strong>. Podemos entregar toda la documentación requerida.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-text">¿Trabajan con empresas y constructoras?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Sí, tenemos amplia experiencia con <strong>empresas, constructoras, administraciones de edificios e industrias</strong>. Emitimos factura A y B y entregamos toda la documentación de seguridad e higiene requerida.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-text">¿Atienden urgencias?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Contamos con <strong>capacidad de respuesta de emergencia</strong>. Si tu situación es urgente (filtraciones activas, corte de gas, problema eléctrico, etc.), escribinos por WhatsApp indicando la urgencia y evaluamos disponibilidad inmediata.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-text">¿Tienen garantía en los trabajos?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Sí. Todos nuestros trabajos incluyen <strong>garantía</strong> especificada en el presupuesto. Además hacemos seguimiento post-servicio para asegurarnos de que quedés conforme con el resultado.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-text">¿Instalan Starlink en zonas rurales?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Sí, es uno de nuestros servicios más solicitados. Instalamos <strong>Starlink en chacras, establecimientos rurales, galpones y zonas sin internet tradicional</strong>. Nos encargamos del montaje, cableado y configuración completa del sistema.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACTO -->
 <section id="contacto">
   <div class="section-inner">
     <div class="reveal" style="text-align:center; max-width:600px; margin:0 auto 3rem;">
       <div class="section-label">Hablemos</div>
       <h2 class="section-title">Contacto</h2>
-      <p class="section-lead" style="margin:0 auto;">Estamos para ayudarte. Envianos tu consulta o comunicate directamente por WhatsApp.</p>
+      <p class="section-lead" style="margin:0 auto;">Estamos para ayudarte. Escribinos por WhatsApp o envianos tu consulta por el formulario.</p>
     </div>
     <div class="contact-grid">
       <div class="contact-info-cards reveal">
         <div class="info-card">
-          <span class="info-icon">📞</span>
+          <span class="info-icon">💬</span>
           <div>
-            <div class="info-title">Teléfono / WhatsApp</div>
-            <div class="info-val"><a href="tel:+541100000000">+54 (11) XXXX-XXXX</a></div>
+            <div class="info-title">WhatsApp</div>
+            <div class="info-val"><a href="https://wa.me/5492984520559?text=Hola%20Vertical%20Sur%2C%20quiero%20consultar%20por%20un%20presupuesto" target="_blank">+54 9 2984 520559</a></div>
           </div>
         </div>
         <div class="info-card">
           <span class="info-icon">✉️</span>
           <div>
             <div class="info-title">Email</div>
-            <div class="info-val"><a href="mailto:info@verticalsur.com.ar">info@verticalsur.com.ar</a></div>
+            <div class="info-val"><a href="mailto:verticalsur.rn@gmail.com">verticalsur.rn@gmail.com</a></div>
           </div>
         </div>
         <div class="info-card">
           <span class="info-icon">📍</span>
           <div>
-            <div class="info-title">Zona de cobertura</div>
-            <div class="info-val">Buenos Aires y Gran Buenos Aires</div>
+            <div class="info-title">Ubicación</div>
+            <div class="info-val">General Roca, Río Negro — Chacra 142</div>
           </div>
         </div>
         <div class="info-card">
@@ -615,61 +618,87 @@
             <div class="info-val">Lunes a Viernes: 8:00 – 18:00 hs<br>Sábados: 8:00 – 13:00 hs</div>
           </div>
         </div>
+        <div>
+          <div class="info-title" style="margin-bottom:.8rem; font-weight:600; color:var(--navy);">Seguinos en redes</div>
+          <div class="social-strip">
+            <a href="https://wa.me/5492984520559" target="_blank" class="social-btn social-wa">
+              <svg viewBox="0 0 32 32"><path d="M16 .5C7.44.5.5 7.44.5 16c0 2.74.71 5.42 2.07 7.77L.5 31.5l8-2.04A15.44 15.44 0 0016 31.5C24.56 31.5 31.5 24.56 31.5 16S24.56.5 16 .5zm7.52 17.43c-.41-.2-2.42-1.18-2.8-1.32-.37-.13-.64-.2-.91.2-.27.4-1.05 1.32-1.29 1.59-.24.27-.47.3-.88.1-.41-.2-1.73-.63-3.3-2.01-1.22-1.07-2.04-2.4-2.28-2.8-.24-.41-.03-.63.18-.83.18-.18.41-.47.61-.7.2-.24.27-.41.41-.68.13-.27.07-.5-.03-.7-.1-.2-.91-2.19-1.25-3-.33-.79-.66-.68-.91-.69h-.77c-.27 0-.7.1-1.06.5-.37.4-1.4 1.37-1.4 3.33s1.43 3.87 1.63 4.13c.2.27 2.82 4.3 6.83 6.02.95.41 1.7.66 2.28.84.96.3 1.83.26 2.52.16.77-.12 2.37-.97 2.7-1.9.34-.94.34-1.74.24-1.9-.1-.18-.37-.27-.78-.47z"/></svg>
+              WhatsApp
+            </a>
+            <a href="https://instagram.com/verticalsur.rn" target="_blank" class="social-btn social-ig">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              Instagram
+            </a>
+            <a href="https://facebook.com/verticalsur.rn" target="_blank" class="social-btn social-fb">
+              <svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073c0 6.027 4.388 11.022 10.125 11.927v-8.437H7.078v-3.49h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796v8.437C19.612 23.095 24 18.1 24 12.073z"/></svg>
+              Facebook
+            </a>
+          </div>
+        </div>
         <div style="background: var(--navy); border-radius: 6px; padding: 1.5rem; border-left: 4px solid var(--orange);">
           <p style="color:#c0d0e0; font-size:0.92rem; line-height:1.7;">
             💡 <strong style="color:var(--orange);">¿Sos empresa?</strong> Trabajamos con administraciones, constructoras e industrias. Emitimos factura A y B, y entregamos toda la documentación de seguridad requerida.
           </p>
         </div>
       </div>
+
       <div class="contact-form reveal">
         <h3>Solicitar presupuesto</h3>
         <div class="form-row">
           <div class="form-group">
             <label>Nombre *</label>
-            <input type="text" placeholder="Tu nombre"/>
+            <input type="text" id="f-nombre" placeholder="Tu nombre"/>
           </div>
           <div class="form-group">
             <label>Empresa</label>
-            <input type="text" placeholder="Nombre de empresa (opcional)"/>
+            <input type="text" id="f-empresa" placeholder="Nombre de empresa (opcional)"/>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
             <label>Teléfono *</label>
-            <input type="tel" placeholder="+54 11 XXXX-XXXX"/>
+            <input type="tel" id="f-tel" placeholder="+54 299 XXX-XXXX"/>
           </div>
           <div class="form-group">
-            <label>Email *</label>
-            <input type="email" placeholder="tu@email.com"/>
+            <label>Email</label>
+            <input type="email" id="f-email" placeholder="tu@email.com"/>
           </div>
         </div>
         <div class="form-group">
           <label>Tipo de servicio</label>
-          <select>
+          <select id="f-servicio">
             <option value="">Seleccioná un servicio...</option>
             <optgroup label="Servicios en Altura">
               <option>Montaje / desmontaje de torres</option>
               <option>Antenas y Starlink</option>
               <option>Luminarias en altura</option>
-              <option>Cartelería</option>
-              <option>Limpieza de vidrios</option>
-              <option>Trabajos con cuerdas</option>
-            </optgroup>
-            <optgroup label="Mantenimiento">
-              <option>Filtraciones y techos</option>
-              <option>Plomería</option>
-              <option>Albañilería</option>
+              <option>Cartelería en altura</option>
+              <option>Limpieza de vidrios en edificios</option>
+              <option>Trabajos con cuerdas y rappel</option>
               <option>Pintura en altura</option>
+            </optgroup>
+            <optgroup label="Mantenimiento y Reparaciones">
+              <option>Reparaciones generales</option>
+              <option>Filtraciones e impermeabilización</option>
+              <option>Plomería (Matriculados)</option>
+              <option>Gas (Matriculados)</option>
+              <option>Cloacas</option>
               <option>Mantenimiento de galpones</option>
+            </optgroup>
+            <optgroup label="Obras y Construcción">
+              <option>Albañilería general</option>
+              <option>Herrería</option>
+              <option>Hojalatería</option>
+              <option>Electricidad (Matriculados)</option>
             </optgroup>
             <option>Otro / consulta general</option>
           </select>
         </div>
         <div class="form-group">
           <label>Descripción del trabajo</label>
-          <textarea placeholder="Contanos brevemente qué necesitás, ubicación, urgencia, etc."></textarea>
+          <textarea id="f-desc" placeholder="Contanos brevemente qué necesitás, ubicación, urgencia, etc."></textarea>
         </div>
-        <button class="btn-send" onclick="sendForm()">▶ Enviar consulta</button>
+        <button class="btn-send" onclick="sendForm()">▶ Enviar por WhatsApp</button>
       </div>
     </div>
   </div>
@@ -682,14 +711,27 @@
       <div class="logo-main" style="color:white;">VERTICAL <span style="color:var(--orange);">SUR</span></div>
       <div class="logo-line" style="margin:6px 0;"></div>
       <div class="logo-sub">SERVICIOS <em style="color:var(--orange);">EN ALTURA</em> &amp; MANTENIMIENTO</div>
-      <p>Soluciones profesionales en altura y mantenimiento integral. Buenos Aires y GBA.</p>
+      <p>Soluciones profesionales en altura, mantenimiento y construcción. General Roca, Río Negro y toda la región del Alto Valle.</p>
+      <div class="footer-social">
+        <a href="https://wa.me/5492984520559" target="_blank" title="WhatsApp">
+          <svg viewBox="0 0 32 32"><path d="M16 .5C7.44.5.5 7.44.5 16c0 2.74.71 5.42 2.07 7.77L.5 31.5l8-2.04A15.44 15.44 0 0016 31.5C24.56 31.5 31.5 24.56 31.5 16S24.56.5 16 .5zm7.52 17.43c-.41-.2-2.42-1.18-2.8-1.32-.37-.13-.64-.2-.91.2-.27.4-1.05 1.32-1.29 1.59-.24.27-.47.3-.88.1-.41-.2-1.73-.63-3.3-2.01-1.22-1.07-2.04-2.4-2.28-2.8-.24-.41-.03-.63.18-.83.18-.18.41-.47.61-.7.2-.24.27-.41.41-.68.13-.27.07-.5-.03-.7-.1-.2-.91-2.19-1.25-3-.33-.79-.66-.68-.91-.69h-.77c-.27 0-.7.1-1.06.5-.37.4-1.4 1.37-1.4 3.33s1.43 3.87 1.63 4.13c.2.27 2.82 4.3 6.83 6.02.95.41 1.7.66 2.28.84.96.3 1.83.26 2.52.16.77-.12 2.37-.97 2.7-1.9.34-.94.34-1.74.24-1.9-.1-.18-.37-.27-.78-.47z"/></svg>
+        </a>
+        <a href="https://instagram.com/verticalsur.rn" target="_blank" title="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="https://facebook.com/verticalsur.rn" target="_blank" title="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073c0 6.027 4.388 11.022 10.125 11.927v-8.437H7.078v-3.49h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796v8.437C19.612 23.095 24 18.1 24 12.073z"/></svg>
+        </a>
+      </div>
     </div>
     <div class="footer-links">
       <h4>Navegación</h4>
       <ul>
         <li><a href="#quienes">Quiénes somos</a></li>
         <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#trabajos">Trabajos realizados</a></li>
         <li><a href="#porque">Por qué elegirnos</a></li>
+        <li><a href="#faq">Preguntas frecuentes</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
     </div>
@@ -698,47 +740,104 @@
       <ul>
         <li><a href="#servicios">Torres y antenas</a></li>
         <li><a href="#servicios">Starlink</a></li>
-        <li><a href="#servicios">Limpieza de vidrios</a></li>
-        <li><a href="#servicios">Mantenimiento integral</a></li>
+        <li><a href="#servicios">Plomería y Gas</a></li>
+        <li><a href="#servicios">Electricidad</a></li>
+        <li><a href="#servicios">Impermeabilización</a></li>
+        <li><a href="#servicios">Herrería y Hojalatería</a></li>
       </ul>
     </div>
     <div class="footer-links">
       <h4>Contacto</h4>
       <ul>
-        <li><a href="tel:+541100000000">+54 (11) XXXX-XXXX</a></li>
-        <li><a href="mailto:info@verticalsur.com.ar">info@verticalsur.com.ar</a></li>
-        <li><a href="#contacto">Buenos Aires, Argentina</a></li>
+        <li><a href="https://wa.me/5492984520559" target="_blank">+54 9 2984 520559</a></li>
+        <li><a href="mailto:verticalsur.rn@gmail.com">verticalsur.rn@gmail.com</a></li>
+        <li><a href="#contacto">Gral. Roca, Río Negro — Chacra 142</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    © 2026 Vertical Sur – Servicios en Altura &amp; Mantenimiento Integral. Todos los derechos reservados.
+    <span>© 2026 Vertical Sur – Servicios en Altura &amp; Mantenimiento Integral.</span>
+    <span>General Roca, Río Negro, Argentina</span>
   </div>
 </footer>
 
 <!-- WhatsApp float -->
-<a href="https://wa.me/5491100000000" class="wa-float" target="_blank" title="Escribinos por WhatsApp">
+<a href="https://wa.me/5492984520559?text=Hola%20Vertical%20Sur%2C%20quiero%20consultar%20por%20un%20presupuesto" class="wa-float" target="_blank" title="Escribinos por WhatsApp">
   <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
     <path d="M16 .5C7.44.5.5 7.44.5 16c0 2.74.71 5.42 2.07 7.77L.5 31.5l8-2.04A15.44 15.44 0 0016 31.5C24.56 31.5 31.5 24.56 31.5 16S24.56.5 16 .5zm0 28.2a13.64 13.64 0 01-7.08-1.97l-.5-.3-5.2 1.33 1.37-4.96-.33-.52A13.7 13.7 0 1116 28.7zm7.52-10.27c-.41-.2-2.42-1.18-2.8-1.32-.37-.13-.64-.2-.91.2-.27.4-1.05 1.32-1.29 1.59-.24.27-.47.3-.88.1-.41-.2-1.73-.63-3.3-2.01-1.22-1.07-2.04-2.4-2.28-2.8-.24-.41-.03-.63.18-.83.18-.18.41-.47.61-.7.2-.24.27-.41.41-.68.13-.27.07-.5-.03-.7-.1-.2-.91-2.19-1.25-3-.33-.79-.66-.68-.91-.69h-.77c-.27 0-.7.1-1.06.5-.37.4-1.4 1.37-1.4 3.33s1.43 3.87 1.63 4.13c.2.27 2.82 4.3 6.83 6.02.95.41 1.7.66 2.28.84.96.3 1.83.26 2.52.16.77-.12 2.37-.97 2.7-1.9.34-.94.34-1.74.24-1.9-.1-.18-.37-.27-.78-.47z"/>
   </svg>
 </a>
 
 <script>
-  // Scroll reveal
+  // ── Scroll reveal con fallback garantizado ──
   const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(r => observer.observe(r));
 
-  // Form submit
+  if ('IntersectionObserver' in window) {
+    const revealObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e, i) {
+        if (e.isIntersecting) {
+          setTimeout(function() { e.target.classList.add('visible'); }, i * 80);
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    reveals.forEach(function(r) { revealObs.observe(r); });
+  } else {
+    reveals.forEach(function(r) { r.classList.add('visible'); });
+  }
+
+  // Fallback: forzar visible tras 2.5 seg por si el observer falla
+  setTimeout(function() {
+    document.querySelectorAll('.reveal:not(.visible)').forEach(function(el) {
+      el.classList.add('visible');
+    });
+  }, 2500);
+
+  // ── Mobile hamburger ──
+  var hamburger = document.getElementById('hamburger');
+  var navMenu = document.getElementById('nav-menu');
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('open');
+    navMenu.classList.toggle('open');
+  });
+  navMenu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      hamburger.classList.remove('open');
+      navMenu.classList.remove('open');
+    });
+  });
+
+  // ── FAQ accordion ──
+  function toggleFaq(btn) {
+    var item = btn.closest('.faq-item');
+    var isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(function(i) { i.classList.remove('open'); });
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // ── Formulario a WhatsApp ──
   function sendForm() {
-    alert('¡Gracias por tu consulta! Nos pondremos en contacto a la brevedad.\n\nTambién podés escribirnos por WhatsApp para una respuesta más rápida.');
+    var nombre  = document.getElementById('f-nombre').value.trim();
+    var empresa = document.getElementById('f-empresa').value.trim();
+    var tel     = document.getElementById('f-tel').value.trim();
+    var email   = document.getElementById('f-email').value.trim();
+    var serv    = document.getElementById('f-servicio').value;
+    var desc    = document.getElementById('f-desc').value.trim();
+
+    if (!nombre || !tel) {
+      alert('Por favor completá al menos tu nombre y teléfono.');
+      return;
+    }
+
+    var msg = 'Hola Vertical Sur, les escribo desde la web!\n\n';
+    msg += '*Nombre:* ' + nombre + '\n';
+    if (empresa) msg += '*Empresa:* ' + empresa + '\n';
+    msg += '*Telefono:* ' + tel + '\n';
+    if (email)   msg += '*Email:* ' + email + '\n';
+    if (serv)    msg += '*Servicio:* ' + serv + '\n';
+    if (desc)    msg += '*Detalle:* ' + desc + '\n';
+
+    window.open('https://wa.me/5492984520559?text=' + encodeURIComponent(msg), '_blank');
   }
 </script>
 </body>
