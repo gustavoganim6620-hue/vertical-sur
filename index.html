@@ -1,331 +1,641 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Vertical Sur – Servicios en Altura & Mantenimiento Integral | General Roca, Río Negro</title>
-  <meta name="description" content="Empresa especializada en trabajos en altura, mantenimiento y construcción en General Roca, Río Negro. Antenas, Starlink, plomería, electricidad, gas y más.">
+  <title>Vertical Sur – Mantenimiento Integral & Servicios en Altura | Proveedor Institucional | General Roca, Río Negro</title>
+  <meta name="description" content="Empresa de mantenimiento integral, servicios en altura y construcción en General Roca, Río Negro. Proveedores de municipios, escuelas y empresas. Técnicos matriculados. Factura A y B."/>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --navy: #1B2A4A;
-      --orange: #F7931E;
-      --sky: #5AAEE0;
-      --light: #F5F8FC;
-      --white: #FFFFFF;
-      --gray: #8899aa;
-    }
+:root{
+  --navy:#1B2A4A;--navy-dark:#0d1f3c;--navy-mid:#243a5e;
+  --orange:#F7931E;--orange-dark:#e07d10;
+  --sky:#5AAEE0;
+  --light:#F5F8FC;--white:#fff;
+  --gray:#8899aa;--text:#3a4a5a;--text-light:#6a7a8a;
+  --radius:8px;--radius-lg:14px;
+  --shadow:0 4px 24px rgba(27,42,74,.10);--shadow-lg:0 12px 48px rgba(27,42,74,.17);
+  --trans:.28s cubic-bezier(.4,0,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:var(--white);color:var(--navy);overflow-x:hidden}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+.container{max-width:1140px;margin:0 auto;padding:0 5vw}
+.section-pad{padding:100px 0}
+.tag{font-family:'Barlow Condensed',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--orange)}
+.h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,4.5vw,3rem);font-weight:900;line-height:1.08;color:var(--navy)}
+.h2 span{color:var(--orange)}
+.lead{font-size:1.05rem;color:var(--text-light);line-height:1.8;max-width:600px}
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:1.5px;text-transform:uppercase;padding:14px 32px;border-radius:4px;border:none;cursor:pointer;transition:all var(--trans)}
+.btn-primary{background:var(--orange);color:var(--white);box-shadow:0 6px 24px rgba(247,147,30,.38)}
+.btn-primary:hover{background:var(--orange-dark);transform:translateY(-2px);box-shadow:0 10px 32px rgba(247,147,30,.45)}
+.btn-outline-light{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.45)}
+.btn-outline-light:hover{border-color:var(--orange);color:var(--orange);background:rgba(247,147,30,.07)}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s var(--trans),transform .7s var(--trans)}
+.reveal.visible{opacity:1;transform:none}
+.reveal-left{opacity:0;transform:translateX(-32px);transition:opacity .7s var(--trans),transform .7s var(--trans)}
+.reveal-left.visible{opacity:1;transform:none}
+.reveal-right{opacity:0;transform:translateX(32px);transition:opacity .7s var(--trans),transform .7s var(--trans)}
+.reveal-right.visible{opacity:1;transform:none}
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Barlow', sans-serif; background: var(--white); color: var(--navy); overflow-x: hidden; }
+/* ── TOP BAR ── */
+.top-bar{background:var(--navy-dark);border-bottom:1px solid rgba(255,255,255,.07);padding:8px 5vw;display:flex;align-items:center;justify-content:space-between;font-size:.78rem;color:rgba(180,200,220,.7);letter-spacing:.3px}
+.top-bar-left{display:flex;align-items:center;gap:1.8rem;flex-wrap:wrap}
+.top-bar-item{display:flex;align-items:center;gap:6px}
+.top-bar-item svg{width:12px;height:12px;fill:var(--orange);flex-shrink:0}
+.top-bar-right{display:flex;align-items:center;gap:1rem}
+.top-bar-badge{background:rgba(247,147,30,.15);border:1px solid rgba(247,147,30,.3);color:var(--orange);border-radius:100px;padding:3px 12px;font-size:.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap}
 
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 5vw; height: 70px;
-      background: rgba(27,42,74,0.97);
-      backdrop-filter: blur(8px);
-      border-bottom: 2px solid var(--orange);
-    }
-    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .nav-logo-text { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.5rem; color: var(--white); letter-spacing: 1px; }
-    .nav-logo-text span { color: var(--orange); }
-    .nav-tagline { font-size: 0.6rem; color: var(--sky); letter-spacing: 2px; text-transform: uppercase; display: block; margin-top: -4px; }
-    nav ul { list-style: none; display: flex; gap: 1.6rem; align-items: center; }
-    nav ul a { text-decoration: none; color: #cdd8e8; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 0.95rem; letter-spacing: 1px; text-transform: uppercase; transition: color .2s; }
-    nav ul a:hover { color: var(--orange); }
-    .nav-cta { background: var(--orange); color: var(--white) !important; padding: 8px 18px; border-radius: 3px; transition: background .2s !important; }
-    .nav-cta:hover { background: #e07d10 !important; }
-    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
-    .nav-hamburger span { display: block; width: 26px; height: 2px; background: var(--white); border-radius: 2px; transition: all .3s; }
-    .nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-    .nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:rgba(13,31,60,.97);backdrop-filter:blur(12px);border-bottom:2px solid var(--orange);transition:background var(--trans),box-shadow var(--trans)}
+nav.scrolled{background:rgba(13,31,60,.995);box-shadow:0 4px 24px rgba(0,0,0,.3)}
+.nav-logo{display:flex;align-items:center;gap:12px}
+.nav-wordmark{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:var(--white);letter-spacing:1px;line-height:1}
+.nav-wordmark span{color:var(--orange)}
+.nav-tagline{font-size:.58rem;color:var(--sky);letter-spacing:2.5px;text-transform:uppercase;display:block;margin-top:1px}
+nav ul{list-style:none;display:flex;gap:1.6rem;align-items:center}
+nav ul a{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.9rem;letter-spacing:1px;text-transform:uppercase;color:#c8d8e8;transition:color var(--trans)}
+nav ul a:hover{color:var(--orange)}
+.nav-cta{background:var(--orange)!important;color:var(--white)!important;padding:8px 20px;border-radius:3px;transition:background var(--trans)!important}
+.nav-cta:hover{background:var(--orange-dark)!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:26px;height:2px;background:var(--white);border-radius:2px;transition:all .3s}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
 
-    /* ── HERO ── */
-    .hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-    .hero-bg { position: absolute; inset: 0; background: linear-gradient(160deg, #0d1f3c 0%, #1B2A4A 45%, #24406a 100%); }
-    .hero-bg::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 50% at 70% 30%, rgba(90,174,224,0.18) 0%, transparent 70%), radial-gradient(ellipse 40% 30% at 20% 60%, rgba(247,147,30,0.08) 0%, transparent 70%); }
-    .hero-stripe { position: absolute; left: 0; bottom: 0; width: 100%; height: 8px; background: var(--orange); }
-    .hero-content { position: relative; z-index: 2; text-align: center; padding: 120px 5vw 80px; max-width: 900px; }
-    .hero-logo-wrap { margin-bottom: 2rem; opacity: 0; animation: fadeUp .8s .2s forwards; }
-    .hero-logo-box { display: inline-block; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 20px 36px; }
-    .logo-main { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(3rem, 8vw, 5.5rem); color: var(--white); letter-spacing: 2px; line-height: 1; }
-    .logo-main span { color: var(--orange); }
-    .logo-sub { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: clamp(0.7rem, 2vw, 0.95rem); color: var(--sky); letter-spacing: 4px; text-transform: uppercase; margin-top: 4px; }
-    .logo-sub em { color: var(--orange); font-style: normal; }
-    .logo-line { height: 2px; background: linear-gradient(90deg, transparent, var(--orange), transparent); margin: 8px 0; }
-    .hero h1 { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: clamp(1.4rem, 4vw, 2.2rem); color: var(--white); letter-spacing: 1px; margin-bottom: 1rem; opacity: 0; animation: fadeUp .8s .5s forwards; }
-    .hero p { color: #a0b4cc; font-size: 1.05rem; line-height: 1.7; max-width: 620px; margin: 0 auto 2.5rem; opacity: 0; animation: fadeUp .8s .7s forwards; }
-    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; opacity: 0; animation: fadeUp .8s .9s forwards; }
-    .btn-primary { background: var(--orange); color: var(--white); padding: 14px 32px; border-radius: 3px; text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 1.5px; text-transform: uppercase; transition: all .2s; box-shadow: 0 4px 20px rgba(247,147,30,0.4); display: inline-block; }
-    .btn-primary:hover { background: #e07d10; transform: translateY(-2px); }
-    .btn-outline { border: 2px solid rgba(255,255,255,0.3); color: var(--white); padding: 12px 28px; border-radius: 3px; text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 1.5px; text-transform: uppercase; transition: all .2s; }
-    .btn-outline:hover { border-color: var(--orange); color: var(--orange); }
-    .hero-badges { display: flex; gap: 1.5rem; justify-content: center; margin-top: 3rem; flex-wrap: wrap; opacity: 0; animation: fadeUp .8s 1.1s forwards; }
-    .badge { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 100px; padding: 8px 18px; font-size: 0.82rem; color: #c0d0e0; letter-spacing: .5px; }
-    .badge-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); flex-shrink: 0; }
+/* ── HERO ── */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+.hero-img{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&h=900&fit=crop&q=80') center/cover no-repeat}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(13,31,60,.93) 0%,rgba(27,42,74,.84) 55%,rgba(36,58,94,.62) 100%)}
+.hero-content{position:relative;z-index:2;padding:130px 5vw 90px;max-width:1140px;margin:0 auto;width:100%}
+.hero-pre{display:inline-flex;align-items:center;gap:10px;background:rgba(247,147,30,.15);border:1px solid rgba(247,147,30,.35);border-radius:100px;padding:7px 20px;font-family:'Barlow Condensed',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:1.6rem;animation:fadeUp .7s .1s both}
+.hero-pre::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--orange);flex-shrink:0}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.6rem,6vw,4.6rem);line-height:1.03;color:var(--white);letter-spacing:1px;max-width:800px;animation:fadeUp .7s .25s both}
+.hero h1 em{color:var(--orange);font-style:normal}
+.hero-sub{font-size:1.1rem;color:rgba(200,220,240,.85);line-height:1.78;max-width:560px;margin:1.6rem 0 2.6rem;animation:fadeUp .7s .4s both}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp .7s .55s both}
+.hero-badges{display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:3.5rem;animation:fadeUp .7s .7s both}
+.hero-badge{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:100px;padding:8px 20px;font-size:.82rem;color:#c0d4e8;letter-spacing:.5px}
+.hero-badge svg{width:14px;height:14px;fill:var(--orange);flex-shrink:0}
+.hero-stripe{position:absolute;left:0;bottom:0;width:100%;height:6px;background:linear-gradient(90deg,var(--orange),#ffb556,var(--orange));z-index:3}
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
 
-    @keyframes fadeUp { from { opacity:0; transform: translateY(24px); } to { opacity:1; transform: translateY(0); } }
+/* ── STATS BAR ── */
+.stats-bar{background:var(--white);border-bottom:1px solid rgba(27,42,74,.07);position:relative;z-index:10}
+.stats-bar .container{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat-item{padding:26px 20px;text-align:center;border-right:1px solid rgba(27,42,74,.07);transition:background var(--trans)}
+.stat-item:last-child{border-right:none}
+.stat-item:hover{background:var(--light)}
+.stat-num{font-family:'Barlow Condensed',sans-serif;font-size:2.4rem;font-weight:900;color:var(--orange);line-height:1;display:block}
+.stat-txt{font-size:.76rem;color:var(--gray);text-transform:uppercase;letter-spacing:1.5px;margin-top:5px}
 
-    /* ── SECTIONS SHARED ── */
-    section { scroll-margin-top: 70px; }
-    .section-inner { max-width: 1100px; margin: 0 auto; padding: 100px 5vw; }
-    .section-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--orange); margin-bottom: .5rem; }
-    .section-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; color: var(--navy); line-height: 1.1; margin-bottom: 1.2rem; }
-    .section-title span { color: var(--orange); }
-    .section-lead { font-size: 1.05rem; color: #4a5a6a; line-height: 1.8; max-width: 620px; }
+/* ── SECTORES (image-bg cards) ── */
+#sectores{background:var(--light);border-bottom:1px solid rgba(27,42,74,.07)}
+.sectores-inner{padding:70px 0}
+.sectores-header{text-align:center;margin-bottom:3rem}
+.sectores-header .tag{display:block;margin-bottom:.6rem}
+.sectores-header .lead{margin:0 auto;text-align:center}
+.sectores-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1.2rem;margin-top:3rem}
+.sector-card{border-radius:var(--radius-lg);overflow:hidden;position:relative;height:220px;box-shadow:var(--shadow);transition:transform var(--trans),box-shadow var(--trans);cursor:default}
+.sector-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.sector-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s var(--trans)}
+.sector-card:hover img{transform:scale(1.07)}
+.sector-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,31,60,.94) 0%,rgba(13,31,60,.6) 55%,rgba(13,31,60,.2) 100%);transition:background var(--trans)}
+.sector-card:hover .sector-overlay{background:linear-gradient(to top,rgba(13,31,60,.97) 0%,rgba(13,31,60,.7) 65%,rgba(13,31,60,.3) 100%)}
+.sector-content{position:absolute;bottom:0;left:0;right:0;padding:1.2rem 1.3rem}
+.sector-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;color:var(--white);margin-bottom:.3rem;letter-spacing:.3px}
+.sector-desc{font-size:.76rem;color:rgba(190,215,235,.8);line-height:1.5}
+.sectores-note{margin-top:2.5rem;background:var(--navy);border-radius:var(--radius-lg);padding:2rem 2.5rem;display:flex;align-items:center;gap:2rem;flex-wrap:wrap;justify-content:space-between;border-left:5px solid var(--orange)}
+.sectores-note-text strong{font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;font-weight:900;color:var(--white);display:block;margin-bottom:.3rem}
+.sectores-note-text span{font-size:.9rem;color:rgba(160,185,210,.8)}
 
-    /* ── QUIENES SOMOS ── */
-    #quienes { background: var(--white); }
-    .who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem; }
-    .who-card { background: var(--navy); border-radius: 6px; padding: 2.5rem; position: relative; overflow: hidden; }
-    .who-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--orange); }
-    .who-card::after { content: '"'; position: absolute; bottom: -20px; right: 20px; font-size: 10rem; color: rgba(247,147,30,0.08); font-family: Georgia, serif; line-height: 1; }
-    .who-card p { color: #c0d0e0; font-size: 1.05rem; line-height: 1.8; position: relative; z-index: 1; }
-    .who-card strong { color: var(--orange); }
-    .who-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
-    .stat { text-align: center; padding: 1.2rem; background: rgba(90,174,224,0.08); border-radius: 4px; border: 1px solid rgba(90,174,224,0.15); }
-    .stat-num { font-family: 'Barlow Condensed', sans-serif; font-size: 2.2rem; font-weight: 900; color: var(--orange); display: block; }
-    .stat-label { font-size: 0.78rem; color: #8899aa; text-transform: uppercase; letter-spacing: 1px; }
-    .who-text p { color: #4a5a6a; line-height: 1.8; margin-bottom: 1rem; }
-    .who-list { list-style: none; margin-top: 1rem; }
-    .who-list li { display: flex; align-items: flex-start; gap: 10px; padding: 6px 0; color: #3a4a5a; font-size: 0.97rem; }
-    .who-list li::before { content: '▶'; color: var(--orange); font-size: 0.6rem; margin-top: 5px; flex-shrink: 0; }
+/* ── QUIENES ── */
+#quienes{background:var(--white)}
+.who-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-top:4rem}
+.who-photo{position:relative;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg)}
+.who-photo img{width:100%;height:480px;object-fit:cover}
+.who-photo-badge{position:absolute;bottom:24px;left:24px;right:24px;background:rgba(13,31,60,.93);backdrop-filter:blur(8px);border-radius:var(--radius);padding:18px 20px;border-left:4px solid var(--orange);display:flex;gap:16px;align-items:center}
+.who-badge-img{width:52px;height:52px;border-radius:var(--radius);overflow:hidden;flex-shrink:0}
+.who-badge-img img{width:100%;height:100%;object-fit:cover}
+.who-photo-badge strong{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:800;color:var(--white);display:block}
+.who-photo-badge span{font-size:.82rem;color:rgba(180,200,220,.75)}
+.who-text .tag{margin-bottom:.8rem;display:block}
+.who-text .h2{margin-bottom:1.2rem}
+.who-text .lead{margin-bottom:2rem}
+.who-features{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+.who-feature{display:flex;align-items:flex-start;gap:12px;background:var(--light);border-radius:var(--radius);padding:16px;border:1px solid rgba(27,42,74,.07);transition:box-shadow var(--trans),border-color var(--trans)}
+.who-feature:hover{box-shadow:var(--shadow);border-color:rgba(247,147,30,.2)}
+.who-feat-img{width:62px;height:54px;border-radius:6px;overflow:hidden;flex-shrink:0}
+.who-feat-img img{width:100%;height:100%;object-fit:cover}
+.who-feat-text strong{font-family:'Barlow Condensed',sans-serif;font-size:.95rem;font-weight:800;color:var(--navy);display:block;margin-bottom:3px}
+.who-feat-text span{font-size:.82rem;color:var(--text-light);line-height:1.5}
 
-    /* ── SERVICIOS ── */
-    #servicios { background: var(--light); }
-    .services-intro { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
-    .service-card { background: var(--white); border-radius: 6px; overflow: hidden; box-shadow: 0 2px 16px rgba(27,42,74,0.07); transition: transform .25s, box-shadow .25s; border: 1px solid rgba(27,42,74,0.06); }
-    .service-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(27,42,74,0.14); }
-    .service-head { padding: 1.5rem 1.5rem 1rem; background: var(--navy); position: relative; overflow: hidden; }
-    .service-head::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--orange); }
-    .service-icon { font-size: 2.2rem; margin-bottom: .5rem; display: block; }
-    .service-category { font-family: 'Barlow Condensed', sans-serif; font-size: 1.3rem; font-weight: 800; color: var(--white); letter-spacing: 1px; }
-    .service-body { padding: 1.5rem; }
-    .service-items { list-style: none; }
-    .service-items li { padding: 7px 0; border-bottom: 1px solid rgba(27,42,74,0.06); color: #3a4a5a; font-size: 0.93rem; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-    .service-items li:last-child { border-bottom: none; }
-    .service-items li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); flex-shrink: 0; }
-    .matriculado { font-size: 0.72rem; color: var(--orange); font-weight: 700; background: rgba(247,147,30,0.1); border-radius: 3px; padding: 2px 7px; white-space: nowrap; }
+/* ── SERVICIOS ── */
+#servicios{background:var(--light)}
+.services-header{text-align:center;margin-bottom:3.5rem}
+.services-header .tag{display:block;margin-bottom:.7rem}
+.services-header .lead{margin:0 auto}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.svc-card{border-radius:var(--radius-lg);overflow:hidden;background:var(--white);box-shadow:var(--shadow);border:1px solid rgba(27,42,74,.07);transition:transform var(--trans),box-shadow var(--trans)}
+.svc-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
+.svc-img{position:relative;overflow:hidden;height:200px}
+.svc-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--trans)}
+.svc-card:hover .svc-img img{transform:scale(1.07)}
+.svc-img-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 30%,rgba(13,31,60,.85) 100%)}
+.svc-img-cat{position:absolute;bottom:14px;left:16px;font-family:'Barlow Condensed',sans-serif;font-size:1.15rem;font-weight:800;color:var(--white);letter-spacing:.5px;text-shadow:0 2px 8px rgba(0,0,0,.4)}
+.svc-body{padding:1.4rem 1.5rem 1.6rem}
+.svc-desc{font-size:.9rem;color:var(--text);line-height:1.65;margin-bottom:1rem}
+.svc-list{list-style:none;display:flex;flex-direction:column;gap:5px}
+.svc-list li{display:flex;align-items:center;gap:9px;font-size:.86rem;color:var(--text-light)}
+.svc-list li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--orange);flex-shrink:0}
+.svc-badge{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;background:rgba(247,147,30,.12);color:var(--orange);border-radius:3px;padding:2px 7px;margin-left:4px;vertical-align:middle}
+.svc-cta-card{border-radius:var(--radius-lg);overflow:hidden;position:relative;box-shadow:var(--shadow-lg);transition:transform var(--trans)}
+.svc-cta-card:hover{transform:translateY(-6px)}
+.svc-cta-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.svc-cta-overlay{position:absolute;inset:0;background:rgba(13,31,60,.88)}
+.svc-cta-inner{position:relative;z-index:1;padding:2.5rem 2rem;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100%}
+.svc-cta-inner h3{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:var(--white);margin-bottom:.8rem;line-height:1.15}
+.svc-cta-inner p{font-size:.9rem;color:rgba(160,185,210,.85);line-height:1.65;margin-bottom:1.8rem}
 
-    /* ── POR QUÉ NOSOTROS ── */
-    #porque { background: var(--navy); }
-    #porque .section-title { color: var(--white); }
-    #porque .section-lead { color: #8899aa; }
-    .why-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
-    .why-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 2rem; transition: background .25s, border-color .25s; }
-    .why-card:hover { background: rgba(247,147,30,0.08); border-color: rgba(247,147,30,0.3); }
-    .why-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
-    .why-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--white); margin-bottom: .5rem; }
-    .why-desc { font-size: 0.9rem; color: #7a8fa8; line-height: 1.6; }
+/* ── DOCUMENTACIÓN (image-bg cards, dark) ── */
+#documentacion{background:var(--navy-dark)}
+.doc-inner{padding:80px 0}
+.doc-header{text-align:center;margin-bottom:3rem}
+.doc-header .tag{color:var(--sky);display:block;margin-bottom:.7rem}
+.doc-header .h2{color:var(--white);margin-bottom:1rem}
+.doc-header .lead{color:rgba(160,185,210,.8);margin:0 auto;text-align:center}
+.doc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:3rem}
+.doc-card{border-radius:var(--radius-lg);overflow:hidden;position:relative;min-height:220px;border:1px solid rgba(255,255,255,.08);transition:transform var(--trans),box-shadow var(--trans)}
+.doc-card:hover{transform:translateY(-5px);box-shadow:0 16px 48px rgba(0,0,0,.4)}
+.doc-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s var(--trans)}
+.doc-card:hover img{transform:scale(1.06)}
+.doc-overlay{position:absolute;inset:0;background:rgba(8,15,30,.82);transition:background var(--trans)}
+.doc-card:hover .doc-overlay{background:rgba(8,15,30,.74)}
+.doc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--orange);z-index:2;transform:scaleX(0);transform-origin:left;transition:transform var(--trans)}
+.doc-card:hover::before{transform:scaleX(1)}
+.doc-content{position:relative;z-index:1;padding:1.6rem 1.4rem}
+.doc-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.05rem;color:var(--white);margin-bottom:.5rem}
+.doc-desc{font-size:.84rem;color:rgba(160,190,215,.8);line-height:1.6}
+.doc-check{display:inline-flex;align-items:center;gap:5px;font-size:.7rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#4adb8f;background:rgba(26,122,74,.2);border:1px solid rgba(26,122,74,.35);border-radius:100px;padding:3px 10px;margin-top:.8rem}
+.doc-check::before{content:'✓';font-weight:900}
+.doc-cta{margin-top:2.5rem;background:rgba(247,147,30,.1);border:1px solid rgba(247,147,30,.25);border-radius:var(--radius-lg);padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.doc-cta-text strong{font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;font-weight:900;color:var(--white);display:block;margin-bottom:.3rem}
+.doc-cta-text span{font-size:.9rem;color:rgba(160,185,210,.75)}
 
-    /* ── TRABAJOS REALIZADOS ── */
-    #trabajos { background: var(--white); }
-    .works-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
-    .work-card { background: var(--light); border-radius: 8px; overflow: hidden; border: 1px solid rgba(27,42,74,0.08); transition: transform .25s, box-shadow .25s; }
-    .work-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(27,42,74,0.12); }
-    .work-visual { height: 160px; display: flex; align-items: center; justify-content: center; background: var(--navy); position: relative; overflow: hidden; }
-    .work-visual::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(247,147,30,0.15) 0%, transparent 60%); }
-    .work-emoji { font-size: 4rem; position: relative; z-index: 1; }
-    .work-body { padding: 1.3rem 1.5rem; }
-    .work-tag { display: inline-block; font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: .4rem; }
-    .work-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.15rem; font-weight: 800; color: var(--navy); margin-bottom: .4rem; }
-    .work-desc { font-size: 0.88rem; color: #5a6a7a; line-height: 1.6; }
-    .work-location { display: flex; align-items: center; gap: 5px; font-size: 0.78rem; color: var(--gray); margin-top: .7rem; }
-    .works-cta { margin-top: 3rem; background: linear-gradient(135deg, var(--navy) 0%, #243a5e 100%); border-radius: 8px; padding: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; border-left: 5px solid var(--orange); }
-    .works-cta h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--white); margin-bottom: .4rem; }
-    .works-cta p { color: #8899aa; font-size: 0.92rem; }
+/* ── POR QUÉ ── */
+#porque{background:var(--navy)}
+.porque-inner{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+.porque-text .tag{color:var(--sky);display:block;margin-bottom:.8rem}
+.porque-text .h2{color:var(--white);margin-bottom:1.2rem}
+.porque-text .lead{color:rgba(160,185,210,.8);margin-bottom:2.5rem}
+.porque-features{display:flex;flex-direction:column;gap:1.2rem}
+.pf-item{display:flex;align-items:flex-start;gap:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:1.3rem 1.4rem;transition:background var(--trans),border-color var(--trans)}
+.pf-item:hover{background:rgba(247,147,30,.08);border-color:rgba(247,147,30,.25)}
+.pf-img{width:50px;height:50px;border-radius:var(--radius);overflow:hidden;flex-shrink:0}
+.pf-img img{width:100%;height:100%;object-fit:cover}
+.pf-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.05rem;color:var(--white);margin-bottom:4px}
+.pf-desc{font-size:.88rem;color:rgba(140,165,185,.85);line-height:1.6}
+.porque-visual{position:relative}
+.porque-img-wrap{border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.porque-img-wrap img{width:100%;height:480px;object-fit:cover}
+.porque-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem}
+.porque-stat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:var(--radius);padding:1.2rem;text-align:center;transition:background var(--trans)}
+.porque-stat:hover{background:rgba(247,147,30,.1)}
+.porque-stat .stat-num{font-size:2rem}
+.porque-stat .stat-txt{font-size:.73rem}
 
-    /* ── FAQ ── */
-    #faq { background: var(--light); }
-    #faq .section-title { color: var(--navy); }
-    .faq-list { margin-top: 3rem; display: flex; flex-direction: column; gap: 1rem; max-width: 800px; }
-    .faq-item { background: var(--white); border-radius: 6px; border: 1px solid rgba(27,42,74,0.09); overflow: hidden; transition: box-shadow .2s; }
-    .faq-item:hover { box-shadow: 0 4px 20px rgba(27,42,74,0.08); }
-    .faq-question { width: 100%; padding: 1.3rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; background: none; border: none; cursor: pointer; text-align: left; }
-    .faq-q-text { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--navy); letter-spacing: .3px; }
-    .faq-icon { width: 28px; height: 28px; border-radius: 50%; background: var(--orange); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 700; flex-shrink: 0; transition: transform .3s; }
-    .faq-item.open .faq-icon { transform: rotate(45deg); }
-    .faq-answer { max-height: 0; overflow: hidden; transition: max-height .35s ease; padding: 0 1.5rem; }
-    .faq-answer-inner { padding: .9rem 0 1.3rem; color: #4a5a6a; font-size: 0.97rem; line-height: 1.8; border-top: 1px solid rgba(27,42,74,0.07); }
-    .faq-item.open .faq-answer { max-height: 500px; }
+/* ── PROCESO (image steps) ── */
+#proceso{background:var(--light)}
+.proceso-header{text-align:center;margin-bottom:4rem}
+.proceso-header .tag{display:block;margin-bottom:.7rem}
+.proceso-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative}
+.proceso-steps::before{content:'';position:absolute;top:44px;left:calc(10% + 30px);right:calc(10% + 30px);height:2px;background:linear-gradient(90deg,var(--orange),var(--sky));z-index:0}
+.step{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 12px;position:relative;z-index:1}
+.step-num{width:88px;height:88px;border-radius:50%;overflow:hidden;border:3px solid var(--orange);box-shadow:0 4px 20px rgba(247,147,30,.22);margin-bottom:1rem;transition:all var(--trans);flex-shrink:0}
+.step-num img{width:100%;height:100%;object-fit:cover;transition:transform .4s var(--trans)}
+.step:hover .step-num{transform:scale(1.08);box-shadow:0 8px 28px rgba(247,147,30,.35)}
+.step:hover .step-num img{transform:scale(1.1)}
+.step-label{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:.3rem}
+.step-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;color:var(--navy);margin-bottom:.4rem}
+.step-desc{font-size:.82rem;color:var(--text-light);line-height:1.55}
 
-    /* ── CONTACTO ── */
-    #contacto { background: var(--white); }
-    .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: start; margin-top: 3rem; }
-    .contact-info-cards { display: flex; flex-direction: column; gap: 1rem; }
-    .info-card { display: flex; align-items: flex-start; gap: 1rem; background: var(--light); border-radius: 6px; padding: 1.3rem 1.5rem; border-left: 4px solid var(--orange); transition: box-shadow .2s; }
-    .info-card:hover { box-shadow: 0 4px 20px rgba(247,147,30,0.15); }
-    .info-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 2px; }
-    .info-title { font-weight: 600; color: var(--navy); margin-bottom: 3px; }
-    .info-val { color: #4a5a6a; font-size: 0.95rem; }
-    .info-val a { color: var(--orange); text-decoration: none; }
-    .info-val a:hover { text-decoration: underline; }
-    .social-strip { display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; }
-    .social-btn { display: flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 4px; text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.92rem; letter-spacing: .5px; text-transform: uppercase; transition: transform .2s, box-shadow .2s; }
-    .social-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.18); }
-    .social-btn svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
-    .social-wa { background: #25D366; color: white; }
-    .social-ig { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color: white; }
-    .social-fb { background: #1877F2; color: white; }
-    .contact-form { background: var(--light); border-radius: 8px; padding: 2.5rem; }
-    .contact-form h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--navy); margin-bottom: 1.5rem; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
-    .form-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 1rem; }
-    .form-group label { font-size: 0.82rem; font-weight: 600; color: #4a5a6a; text-transform: uppercase; letter-spacing: .5px; }
-    .form-group input, .form-group textarea, .form-group select { padding: 11px 14px; border: 1px solid #dde5ef; border-radius: 4px; font-family: 'Barlow', sans-serif; font-size: 0.95rem; color: var(--navy); background: var(--white); transition: border-color .2s, box-shadow .2s; outline: none; }
-    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(247,147,30,0.12); }
-    .form-group textarea { resize: vertical; min-height: 110px; }
-    .btn-send { width: 100%; padding: 14px; background: var(--orange); color: var(--white); border: none; border-radius: 4px; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.05rem; letter-spacing: 2px; text-transform: uppercase; transition: background .2s, transform .15s; }
-    .btn-send:hover { background: #e07d10; transform: translateY(-1px); }
+/* ── CONFIANZA (image-bg cards) ── */
+#confianza{background:var(--white)}
+.confianza-header{text-align:center;margin-bottom:3.5rem}
+.confianza-header .tag{display:block;margin-bottom:.7rem}
+.confianza-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.conf-card{border-radius:var(--radius-lg);overflow:hidden;position:relative;height:260px;box-shadow:var(--shadow);transition:transform var(--trans),box-shadow var(--trans)}
+.conf-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.conf-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s var(--trans)}
+.conf-card:hover img{transform:scale(1.06)}
+.conf-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,31,60,.95) 0%,rgba(13,31,60,.65) 55%,rgba(13,31,60,.25) 100%);transition:background var(--trans)}
+.conf-card:hover .conf-overlay{background:linear-gradient(to top,rgba(13,31,60,.98) 0%,rgba(13,31,60,.75) 65%,rgba(13,31,60,.35) 100%)}
+.conf-content{position:absolute;bottom:0;left:0;right:0;padding:1.4rem 1.5rem}
+.conf-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.15rem;color:var(--white);margin-bottom:.5rem}
+.conf-desc{font-size:.84rem;color:rgba(190,215,235,.82);line-height:1.6}
 
-    /* ── FOOTER ── */
-    footer { background: #0d1f3c; padding: 3rem 5vw 1.5rem; border-top: 3px solid var(--orange); }
-    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
-    .footer-brand .logo-main { font-size: 2rem; }
-    .footer-brand .logo-sub { font-size: 0.7rem; margin-top: 2px; }
-    .footer-brand p { color: #6a7f94; font-size: 0.85rem; margin-top: 1rem; max-width: 240px; line-height: 1.6; }
-    .footer-social { display: flex; gap: .8rem; margin-top: 1.2rem; }
-    .footer-social a { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; transition: background .2s, border-color .2s; text-decoration: none; }
-    .footer-social a:hover { background: var(--orange); border-color: var(--orange); }
-    .footer-social svg { width: 16px; height: 16px; fill: white; }
-    .footer-links h4 { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; color: var(--orange); letter-spacing: 2px; text-transform: uppercase; margin-bottom: .8rem; }
-    .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: .4rem; }
-    .footer-links a { color: #7a8fa8; font-size: 0.9rem; text-decoration: none; transition: color .2s; }
-    .footer-links a:hover { color: var(--orange); }
-    .footer-bottom { max-width: 1100px; margin: 1.5rem auto 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; color: #4a5a6a; font-size: 0.8rem; }
+/* ── TRABAJOS ── */
+#trabajos{background:var(--light)}
+.trabajos-header{text-align:center;margin-bottom:3.5rem}
+.trabajos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.trabajo-card{border-radius:var(--radius-lg);overflow:hidden;background:var(--white);border:1px solid rgba(27,42,74,.07);box-shadow:var(--shadow);transition:transform var(--trans),box-shadow var(--trans)}
+.trabajo-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.trabajo-img{position:relative;height:200px;overflow:hidden}
+.trabajo-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.trabajo-card:hover .trabajo-img img{transform:scale(1.06)}
+.trabajo-img-over{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(13,31,60,.88))}
+.trabajo-tag{position:absolute;bottom:14px;left:16px;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--orange);background:rgba(13,31,60,.7);padding:4px 10px;border-radius:3px}
+.trabajo-body{padding:1.2rem 1.4rem 1.5rem}
+.trabajo-sector{display:inline-flex;align-items:center;gap:5px;font-size:.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--sky);margin-bottom:.5rem}
+.trabajo-title{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:.4rem}
+.trabajo-desc{font-size:.86rem;color:var(--text-light);line-height:1.6;margin-bottom:.8rem}
+.trabajo-loc{display:flex;align-items:center;gap:6px;font-size:.78rem;color:var(--gray)}
+.trabajo-loc svg{width:12px;height:12px;fill:var(--orange);flex-shrink:0}
+.trabajos-cta{margin-top:2.5rem;background:linear-gradient(135deg,var(--navy),var(--navy-mid));border-radius:var(--radius-lg);padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;border-left:5px solid var(--orange)}
+.trabajos-cta h3{font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:900;color:var(--white);margin-bottom:.3rem}
+.trabajos-cta p{font-size:.92rem;color:rgba(160,185,210,.8)}
 
-    /* ── WHATSAPP FLOAT ── */
-    .wa-float { position: fixed; bottom: 28px; right: 28px; z-index: 200; width: 58px; height: 58px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,0.5); text-decoration: none; transition: transform .2s; }
-    .wa-float:hover { transform: scale(1.1); }
-    .wa-float svg { width: 30px; height: 30px; fill: white; }
+/* ── FAQ ── */
+#faq{background:var(--white)}
+.faq-wrap{display:grid;grid-template-columns:1fr 1.4fr;gap:6rem;align-items:start}
+.faq-aside .tag{display:block;margin-bottom:.8rem}
+.faq-aside .h2{margin-bottom:1.2rem}
+.faq-aside .lead{margin-bottom:2rem}
+.faq-aside-contact{background:var(--light);border-radius:var(--radius-lg);padding:1.8rem;border-left:4px solid var(--orange)}
+.faq-aside-contact h4{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;color:var(--navy);margin-bottom:.8rem}
+.faq-contact-link{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(27,42,74,.07)}
+.faq-contact-link:last-child{border-bottom:none}
+.faq-contact-icon{width:32px;height:32px;border-radius:50%;background:rgba(247,147,30,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.faq-contact-icon svg{width:14px;height:14px;fill:var(--orange)}
+.faq-contact-label{font-size:.78rem;font-weight:600;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:2px}
+.faq-contact-val{font-size:.92rem;color:var(--orange);font-weight:600}
+.faq-list{display:flex;flex-direction:column;gap:.9rem}
+.faq-item{background:var(--light);border-radius:var(--radius);border:1px solid rgba(27,42,74,.08);overflow:hidden;transition:box-shadow var(--trans)}
+.faq-item:hover{box-shadow:var(--shadow)}
+.faq-q{width:100%;padding:1.2rem 1.4rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;background:none;border:none;cursor:pointer;text-align:left}
+.faq-q-text{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:700;color:var(--navy)}
+.faq-q-icon{width:28px;height:28px;border-radius:50%;background:var(--orange);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:700;flex-shrink:0;transition:transform .3s;line-height:1}
+.faq-item.open .faq-q-icon{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;padding:0 1.4rem}
+.faq-a-inner{padding:.8rem 0 1.2rem;font-size:.93rem;color:var(--text);line-height:1.75;border-top:1px solid rgba(27,42,74,.07)}
+.faq-item.open .faq-a{max-height:400px}
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } }
-    @media (max-width: 768px) {
-      nav ul { display: none; position: fixed; top: 70px; left: 0; right: 0; background: rgba(27,42,74,0.99); flex-direction: column; padding: 1.5rem 5vw 2rem; gap: 1rem; border-bottom: 2px solid var(--orange); }
-      nav ul.open { display: flex; }
-      nav ul a { font-size: 1.1rem; }
-      .nav-hamburger { display: flex; }
-      .who-grid { grid-template-columns: 1fr; }
-      .form-row { grid-template-columns: 1fr; }
-      .services-intro { flex-direction: column; align-items: flex-start; }
-      .works-cta { flex-direction: column; }
-      .social-strip { gap: .7rem; }
-    }
-    @media (max-width: 480px) { .footer-bottom { flex-direction: column; text-align: center; } }
+/* ── CONTACTO ── */
+#contacto{background:var(--navy)}
+.contacto-inner{display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;align-items:start}
+.contacto-left .tag{color:var(--sky);display:block;margin-bottom:.8rem}
+.contacto-left .h2{color:var(--white);margin-bottom:1rem}
+.contacto-left .lead{color:rgba(160,185,210,.8);margin-bottom:2.5rem}
+.contact-cards{display:flex;flex-direction:column;gap:1rem}
+.contact-card{display:flex;align-items:flex-start;gap:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:var(--radius);padding:1.2rem 1.4rem;border-left:3px solid var(--orange);transition:background var(--trans)}
+.contact-card:hover{background:rgba(255,255,255,.08)}
+.contact-card-icon{width:36px;height:36px;border-radius:50%;background:rgba(247,147,30,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.contact-card-icon svg{width:16px;height:16px;fill:var(--orange)}
+.contact-card-title{font-weight:600;color:var(--white);margin-bottom:3px;font-size:.92rem}
+.contact-card-val{color:rgba(160,185,210,.85);font-size:.9rem}
+.contact-card-val a{color:var(--orange);transition:color var(--trans)}
+.contact-card-val a:hover{color:var(--white)}
+.social-row{display:flex;gap:.8rem;margin-top:2rem;flex-wrap:wrap}
+.soc-btn{display:flex;align-items:center;gap:8px;padding:9px 16px;border-radius:4px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.5px;text-transform:uppercase;transition:transform var(--trans),box-shadow var(--trans)}
+.soc-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.25)}
+.soc-btn svg{width:17px;height:17px;fill:currentColor;flex-shrink:0}
+.soc-wa{background:#25D366;color:#fff}
+.soc-ig{background:linear-gradient(135deg,#f09433,#dc2743,#bc1888);color:#fff}
+.soc-fb{background:#1877F2;color:#fff}
+.empresa-note{margin-top:2rem;background:rgba(247,147,30,.1);border:1px solid rgba(247,147,30,.25);border-radius:var(--radius);padding:1.3rem}
+.empresa-note p{font-size:.88rem;color:rgba(200,220,240,.85);line-height:1.7}
+.empresa-note strong{color:var(--orange)}
+.contact-form{background:rgba(255,255,255,.06);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-lg);padding:2.5rem}
+.contact-form h3{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:var(--white);margin-bottom:.3rem}
+.contact-form-sub{font-size:.88rem;color:rgba(160,185,210,.7);margin-bottom:2rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:.8rem}
+.fg{display:flex;flex-direction:column;gap:6px;margin-bottom:.8rem}
+.fg label{font-size:.78rem;font-weight:600;color:rgba(160,185,210,.75);text-transform:uppercase;letter-spacing:.5px}
+.fg input,.fg textarea,.fg select{padding:12px 15px;border:1px solid rgba(255,255,255,.15);border-radius:5px;background:rgba(255,255,255,.07);color:var(--white);font-family:'Barlow',sans-serif;font-size:.95rem;outline:none;transition:border-color var(--trans),box-shadow var(--trans)}
+.fg input::placeholder,.fg textarea::placeholder{color:rgba(160,185,210,.4)}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(247,147,30,.15)}
+.fg select option{background:var(--navy);color:var(--white)}
+.fg textarea{resize:vertical;min-height:105px}
+.btn-submit{width:100%;padding:15px;background:var(--orange);color:var(--white);border:none;border-radius:5px;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:2px;text-transform:uppercase;transition:background var(--trans),transform var(--trans);box-shadow:0 6px 24px rgba(247,147,30,.3)}
+.btn-submit:hover{background:var(--orange-dark);transform:translateY(-2px)}
 
-    /* ── SCROLL REVEAL ── */
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s, transform .7s; }
-    .reveal.visible { opacity: 1; transform: none; }
+/* ── FOOTER ── */
+footer{background:#060e1c;border-top:3px solid var(--orange);padding:4rem 5vw 2rem}
+.footer-inner{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.footer-brand-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2rem;color:var(--white)}
+.footer-brand-name span{color:var(--orange)}
+.footer-line{height:2px;background:linear-gradient(90deg,transparent,var(--orange),transparent);margin:8px 0}
+.footer-sub{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;color:var(--sky);letter-spacing:3px;text-transform:uppercase}
+.footer-sub em{color:var(--orange);font-style:normal}
+.footer-desc{font-size:.85rem;color:rgba(100,120,140,.85);line-height:1.7;margin-top:1rem}
+.footer-soc{display:flex;gap:.7rem;margin-top:1.4rem}
+.footer-soc a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.11);display:flex;align-items:center;justify-content:center;transition:background var(--trans),border-color var(--trans)}
+.footer-soc a:hover{background:var(--orange);border-color:var(--orange)}
+.footer-soc svg{width:15px;height:15px;fill:var(--white)}
+.footer-col h4{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.92rem;color:var(--orange);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:1rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.footer-col a{font-size:.88rem;color:rgba(100,120,140,.85);transition:color var(--trans)}
+.footer-col a:hover{color:var(--orange)}
+.footer-bottom{max-width:1140px;margin:2rem auto 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-size:.78rem;color:rgba(80,100,120,.7)}
+
+/* ── WA FLOAT ── */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:300;width:60px;height:60px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 28px rgba(37,211,102,.55);transition:transform var(--trans),box-shadow var(--trans)}
+.wa-float:hover{transform:scale(1.12);box-shadow:0 10px 36px rgba(37,211,102,.65)}
+.wa-float svg{width:32px;height:32px;fill:var(--white)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1050px){
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .confianza-grid{grid-template-columns:repeat(2,1fr)}
+  .doc-grid{grid-template-columns:repeat(2,1fr)}
+  .sectores-grid{grid-template-columns:repeat(3,1fr)}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:2rem}
+}
+@media(max-width:900px){
+  .who-grid,.porque-inner,.faq-wrap,.contacto-inner{grid-template-columns:1fr}
+  .proceso-steps{grid-template-columns:repeat(3,1fr);gap:2rem}
+  .proceso-steps::before{display:none}
+  .stats-bar .container{grid-template-columns:repeat(2,1fr)}
+  .trabajos-grid{grid-template-columns:repeat(2,1fr)}
+  .top-bar-right{display:none}
+}
+@media(max-width:768px){
+  nav ul{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(8,15,31,.98);flex-direction:column;padding:1.8rem 5vw 2.5rem;gap:1.2rem;border-bottom:2px solid var(--orange)}
+  nav ul.open{display:flex}
+  nav ul a{font-size:1.15rem}
+  .hamburger{display:flex}
+  .services-grid,.doc-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .trabajos-grid{grid-template-columns:1fr}
+  .trabajos-cta,.sectores-note,.doc-cta{flex-direction:column}
+  .section-pad{padding:72px 0}
+  .sectores-inner{padding:50px 0}
+  .sectores-grid{grid-template-columns:repeat(2,1fr)}
+  .who-features{grid-template-columns:1fr}
+  .proceso-steps{grid-template-columns:repeat(2,1fr)}
+  .top-bar-left{gap:1rem;font-size:.72rem}
+}
+@media(max-width:480px){
+  .top-bar{display:none}
+  .stats-bar .container{grid-template-columns:1fr 1fr}
+  .hero h1{font-size:2.2rem}
+  .confianza-grid,.sectores-grid{grid-template-columns:1fr 1fr}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .footer-inner{grid-template-columns:1fr}
+  .proceso-steps{grid-template-columns:repeat(2,1fr)}
+}
   </style>
 </head>
 <body>
 
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="top-bar-left">
+    <span class="top-bar-item">
+      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+      General Roca, Río Negro — Chacra 142
+    </span>
+    <span class="top-bar-item">
+      <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      verticalsur.rn@gmail.com
+    </span>
+    <span class="top-bar-item">
+      <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23L12 14V7z"/></svg>
+      Lun–Vie 8:00–18:00 · Sáb 8:00–13:00
+    </span>
+  </div>
+  <div class="top-bar-right">
+    <span class="top-bar-badge">Factura A y B</span>
+    <span class="top-bar-badge">Proveedores institucionales</span>
+  </div>
+</div>
+
 <!-- NAV -->
-<nav>
+<nav id="main-nav">
   <a href="#inicio" class="nav-logo">
     <div>
-      <span class="nav-logo-text">VERTICAL <span>SUR</span></span>
-      <span class="nav-tagline">Servicios en Altura &amp; Mantenimiento</span>
+      <div class="nav-wordmark">VERTICAL <span>SUR</span></div>
+      <span class="nav-tagline">Mantenimiento Integral &amp; Servicios en Altura</span>
     </div>
   </a>
   <ul id="nav-menu">
-    <li><a href="#quienes">Quiénes somos</a></li>
+    <li><a href="#sectores">Sectores</a></li>
     <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#documentacion">Documentación</a></li>
+    <li><a href="#proceso">Proceso</a></li>
     <li><a href="#trabajos">Trabajos</a></li>
-    <li><a href="#porque">Por qué nosotros</a></li>
     <li><a href="#faq">FAQ</a></li>
-    <li><a href="#contacto" class="nav-cta">Contacto</a></li>
+    <li><a href="#contacto" class="nav-cta">Presupuesto</a></li>
   </ul>
-  <button class="nav-hamburger" id="hamburger" aria-label="Abrir menú">
+  <button class="hamburger" id="hamburger" aria-label="Menú">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
 <!-- HERO -->
 <section id="inicio" class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-stripe"></div>
+  <div class="hero-img"></div>
+  <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-logo-wrap">
-      <div class="hero-logo-box">
-        <div class="logo-main">VERTICAL <span>SUR</span></div>
-        <div class="logo-line"></div>
-        <div class="logo-sub">SERVICIOS <em>EN ALTURA</em> &amp; MANTENIMIENTO INTEGRAL</div>
-      </div>
-    </div>
-    <h1>Soluciones profesionales para trabajos en altura, mantenimiento y construcción</h1>
-    <p>Desde el montaje de antenas y torres hasta plomería, electricidad y obras. Trabajamos con seguridad, experiencia y compromiso en General Roca y toda la región del Alto Valle.</p>
+    <div class="hero-pre">Proveedores de servicios técnicos para el sector público y privado</div>
+    <h1>Mantenimiento Integral<br>e <em>Infraestructura Técnica</em><br>para Municipios, Escuelas<br>y Empresas</h1>
+    <p class="hero-sub">Trabajos en altura, plomería, electricidad, gas y construcción. Técnicos matriculados y personal asegurado. Documentación técnica completa para licitaciones y concursos de precios.</p>
     <div class="hero-btns">
-      <a href="#servicios" class="btn-primary">Ver nuestros servicios</a>
-      <a href="#contacto" class="btn-outline">Solicitar presupuesto</a>
+      <a href="#contacto" class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        Solicitar presupuesto
+      </a>
+      <a href="https://wa.me/5492984520559?text=Hola%20Vertical%20Sur%2C%20quiero%20consultar" target="_blank" class="btn btn-outline-light">
+        <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M16 .5C7.44.5.5 7.44.5 16c0 2.74.71 5.42 2.07 7.77L.5 31.5l8-2.04A15.44 15.44 0 0016 31.5C24.56 31.5 31.5 24.56 31.5 16S24.56.5 16 .5zm7.52 17.43c-.41-.2-2.42-1.18-2.8-1.32-.37-.13-.64-.2-.91.2-.27.4-1.05 1.32-1.29 1.59-.24.27-.47.3-.88.1-.41-.2-1.73-.63-3.3-2.01-1.22-1.07-2.04-2.4-2.28-2.8-.24-.41-.03-.63.18-.83.18-.18.41-.47.61-.7.2-.24.27-.41.41-.68.13-.27.07-.5-.03-.7-.1-.2-.91-2.19-1.25-3-.33-.79-.66-.68-.91-.69h-.77c-.27 0-.7.1-1.06.5-.37.4-1.4 1.37-1.4 3.33s1.43 3.87 1.63 4.13c.2.27 2.82 4.3 6.83 6.02.95.41 1.7.66 2.28.84.96.3 1.83.26 2.52.16.77-.12 2.37-.97 2.7-1.9.34-.94.34-1.74.24-1.9-.1-.18-.37-.27-.78-.47z"/></svg>
+        WhatsApp directo
+      </a>
     </div>
     <div class="hero-badges">
-      <div class="badge"><span class="badge-dot"></span>Personal asegurado (ART)</div>
-      <div class="badge"><span class="badge-dot"></span>Técnicos matriculados</div>
-      <div class="badge"><span class="badge-dot"></span>General Roca, Río Negro</div>
+      <div class="hero-badge">
+        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+        ART y seguro de vida
+      </div>
+      <div class="hero-badge">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+        Documentación completa
+      </div>
+      <div class="hero-badge">
+        <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+        Factura A y B
+      </div>
+      <div class="hero-badge">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        Alto Valle patagónico
+      </div>
+    </div>
+  </div>
+  <div class="hero-stripe"></div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stat-item reveal"><span class="stat-num">+8</span><div class="stat-txt">Años de trayectoria</div></div>
+    <div class="stat-item reveal"><span class="stat-num">+200</span><div class="stat-txt">Trabajos realizados</div></div>
+    <div class="stat-item reveal"><span class="stat-num">100%</span><div class="stat-txt">Personal asegurado</div></div>
+    <div class="stat-item reveal"><span class="stat-num">A y B</span><div class="stat-txt">Facturación disponible</div></div>
+  </div>
+</div>
+
+<!-- SECTORES -->
+<section id="sectores">
+  <div class="sectores-inner">
+    <div class="container">
+      <div class="sectores-header reveal">
+        <span class="tag">Nuestros clientes</span>
+        <h2 class="h2">Sectores que <span>atendemos</span></h2>
+        <p class="lead">Trabajamos con organismos públicos, instituciones educativas, empresas industriales y privados de toda la región. Nuestra documentación y habilitaciones están en orden para cualquier tipo de contratación.</p>
+      </div>
+      <div class="sectores-grid">
+        <div class="sector-card reveal">
+          <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=500&h=400&fit=crop&q=80" alt="Mantenimiento en municipios y edificios públicos" loading="lazy"/>
+          <div class="sector-overlay"></div>
+          <div class="sector-content">
+            <div class="sector-name">Municipios</div>
+            <div class="sector-desc">Mantenimiento de edificios y espacios públicos. Documentación para licitación.</div>
+          </div>
+        </div>
+        <div class="sector-card reveal">
+          <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=500&h=400&fit=crop&q=80" alt="Mantenimiento en instituciones educativas" loading="lazy"/>
+          <div class="sector-overlay"></div>
+          <div class="sector-content">
+            <div class="sector-name">Escuelas</div>
+            <div class="sector-desc">Reparaciones, techos, plomería, gas y electricidad en instituciones educativas.</div>
+          </div>
+        </div>
+        <div class="sector-card reveal">
+          <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=500&h=400&fit=crop&q=80" alt="Servicios técnicos en centros de salud" loading="lazy"/>
+          <div class="sector-overlay"></div>
+          <div class="sector-content">
+            <div class="sector-name">Salud</div>
+            <div class="sector-desc">Mantenimiento de centros de salud y hospitales con estándares de seguridad estrictos.</div>
+          </div>
+        </div>
+        <div class="sector-card reveal">
+          <img src="https://images.unsplash.com/photo-1565514020179-026b92b84bb6?w=500&h=400&fit=crop&q=80" alt="Mantenimiento industrial en plantas y galpones" loading="lazy"/>
+          <div class="sector-overlay"></div>
+          <div class="sector-content">
+            <div class="sector-name">Industrias</div>
+            <div class="sector-desc">Mantenimiento de plantas industriales, galpones y estructuras de gran escala.</div>
+          </div>
+        </div>
+        <div class="sector-card reveal">
+          <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=500&h=400&fit=crop&q=80" alt="Mantenimiento en edificios corporativos" loading="lazy"/>
+          <div class="sector-overlay"></div>
+          <div class="sector-content">
+            <div class="sector-name">Empresas privadas</div>
+            <div class="sector-desc">Oficinas, locales comerciales, edificios corporativos y establecimientos de servicios.</div>
+          </div>
+        </div>
+        <div class="sector-card reveal">
+          <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=500&h=400&fit=crop&q=80" alt="Servicios técnicos en zona rural y chacras" loading="lazy"/>
+          <div class="sector-overlay"></div>
+          <div class="sector-content">
+            <div class="sector-name">Sector rural</div>
+            <div class="sector-desc">Chacras, galpones, establecimientos agrícolas y zonas sin cobertura de internet.</div>
+          </div>
+        </div>
+      </div>
+      <div class="sectores-note reveal">
+        <div class="sectores-note-text">
+          <strong>¿Sos municipio, escuela u organismo público?</strong>
+          <span>Trabajamos en concursos de precios y licitaciones. Emitimos toda la documentación técnica y administrativa requerida por los pliegos.</span>
+        </div>
+        <a href="#contacto" class="btn btn-primary" style="flex-shrink:0">Consultar para licitación</a>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- QUIÉNES SOMOS -->
-<section id="quienes">
-  <div class="section-inner">
+<section id="quienes" class="section-pad">
+  <div class="container">
     <div class="who-grid">
-      <div class="who-visual reveal">
-        <div class="who-card">
-          <p>En <strong>Vertical Sur</strong> somos un equipo de profesionales especializados en <strong>trabajos en altura</strong>, <strong>mantenimiento integral</strong> y <strong>obras de construcción</strong> para edificios, instalaciones y estructuras industriales.</p>
-          <p style="margin-top:1rem;">Contamos con años de experiencia, personal capacitado y certificado, y el compromiso de entregar cada trabajo con los más altos estándares de calidad y <strong>seguridad</strong>.</p>
-          <div class="who-stats">
-            <div class="stat"><span class="stat-num">+8</span><span class="stat-label">Años de experiencia</span></div>
-            <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Personal asegurado</span></div>
-            <div class="stat"><span class="stat-num">+200</span><span class="stat-label">Proyectos realizados</span></div>
-            <div class="stat"><span class="stat-num">24h</span><span class="stat-label">Respuesta de emergencia</span></div>
+      <div class="who-photo reveal-left">
+        <img src="foto-quienes-somos.jpg" alt="Equipo profesional de Vertical Sur en nuestras instalaciones" loading="lazy"/>
+        <div class="who-photo-badge">
+          <div class="who-badge-img">
+            <img src="https://images.unsplash.com/photo-1566438480900-0129c05a7d18?w=100&h=100&fit=crop&q=80" alt="Seguridad laboral" loading="lazy"/>
+          </div>
+          <div>
+            <strong>Empresa habilitada y asegurada</strong>
+            <span>Ley 19.587 · Decreto 351/79 · ART vigente</span>
           </div>
         </div>
       </div>
-      <div class="who-text reveal">
-        <div class="section-label">Quiénes somos</div>
-        <h2 class="section-title">Experiencia y seguridad <span>en cada trabajo</span></h2>
-        <p class="section-lead">Somos una empresa patagónica con base en General Roca, Río Negro, enfocada en brindar servicios de altura, mantenimiento y construcción con la máxima responsabilidad profesional.</p>
-        <ul class="who-list">
-          <li>Personal técnico capacitado y certificado en trabajos en altura</li>
-          <li>Cumplimiento estricto de la Ley 19.587 y Decreto 351/79</li>
-          <li>Cobertura de ART y seguro de vida para todo el equipo</li>
-          <li>Técnicos matriculados en plomería, gas y electricidad</li>
-          <li>Presupuesto sin cargo y respuesta rápida</li>
-          <li>Atención personalizada en cada proyecto</li>
-        </ul>
+      <div class="who-text reveal-right">
+        <span class="tag">Quiénes somos</span>
+        <h2 class="h2">Capacidad técnica real para trabajos <span>institucionales y empresariales</span></h2>
+        <p class="lead">Somos una empresa patagónica con base en General Roca, Río Negro. Desde hace más de 8 años ejecutamos trabajos de mantenimiento, altura y construcción para instituciones públicas, empresas y privados del Alto Valle y la Patagonia.</p>
+        <div class="who-features">
+          <div class="who-feature">
+            <div class="who-feat-img">
+              <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=120&h=100&fit=crop&q=80" alt="Documentación para licitaciones" loading="lazy"/>
+            </div>
+            <div class="who-feat-text">
+              <strong>Licitaciones y concursos</strong>
+              <span>Presentamos documentación técnica, seguros, matrículas y planes de trabajo.</span>
+            </div>
+          </div>
+          <div class="who-feature">
+            <div class="who-feat-img">
+              <img src="https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?w=120&h=100&fit=crop&q=80" alt="Técnicos matriculados" loading="lazy"/>
+            </div>
+            <div class="who-feat-text">
+              <strong>Técnicos matriculados</strong>
+              <span>Plomería, gas y electricidad con matrículas habilitantes vigentes y certificadas.</span>
+            </div>
+          </div>
+          <div class="who-feature">
+            <div class="who-feat-img">
+              <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=120&h=100&fit=crop&q=80" alt="Especialistas en trabajo en altura" loading="lazy"/>
+            </div>
+            <div class="who-feat-text">
+              <strong>Especialistas en altura</strong>
+              <span>Formación certificada para trabajos con cuerdas, rappel y plataformas elevadoras.</span>
+            </div>
+          </div>
+          <div class="who-feature">
+            <div class="who-feat-img">
+              <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=120&h=100&fit=crop&q=80" alt="Facturación A y B para organismos" loading="lazy"/>
+            </div>
+            <div class="who-feat-text">
+              <strong>Factura A y B</strong>
+              <span>Facturamos a cualquier tipo de organismo o empresa. Documentación contable en regla.</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- SERVICIOS -->
-<section id="servicios">
-  <div class="section-inner">
-    <div class="services-intro">
-      <div class="reveal">
-        <div class="section-label">Lo que hacemos</div>
-        <h2 class="section-title">Nuestros <span>Servicios</span></h2>
-        <p class="section-lead">Cubrimos todos los trabajos que requieren experiencia técnica, seguridad y equipamiento especializado.</p>
-      </div>
+<section id="servicios" class="section-pad">
+  <div class="container">
+    <div class="services-header reveal">
+      <span class="tag">Lo que hacemos</span>
+      <h2 class="h2" style="margin:.7rem 0 1rem">Nuestros <span>Servicios</span></h2>
+      <p class="lead">Cubrimos un amplio espectro de servicios técnicos con personal especializado, equipamiento propio y estándares de seguridad para el sector público y privado.</p>
     </div>
     <div class="services-grid">
-
-      <!-- Servicios en Altura -->
-      <div class="service-card reveal">
-        <div class="service-head">
-          <span class="service-icon">🏗️</span>
-          <div class="service-category">Servicios en Altura</div>
+      <div class="svc-card reveal">
+        <div class="svc-img">
+          <img src="foto-servicios-altura.jpg" alt="Técnico con arnés trabajando en torre metálica" loading="lazy"/>
+          <div class="svc-img-overlay"></div>
+          <div class="svc-img-cat">Servicios en Altura</div>
         </div>
-        <div class="service-body">
-          <ul class="service-items">
+        <div class="svc-body">
+          <p class="svc-desc">Personal certificado para trabajos en estructuras, edificios y tendidos aéreos con técnicas de acceso por cuerdas y plataformas elevadoras.</p>
+          <ul class="svc-list">
             <li>Montaje y desmontaje de torres</li>
             <li>Instalación de antenas y Starlink</li>
             <li>Luminarias en altura</li>
@@ -336,244 +646,504 @@
           </ul>
         </div>
       </div>
-
-      <!-- Mantenimiento y Reparaciones -->
-      <div class="service-card reveal">
-        <div class="service-head">
-          <span class="service-icon">🔧</span>
-          <div class="service-category">Mantenimiento &amp; Reparaciones</div>
+      <div class="svc-card reveal">
+        <div class="svc-img">
+          <img src="foto-mantenimiento.jpg" alt="Técnico en plataforma elevadora limpiando vidrios de edificio" loading="lazy"/>
+          <div class="svc-img-overlay"></div>
+          <div class="svc-img-cat">Mantenimiento &amp; Reparaciones</div>
         </div>
-        <div class="service-body">
-          <ul class="service-items">
+        <div class="svc-body">
+          <p class="svc-desc">Soluciones integrales para el mantenimiento preventivo y correctivo de edificios institucionales, galpones e instalaciones industriales.</p>
+          <ul class="svc-list">
             <li>Reparaciones generales</li>
             <li>Filtraciones e impermeabilización</li>
-            <li>Plomería <span class="matriculado">Matriculados</span></li>
-            <li>Gas <span class="matriculado">Matriculados</span></li>
+            <li>Plomería <span class="svc-badge">Matriculados</span></li>
+            <li>Gas <span class="svc-badge">Matriculados</span></li>
             <li>Cloacas</li>
             <li>Mantenimiento de galpones</li>
           </ul>
         </div>
       </div>
-
-      <!-- Obras y Construcción -->
-      <div class="service-card reveal">
-        <div class="service-head">
-          <span class="service-icon">🏚️</span>
-          <div class="service-category">Obras &amp; Construcción</div>
+      <div class="svc-card reveal">
+        <div class="svc-img">
+          <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=700&h=400&fit=crop&q=80" alt="Obras de construcción y trabajos de herrería" loading="lazy"/>
+          <div class="svc-img-overlay"></div>
+          <div class="svc-img-cat">Obras &amp; Construcción</div>
         </div>
-        <div class="service-body">
-          <ul class="service-items">
+        <div class="svc-body">
+          <p class="svc-desc">Ejecución de obras civiles y de infraestructura con materiales de primera calidad y personal técnico certificado para el sector público.</p>
+          <ul class="svc-list">
             <li>Albañilería general</li>
             <li>Herrería</li>
             <li>Hojalatería</li>
-            <li>Electricidad <span class="matriculado">Matriculados</span></li>
+            <li>Electricidad <span class="svc-badge">Matriculados</span></li>
           </ul>
         </div>
       </div>
-
-      <!-- CTA -->
-      <div class="service-card reveal" style="background: var(--navy);">
-        <div style="padding: 2.5rem; text-align:center;">
-          <div style="font-size:2.5rem; margin-bottom:1rem;">📋</div>
-          <h3 style="font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1.4rem; color:var(--white); margin-bottom:.8rem;">¿Necesitás un presupuesto?</h3>
-          <p style="color:#7a8fa8; font-size:0.92rem; margin-bottom:1.5rem; line-height:1.6;">Contactanos y te respondemos en menos de 24 horas con un presupuesto sin cargo.</p>
-          <a href="#contacto" class="btn-primary">Consultar ahora</a>
+      <div class="svc-card reveal">
+        <div class="svc-img">
+          <img src="foto-electricidad.jpg" alt="Técnicos matriculados instalando cableado eléctrico" loading="lazy"/>
+          <div class="svc-img-overlay"></div>
+          <div class="svc-img-cat">Electricidad</div>
+        </div>
+        <div class="svc-body">
+          <p class="svc-desc">Instalaciones eléctricas para edificios institucionales, comercios e industrias a cargo de electricistas con matrícula habilitante vigente.</p>
+          <ul class="svc-list">
+            <li>Instalaciones eléctricas nuevas</li>
+            <li>Reparaciones y mantenimiento</li>
+            <li>Tableros eléctricos</li>
+            <li>Iluminación industrial</li>
+            <li>Certificaciones <span class="svc-badge">Matriculados</span></li>
+          </ul>
         </div>
       </div>
-
+      <div class="svc-cta-card reveal">
+        <img class="svc-cta-img" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=600&fit=crop&q=80" alt="Consulta profesional de servicios técnicos" loading="lazy"/>
+        <div class="svc-cta-overlay"></div>
+        <div class="svc-cta-inner">
+          <h3>¿Necesitás cotizar para una licitación?</h3>
+          <p>Preparamos toda la documentación técnica y administrativa que requiere cualquier pliego de bases y condiciones.</p>
+          <a href="#contacto" class="btn btn-primary">Consultar ahora</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- TRABAJOS REALIZADOS -->
-<section id="trabajos">
-  <div class="section-inner">
-    <div class="reveal" style="text-align:center; max-width:660px; margin:0 auto 0;">
-      <div class="section-label">Nuestro portfolio</div>
-      <h2 class="section-title">Trabajos <span>Realizados</span></h2>
-      <p class="section-lead" style="margin:0 auto;">Algunos de los proyectos que llevamos a cabo con éxito. Cada trabajo es una muestra de nuestro compromiso con la calidad y la seguridad.</p>
-    </div>
-    <div class="works-grid">
-      <div class="work-card reveal">
-        <div class="work-visual"><span class="work-emoji">📡</span></div>
-        <div class="work-body">
-          <span class="work-tag">Telecomunicaciones</span>
-          <div class="work-title">Instalación de Starlink en chacra</div>
-          <p class="work-desc">Montaje e instalación de antena Starlink con cableado estructurado y configuración de red en zona rural.</p>
-          <div class="work-location">📍 General Roca, Río Negro</div>
+<!-- DOCUMENTACIÓN TÉCNICA -->
+<section id="documentacion">
+  <div class="doc-inner">
+    <div class="container">
+      <div class="doc-header reveal">
+        <span class="tag">Para organismos públicos y empresas</span>
+        <h2 class="h2" style="color:var(--white);margin:.7rem 0 1rem">Documentación técnica <span>disponible</span></h2>
+        <p class="lead">Contamos con toda la documentación exigida en licitaciones, concursos de precios y contratos con el sector público y privado. Sin burocracia: entregamos todo lo que necesitás.</p>
+      </div>
+      <div class="doc-grid">
+        <div class="doc-card reveal">
+          <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=500&h=350&fit=crop&q=80" alt="Seguro de responsabilidad civil" loading="lazy"/>
+          <div class="doc-overlay"></div>
+          <div class="doc-content">
+            <div class="doc-title">Seguro de Responsabilidad Civil</div>
+            <div class="doc-desc">Póliza de responsabilidad civil vigente para todos los trabajos ejecutados en instalaciones de terceros.</div>
+            <span class="doc-check">Disponible</span>
+          </div>
+        </div>
+        <div class="doc-card reveal">
+          <img src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=500&h=350&fit=crop&q=80" alt="ART aseguradora de riesgos del trabajo" loading="lazy"/>
+          <div class="doc-overlay"></div>
+          <div class="doc-content">
+            <div class="doc-title">ART — Aseguradora de Riesgos</div>
+            <div class="doc-desc">Cobertura de ART activa para todo el personal. Constancias y certificados disponibles para presentación.</div>
+            <span class="doc-check">Disponible</span>
+          </div>
+        </div>
+        <div class="doc-card reveal">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=350&fit=crop&q=80" alt="Matrículas habilitantes de técnicos" loading="lazy"/>
+          <div class="doc-overlay"></div>
+          <div class="doc-content">
+            <div class="doc-title">Matrículas habilitantes</div>
+            <div class="doc-desc">Matrículas vigentes de técnicos en plomería, electricidad y gas. Habilitaciones municipales y provinciales.</div>
+            <span class="doc-check">Disponible</span>
+          </div>
+        </div>
+        <div class="doc-card reveal">
+          <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=500&h=350&fit=crop&q=80" alt="Factura electrónica AFIP" loading="lazy"/>
+          <div class="doc-overlay"></div>
+          <div class="doc-content">
+            <div class="doc-title">Factura A y B — AFIP</div>
+            <div class="doc-desc">Facturación electrónica A y B para organismos públicos, empresas y personas. Constancia de inscripción en AFIP.</div>
+            <span class="doc-check">Disponible</span>
+          </div>
+        </div>
+        <div class="doc-card reveal">
+          <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=500&h=350&fit=crop&q=80" alt="Plan de trabajo y seguridad laboral" loading="lazy"/>
+          <div class="doc-overlay"></div>
+          <div class="doc-content">
+            <div class="doc-title">Plan de Trabajo y Seguridad</div>
+            <div class="doc-desc">Plan de trabajo detallado, análisis de riesgos y procedimientos de seguridad elaborados para cada proyecto.</div>
+            <span class="doc-check">Disponible</span>
+          </div>
+        </div>
+        <div class="doc-card reveal">
+          <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=500&h=350&fit=crop&q=80" alt="Constancias de habilitación municipal" loading="lazy"/>
+          <div class="doc-overlay"></div>
+          <div class="doc-content">
+            <div class="doc-title">Constancias de habilitación</div>
+            <div class="doc-desc">Constancias municipales, inscripciones en registros de proveedores y habilitaciones para trabajo en espacios públicos.</div>
+            <span class="doc-check">Disponible</span>
+          </div>
+        </div>
+        <div class="doc-card reveal">
+          <img src="https://images.unsplash.com/photo-1470723710355-95304d8aece4?w=500&h=350&fit=crop&q=80" alt="Certificados de capacitación en seguridad" loading="lazy"/>
+          <div class="doc-overlay"></div>
+          <div class="doc-content">
+            <div class="doc-title">Certificados de Capacitación</div>
+            <div class="doc-desc">Certificados de capacitación en trabajos en altura, seguridad e higiene laboral para cada integrante del equipo.</div>
+            <span class="doc-check">Disponible</span>
+          </div>
+        </div>
+        <div class="doc-card reveal">
+          <img src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=500&h=350&fit=crop&q=80" alt="Memoria técnica descriptiva de proyectos" loading="lazy"/>
+          <div class="doc-overlay"></div>
+          <div class="doc-content">
+            <div class="doc-title">Memoria técnica descriptiva</div>
+            <div class="doc-desc">Descripción técnica detallada de materiales, metodología de trabajo y plazos para proyectos de mayor escala.</div>
+            <span class="doc-check">A pedido</span>
+          </div>
         </div>
       </div>
-      <div class="work-card reveal">
-        <div class="work-visual"><span class="work-emoji">🗼</span></div>
-        <div class="work-body">
-          <span class="work-tag">Torres y antenas</span>
-          <div class="work-title">Montaje de torre de comunicación</div>
-          <p class="work-desc">Instalación completa de torre metálica de 15m con antenas de radiofrecuencia y sistema de tierra.</p>
-          <div class="work-location">📍 Allen, Río Negro</div>
+      <div class="doc-cta reveal">
+        <div class="doc-cta-text">
+          <strong>¿Necesitás documentación para un concurso o licitación?</strong>
+          <span>Contactanos con los requisitos del pliego y coordinamos la entrega completa de toda la documentación necesaria.</span>
         </div>
+        <a href="mailto:verticalsur.rn@gmail.com" class="btn btn-primary" style="flex-shrink:0">Solicitar documentación</a>
       </div>
-      <div class="work-card reveal">
-        <div class="work-visual"><span class="work-emoji">🏭</span></div>
-        <div class="work-body">
-          <span class="work-tag">Mantenimiento industrial</span>
-          <div class="work-title">Mantenimiento integral de galpón</div>
-          <p class="work-desc">Reparación de techo, impermeabilización, reposición de chapas y pintura completa de estructura metálica.</p>
-          <div class="work-location">📍 Cipolletti, Río Negro</div>
-        </div>
-      </div>
-      <div class="work-card reveal">
-        <div class="work-visual"><span class="work-emoji">💡</span></div>
-        <div class="work-body">
-          <span class="work-tag">Luminarias</span>
-          <div class="work-title">Reposición de luminarias en altura</div>
-          <p class="work-desc">Cambio y mantenimiento de luminarias de playa de estacionamiento a 8 metros de altura.</p>
-          <div class="work-location">📍 General Roca, Río Negro</div>
-        </div>
-      </div>
-      <div class="work-card reveal">
-        <div class="work-visual"><span class="work-emoji">🏗️</span></div>
-        <div class="work-body">
-          <span class="work-tag">Impermeabilización</span>
-          <div class="work-title">Impermeabilización de terraza</div>
-          <p class="work-desc">Reparación de filtraciones y aplicación de membrana asfáltica en edificio de 4 pisos.</p>
-          <div class="work-location">📍 General Roca, Río Negro</div>
-        </div>
-      </div>
-      <div class="work-card reveal">
-        <div class="work-visual"><span class="work-emoji">🪟</span></div>
-        <div class="work-body">
-          <span class="work-tag">Limpieza en altura</span>
-          <div class="work-title">Limpieza de vidrios en edificio</div>
-          <p class="work-desc">Limpieza integral de fachada vidriada de edificio corporativo con técnicas de acceso por cuerdas.</p>
-          <div class="work-location">📍 Neuquén capital</div>
-        </div>
-      </div>
-    </div>
-    <div class="works-cta reveal">
-      <div>
-        <h3>¿Querés ver más trabajos o consultar por el tuyo?</h3>
-        <p>Hablanos por WhatsApp y te mostramos más proyectos similares al tuyo. Presupuesto sin cargo.</p>
-      </div>
-      <a href="https://wa.me/5492984520559?text=Hola%20Vertical%20Sur%2C%20quiero%20consultar%20por%20un%20presupuesto" target="_blank" class="btn-primary" style="white-space:nowrap; flex-shrink:0;">
-        💬 Consultanos por WhatsApp
-      </a>
     </div>
   </div>
 </section>
 
 <!-- POR QUÉ NOSOTROS -->
-<section id="porque">
-  <div class="section-inner">
-    <div class="reveal">
-      <div class="section-label" style="color:var(--sky);">Por qué elegirnos</div>
-      <h2 class="section-title">¿Por qué trabajar con <span>Vertical Sur</span>?</h2>
-      <p class="section-lead">No somos una empresa más. Somos el equipo que se hace cargo de lo que otros no pueden o no quieren hacer.</p>
-    </div>
-    <div class="why-grid">
-      <div class="why-card reveal">
-        <span class="why-icon">🪢</span>
-        <div class="why-title">Especialistas en altura</div>
-        <p class="why-desc">Personal formado y certificado para trabajar en condiciones de altura con la máxima seguridad y eficiencia.</p>
+<section id="porque" class="section-pad">
+  <div class="container">
+    <div class="porque-inner">
+      <div class="porque-text reveal-left">
+        <span class="tag">Por qué elegirnos</span>
+        <h2 class="h2">El socio técnico que <span>las instituciones necesitan</span></h2>
+        <p class="lead">Combinamos capacidad técnica real, personal matriculado, equipamiento propio y la seriedad que exige trabajar con el sector público y con grandes empresas.</p>
+        <div class="porque-features">
+          <div class="pf-item">
+            <div class="pf-img">
+              <img src="https://images.unsplash.com/photo-1541976590-713941681591?w=100&h=100&fit=crop&q=80" alt="Experiencia institucional" loading="lazy"/>
+            </div>
+            <div>
+              <div class="pf-title">Experiencia institucional comprobada</div>
+              <div class="pf-desc">Hemos trabajado con municipios, escuelas y organismos públicos del Alto Valle. Conocemos los procesos y la documentación requerida.</div>
+            </div>
+          </div>
+          <div class="pf-item">
+            <div class="pf-img">
+              <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=100&h=100&fit=crop&q=80" alt="Técnicos matriculados en cada especialidad" loading="lazy"/>
+            </div>
+            <div>
+              <div class="pf-title">Técnicos matriculados en cada especialidad</div>
+              <div class="pf-desc">Plomería, gas y electricidad con matrícula vigente. Cada trabajo lo ejecuta el profesional habilitado para esa tarea específica.</div>
+            </div>
+          </div>
+          <div class="pf-item">
+            <div class="pf-img">
+              <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=100&h=100&fit=crop&q=80" alt="Documentación técnica sin burocracia" loading="lazy"/>
+            </div>
+            <div>
+              <div class="pf-title">Documentación técnica sin burocracia</div>
+              <div class="pf-desc">Entregamos ART, seguros, matrículas, planes de trabajo y análisis de riesgos en tiempo y forma. No generamos demoras administrativas.</div>
+            </div>
+          </div>
+          <div class="pf-item">
+            <div class="pf-img">
+              <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=100&h=100&fit=crop&q=80" alt="Respuesta rápida a urgencias" loading="lazy"/>
+            </div>
+            <div>
+              <div class="pf-title">Presupuesto en 24 horas. Urgencias atendidas</div>
+              <div class="pf-desc">Respondemos rápido porque entendemos que los problemas en instituciones no pueden esperar. Para emergencias, evaluamos disponibilidad inmediata.</div>
+            </div>
+          </div>
+          <div class="pf-item">
+            <div class="pf-img">
+              <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=100&h=100&fit=crop&q=80" alt="Garantía en todos los trabajos" loading="lazy"/>
+            </div>
+            <div>
+              <div class="pf-title">Garantía y seguimiento en cada trabajo</div>
+              <div class="pf-desc">Garantizamos lo que hacemos. Seguimiento post-servicio y disponibilidad para resolver cualquier inconveniente posterior.</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="why-card reveal">
-        <span class="why-icon">🛡️</span>
-        <div class="why-title">Seguridad garantizada</div>
-        <p class="why-desc">Cumplimos toda la normativa vigente (Ley 19.587). Nuestro equipo trabaja cubierto con ART y seguro de vida.</p>
-      </div>
-      <div class="why-card reveal">
-        <span class="why-icon">⚡</span>
-        <div class="why-title">Respuesta rápida</div>
-        <p class="why-desc">Presupuesto sin cargo en 24 horas. Para urgencias, contamos con respuesta de emergencia.</p>
-      </div>
-      <div class="why-card reveal">
-        <span class="why-icon">💼</span>
-        <div class="why-title">Perfil profesional</div>
-        <p class="why-desc">Trabajamos con empresas, administraciones de edificios, constructoras e industrias. Emitimos factura y toda la documentación requerida.</p>
-      </div>
-      <div class="why-card reveal">
-        <span class="why-icon">🔩</span>
-        <div class="why-title">Equipamiento propio</div>
-        <p class="why-desc">Contamos con equipos, herramientas e insumos propios. No terciarizamos los trabajos críticos.</p>
-      </div>
-      <div class="why-card reveal">
-        <span class="why-icon">🤝</span>
-        <div class="why-title">Compromiso total</div>
-        <p class="why-desc">Cada trabajo lo tratamos como propio. Seguimiento post-servicio y garantía en todos nuestros trabajos.</p>
+      <div class="porque-visual reveal-right">
+        <div class="porque-img-wrap">
+          <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=700&h=800&fit=crop&q=80" alt="Equipo técnico profesional trabajando en obra" loading="lazy"/>
+        </div>
+        <div class="porque-stat-grid">
+          <div class="porque-stat"><span class="stat-num">+8</span><div class="stat-txt">Años en el rubro</div></div>
+          <div class="porque-stat"><span class="stat-num">+200</span><div class="stat-txt">Trabajos realizados</div></div>
+          <div class="porque-stat"><span class="stat-num">100%</span><div class="stat-txt">Personal asegurado</div></div>
+          <div class="porque-stat"><span class="stat-num">0</span><div class="stat-txt">Accidentes laborales</div></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FAQ -->
-<section id="faq">
-  <div class="section-inner">
-    <div class="reveal" style="text-align:center; max-width:660px; margin:0 auto 0;">
-      <div class="section-label">Todo lo que necesitás saber</div>
-      <h2 class="section-title">Preguntas <span>Frecuentes</span></h2>
-      <p class="section-lead" style="margin:0 auto;">Respondemos las dudas más comunes de nuestros clientes antes de contratar.</p>
+<!-- PROCESO -->
+<section id="proceso" class="section-pad">
+  <div class="container">
+    <div class="proceso-header reveal">
+      <span class="tag">Cómo trabajamos</span>
+      <h2 class="h2" style="margin:.7rem 0 1rem">Proceso de <span>trabajo claro y transparente</span></h2>
+      <p class="lead" style="margin:0 auto;text-align:center">Sabemos que las instituciones y empresas necesitan previsibilidad. Por eso nuestro proceso es simple, documentado y sin sorpresas.</p>
     </div>
-    <div class="faq-list reveal">
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          <span class="faq-q-text">¿En qué zonas trabajan?</span>
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">Nuestra base está en <strong>General Roca, Río Negro (Chacra 142)</strong>. Trabajamos en toda la zona del Alto Valle: Allen, Cipolletti, Neuquén capital y localidades cercanas. Para proyectos de mayor envergadura también nos desplazamos a otras zonas de la Patagonia.</div>
+    <div class="proceso-steps">
+      <div class="step reveal">
+        <div class="step-num">
+          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=180&h=180&fit=crop&q=80" alt="Contacto inicial" loading="lazy"/>
+        </div>
+        <div class="step-label">Paso 1</div>
+        <div class="step-title">Contacto</div>
+        <div class="step-desc">Nos contactás con la descripción del trabajo o los requerimientos del pliego.</div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">
+          <img src="https://images.unsplash.com/photo-1477519242566-6ae87c31d212?w=180&h=180&fit=crop&q=80" alt="Evaluación técnica en obra" loading="lazy"/>
+        </div>
+        <div class="step-label">Paso 2</div>
+        <div class="step-title">Evaluación técnica</div>
+        <div class="step-desc">Visitamos el lugar o evaluamos la situación para determinar el alcance real del trabajo.</div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">
+          <img src="https://images.unsplash.com/photo-1474631245212-32ff3d8b6850?w=180&h=180&fit=crop&q=80" alt="Elaboración de presupuesto" loading="lazy"/>
+        </div>
+        <div class="step-label">Paso 3</div>
+        <div class="step-title">Presupuesto + Documentación</div>
+        <div class="step-desc">Enviamos presupuesto detallado y toda la documentación técnica necesaria en 24 horas.</div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=180&h=180&fit=crop&q=80" alt="Ejecución del trabajo técnico" loading="lazy"/>
+        </div>
+        <div class="step-label">Paso 4</div>
+        <div class="step-title">Ejecución</div>
+        <div class="step-desc">Realizamos el trabajo con equipo propio, cumpliendo todas las normativas de seguridad.</div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">
+          <img src="https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?w=180&h=180&fit=crop&q=80" alt="Cierre garantía y seguimiento" loading="lazy"/>
+        </div>
+        <div class="step-label">Paso 5</div>
+        <div class="step-title">Cierre y garantía</div>
+        <div class="step-desc">Entregamos informe de trabajo, factura y garantía. Seguimiento post-servicio incluido.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONFIANZA -->
+<section id="confianza" class="section-pad">
+  <div class="container">
+    <div class="confianza-header reveal">
+      <span class="tag">Señales de confianza</span>
+      <h2 class="h2">Por qué organismos y empresas <span>nos eligen</span></h2>
+      <p class="lead" style="margin:0 auto;text-align:center">Nuestra forma de trabajar genera la confianza que necesitan las instituciones para contratar servicios técnicos.</p>
+    </div>
+    <div class="confianza-grid">
+      <div class="conf-card reveal">
+        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&h=500&fit=crop&q=80" alt="Proveedor de organismos institucionales" loading="lazy"/>
+        <div class="conf-overlay"></div>
+        <div class="conf-content">
+          <div class="conf-title">Proveedor institucional</div>
+          <div class="conf-desc">Experiencia en trabajos para escuelas, municipios y organismos públicos. Sabemos qué documentación piden y la tenemos lista.</div>
         </div>
       </div>
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          <span class="faq-q-text">¿Cómo solicito un presupuesto?</span>
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">Por <strong>WhatsApp al +54 9 2984 520559</strong>, por mail a <strong>verticalsur.rn@gmail.com</strong> o completando el formulario de esta página. El presupuesto es <strong>sin cargo</strong> y respondemos en menos de 24 horas hábiles.</div>
+      <div class="conf-card reveal">
+        <img src="https://images.unsplash.com/photo-1582650625119-3a31f8fa2699?w=600&h=500&fit=crop&q=80" alt="Cumplimiento normativo y seguridad laboral" loading="lazy"/>
+        <div class="conf-overlay"></div>
+        <div class="conf-content">
+          <div class="conf-title">Cumplimiento normativo</div>
+          <div class="conf-desc">Operamos bajo la Ley 19.587 y Decreto 351/79. Toda la operatoria en regla: impuestos, seguros, matrículas y habilitaciones.</div>
         </div>
       </div>
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          <span class="faq-q-text">¿El personal está asegurado y matriculado?</span>
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">Sí. Todo el equipo tiene <strong>ART y seguro de vida</strong> vigentes. Los trabajos de plomería, gas y electricidad son realizados por <strong>técnicos con matrícula habilitante</strong>. Podemos entregar toda la documentación requerida.</div>
+      <div class="conf-card reveal">
+        <img src="https://images.unsplash.com/photo-1545873502-8e67b81c3ad5?w=600&h=500&fit=crop&q=80" alt="Respuesta rápida en emergencias" loading="lazy"/>
+        <div class="conf-overlay"></div>
+        <div class="conf-content">
+          <div class="conf-title">Respuesta sin demoras</div>
+          <div class="conf-desc">Presupuesto en 24 horas. Para urgencias en instituciones —filtraciones, cortes, fallas eléctricas— evaluamos atención inmediata.</div>
         </div>
       </div>
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          <span class="faq-q-text">¿Trabajan con empresas y constructoras?</span>
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">Sí, tenemos amplia experiencia con <strong>empresas, constructoras, administraciones de edificios e industrias</strong>. Emitimos factura A y B y entregamos toda la documentación de seguridad e higiene requerida.</div>
+      <div class="conf-card reveal">
+        <img src="https://images.unsplash.com/photo-1527525443983-6e60c75fff46?w=600&h=500&fit=crop&q=80" alt="Mano de obra certificada y especializada" loading="lazy"/>
+        <div class="conf-overlay"></div>
+        <div class="conf-content">
+          <div class="conf-title">Mano de obra certificada</div>
+          <div class="conf-desc">No tercerizamos lo crítico. Cada trabajo lo ejecuta el técnico habilitado para esa especialidad, con matrícula y certificación vigente.</div>
         </div>
       </div>
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          <span class="faq-q-text">¿Atienden urgencias?</span>
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">Contamos con <strong>capacidad de respuesta de emergencia</strong>. Si tu situación es urgente (filtraciones activas, corte de gas, problema eléctrico, etc.), escribinos por WhatsApp indicando la urgencia y evaluamos disponibilidad inmediata.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRABAJOS REALIZADOS -->
+<section id="trabajos" class="section-pad">
+  <div class="container">
+    <div class="trabajos-header reveal">
+      <span class="tag">Portfolio de trabajos</span>
+      <h2 class="h2" style="margin:.7rem 0 1rem">Trabajos <span>Realizados</span></h2>
+      <p class="lead" style="margin:0 auto;text-align:center">Una muestra de proyectos completados en el Alto Valle y la Patagonia.</p>
+    </div>
+    <div class="trabajos-grid">
+      <div class="trabajo-card reveal">
+        <div class="trabajo-img">
+          <img src="https://images.unsplash.com/photo-1416879595936-0f5fef5a7459?w=600&h=380&fit=crop&q=80" alt="Impermeabilización y reparación de techos en institución educativa" loading="lazy"/>
+          <div class="trabajo-img-over"></div>
+          <span class="trabajo-tag">Institución educativa</span>
+        </div>
+        <div class="trabajo-body">
+          <div class="trabajo-sector">Escuela pública</div>
+          <div class="trabajo-title">Impermeabilización y reparación de techos</div>
+          <p class="trabajo-desc">Reparación completa de filtraciones y aplicación de membrana en edificio escolar de uso intensivo, con trabajo en días no lectivos.</p>
+          <div class="trabajo-loc"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg> General Roca, Río Negro</div>
         </div>
       </div>
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          <span class="faq-q-text">¿Tienen garantía en los trabajos?</span>
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">Sí. Todos nuestros trabajos incluyen <strong>garantía</strong> especificada en el presupuesto. Además hacemos seguimiento post-servicio para asegurarnos de que quedés conforme con el resultado.</div>
+      <div class="trabajo-card reveal">
+        <div class="trabajo-img">
+          <img src="https://images.unsplash.com/photo-1467533003447-e295ff1b0435?w=600&h=380&fit=crop&q=80" alt="Instalación de torre de comunicación municipal" loading="lazy"/>
+          <div class="trabajo-img-over"></div>
+          <span class="trabajo-tag">Organismo público</span>
+        </div>
+        <div class="trabajo-body">
+          <div class="trabajo-sector">Municipio</div>
+          <div class="trabajo-title">Torre de comunicación municipal</div>
+          <p class="trabajo-desc">Instalación completa de torre metálica de 15m con antenas de radiofrecuencia, sistema de tierra y documentación técnica.</p>
+          <div class="trabajo-loc"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg> Allen, Río Negro</div>
         </div>
       </div>
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          <span class="faq-q-text">¿Instalan Starlink en zonas rurales?</span>
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">Sí, es uno de nuestros servicios más solicitados. Instalamos <strong>Starlink en chacras, establecimientos rurales, galpones y zonas sin internet tradicional</strong>. Nos encargamos del montaje, cableado y configuración completa del sistema.</div>
+      <div class="trabajo-card reveal">
+        <div class="trabajo-img">
+          <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&h=380&fit=crop&q=80" alt="Instalación de Starlink en establecimiento rural" loading="lazy"/>
+          <div class="trabajo-img-over"></div>
+          <span class="trabajo-tag">Sector rural</span>
+        </div>
+        <div class="trabajo-body">
+          <div class="trabajo-sector">Establecimiento rural</div>
+          <div class="trabajo-title">Instalación Starlink en chacra</div>
+          <p class="trabajo-desc">Montaje, cableado y configuración completa de internet satelital en zona sin cobertura tradicional.</p>
+          <div class="trabajo-loc"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg> General Roca, Río Negro</div>
+        </div>
+      </div>
+      <div class="trabajo-card reveal">
+        <div class="trabajo-img">
+          <img src="https://images.unsplash.com/photo-1574438374-35059e8c3c64?w=600&h=380&fit=crop&q=80" alt="Mantenimiento integral de planta industrial" loading="lazy"/>
+          <div class="trabajo-img-over"></div>
+          <span class="trabajo-tag">Empresa industrial</span>
+        </div>
+        <div class="trabajo-body">
+          <div class="trabajo-sector">Industria</div>
+          <div class="trabajo-title">Mantenimiento integral de planta</div>
+          <p class="trabajo-desc">Reparación de techo, impermeabilización, reposición de chapas y pintura completa de estructura metálica industrial.</p>
+          <div class="trabajo-loc"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg> Cipolletti, Río Negro</div>
+        </div>
+      </div>
+      <div class="trabajo-card reveal">
+        <div class="trabajo-img">
+          <img src="https://images.unsplash.com/photo-1609770231080-e321deccc34c?w=600&h=380&fit=crop&q=80" alt="Instalación eléctrica certificada en empresa" loading="lazy"/>
+          <div class="trabajo-img-over"></div>
+          <span class="trabajo-tag">Empresa privada</span>
+        </div>
+        <div class="trabajo-body">
+          <div class="trabajo-sector">Empresa privada</div>
+          <div class="trabajo-title">Instalación eléctrica certificada</div>
+          <p class="trabajo-desc">Instalación eléctrica completa con tablero, certificación y documentación oficial para habilitación comercial.</p>
+          <div class="trabajo-loc"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg> General Roca, Río Negro</div>
+        </div>
+      </div>
+      <div class="trabajo-card reveal">
+        <div class="trabajo-img">
+          <img src="https://images.unsplash.com/photo-1527525443983-6e60c75fff46?w=600&h=380&fit=crop&q=80" alt="Limpieza profesional de fachada vidriada en altura" loading="lazy"/>
+          <div class="trabajo-img-over"></div>
+          <span class="trabajo-tag">Edificio corporativo</span>
+        </div>
+        <div class="trabajo-body">
+          <div class="trabajo-sector">Empresa</div>
+          <div class="trabajo-title">Limpieza de fachada vidriada</div>
+          <p class="trabajo-desc">Limpieza integral de fachada vidriada con técnicas de acceso por cuerdas certificadas y sin interrupción de actividades.</p>
+          <div class="trabajo-loc"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg> Neuquén capital</div>
+        </div>
+      </div>
+    </div>
+    <div class="trabajos-cta reveal">
+      <div>
+        <h3>¿Necesitás un proveedor técnico confiable?</h3>
+        <p>Presupuesto en 24 horas. Documentación completa. Para todo el Alto Valle y la Patagonia.</p>
+      </div>
+      <a href="https://wa.me/5492984520559?text=Hola%20Vertical%20Sur%2C%20quiero%20consultar%20por%20un%20presupuesto" target="_blank" class="btn btn-primary" style="flex-shrink:0;white-space:nowrap">
+        Consultanos por WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section-pad">
+  <div class="container">
+    <div class="faq-wrap">
+      <div class="faq-aside reveal-left">
+        <span class="tag">Preguntas frecuentes</span>
+        <h2 class="h2" style="margin:.7rem 0 1.2rem">Todo lo que necesitás <span>saber</span></h2>
+        <p class="lead" style="margin-bottom:2rem">Respondemos las dudas más comunes de organismos, instituciones y empresas antes de contratar.</p>
+        <div class="faq-aside-contact">
+          <h4>Contacto directo</h4>
+          <div class="faq-contact-link">
+            <div class="faq-contact-icon">
+              <svg viewBox="0 0 32 32"><path d="M16 .5C7.44.5.5 7.44.5 16c0 2.74.71 5.42 2.07 7.77L.5 31.5l8-2.04A15.44 15.44 0 0016 31.5C24.56 31.5 31.5 24.56 31.5 16S24.56.5 16 .5zm7.52 17.43c-.41-.2-2.42-1.18-2.8-1.32-.37-.13-.64-.2-.91.2-.27.4-1.05 1.32-1.29 1.59-.24.27-.47.3-.88.1-.41-.2-1.73-.63-3.3-2.01-1.22-1.07-2.04-2.4-2.28-2.8-.24-.41-.03-.63.18-.83.18-.18.41-.47.61-.7.2-.24.27-.41.41-.68.13-.27.07-.5-.03-.7-.1-.2-.91-2.19-1.25-3-.33-.79-.66-.68-.91-.69h-.77c-.27 0-.7.1-1.06.5-.37.4-1.4 1.37-1.4 3.33s1.43 3.87 1.63 4.13c.2.27 2.82 4.3 6.83 6.02.95.41 1.7.66 2.28.84.96.3 1.83.26 2.52.16.77-.12 2.37-.97 2.7-1.9.34-.94.34-1.74.24-1.9-.1-.18-.37-.27-.78-.47z"/></svg>
+            </div>
+            <div>
+              <span class="faq-contact-label">WhatsApp</span>
+              <a href="https://wa.me/5492984520559" target="_blank" class="faq-contact-val">+54 9 2984 520559</a>
+            </div>
+          </div>
+          <div class="faq-contact-link">
+            <div class="faq-contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </div>
+            <div>
+              <span class="faq-contact-label">Email</span>
+              <a href="mailto:verticalsur.rn@gmail.com" class="faq-contact-val">verticalsur.rn@gmail.com</a>
+            </div>
+          </div>
+          <div class="faq-contact-link">
+            <div class="faq-contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </div>
+            <div>
+              <span class="faq-contact-label">Ubicación</span>
+              <span class="faq-contact-val">Gral. Roca — Chacra 142</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="faq-list reveal-right">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">¿Pueden presentarse a licitaciones y concursos de precios?</span><span class="faq-q-icon">+</span></button>
+          <div class="faq-a"><div class="faq-a-inner">Sí. Contamos con toda la documentación exigida por los pliegos de licitación: <strong>seguro de responsabilidad civil, ART, matrículas habilitantes, constancia de AFIP, plan de trabajo y análisis de riesgos</strong>. Podemos inscribirnos en registros de proveedores municipales y provinciales. Consultanos con los requisitos específicos y los preparamos sin demoras.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">¿Trabajan con escuelas y organismos del Estado?</span><span class="faq-q-icon">+</span></button>
+          <div class="faq-a"><div class="faq-a-inner">Sí, tenemos amplia experiencia trabajando con <strong>instituciones educativas, municipios y organismos públicos</strong>. Conocemos las exigencias administrativas y de seguridad del sector público. Emitimos factura A y B y entregamos toda la documentación requerida.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">¿Emiten factura A y tienen CUIT activo en AFIP?</span><span class="faq-q-icon">+</span></button>
+          <div class="faq-a"><div class="faq-a-inner">Sí. Facturamos electrónicamente con <strong>factura A y B</strong> según corresponda. CUIT activo e inscripto ante AFIP. Podemos entregar constancia de inscripción y cualquier documentación fiscal requerida por tesorería o áreas administrativas.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">¿El personal tiene ART y seguro de vida?</span><span class="faq-q-icon">+</span></button>
+          <div class="faq-a"><div class="faq-a-inner">Sí. Todo el personal cuenta con <strong>ART (Aseguradora de Riesgos del Trabajo) y seguro de vida vigentes</strong>. Entregamos constancias y certificados ante cada inicio de obra o trabajo. Los técnicos de plomería, gas y electricidad tienen además sus matrículas habilitantes vigentes.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">¿En qué zonas trabajan?</span><span class="faq-q-icon">+</span></button>
+          <div class="faq-a"><div class="faq-a-inner">Base en <strong>General Roca, Río Negro</strong>. Cubrimos todo el Alto Valle: Allen, Cipolletti, Neuquén capital y localidades cercanas. Para proyectos de mayor envergadura, nos desplazamos a otras zonas de la Patagonia. Consultanos sin compromiso.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">¿Atienden urgencias en instituciones?</span><span class="faq-q-icon">+</span></button>
+          <div class="faq-a"><div class="faq-a-inner">Contamos con <strong>capacidad de respuesta de emergencia</strong>. Para filtraciones activas en escuelas, cortes de gas, problemas eléctricos u otras urgencias en instituciones, escribinos por WhatsApp indicando la situación y evaluamos disponibilidad de forma inmediata.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">¿Los trabajos tienen garantía?</span><span class="faq-q-icon">+</span></button>
+          <div class="faq-a"><div class="faq-a-inner">Sí. Todos los trabajos incluyen <strong>garantía documentada</strong>. El período depende del tipo de trabajo y los materiales utilizados, y queda especificado por escrito en el presupuesto aceptado. Hacemos seguimiento post-servicio para asegurarnos de que el resultado sea el esperado.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">¿Instalan Starlink en escuelas y zonas rurales?</span><span class="faq-q-icon">+</span></button>
+          <div class="faq-a"><div class="faq-a-inner">Sí. Instalamos <strong>Starlink en escuelas rurales, establecimientos agropecuarios, galpones y cualquier zona sin cobertura de internet</strong>. Nos encargamos del montaje estructural, cableado y configuración completa de red. Es uno de los servicios más solicitados en nuestra región.</div></div>
         </div>
       </div>
     </div>
@@ -581,100 +1151,96 @@
 </section>
 
 <!-- CONTACTO -->
-<section id="contacto">
-  <div class="section-inner">
-    <div class="reveal" style="text-align:center; max-width:600px; margin:0 auto 3rem;">
-      <div class="section-label">Hablemos</div>
-      <h2 class="section-title">Contacto</h2>
-      <p class="section-lead" style="margin:0 auto;">Estamos para ayudarte. Escribinos por WhatsApp o envianos tu consulta por el formulario.</p>
-    </div>
-    <div class="contact-grid">
-      <div class="contact-info-cards reveal">
-        <div class="info-card">
-          <span class="info-icon">💬</span>
-          <div>
-            <div class="info-title">WhatsApp</div>
-            <div class="info-val"><a href="https://wa.me/5492984520559?text=Hola%20Vertical%20Sur%2C%20quiero%20consultar%20por%20un%20presupuesto" target="_blank">+54 9 2984 520559</a></div>
-          </div>
-        </div>
-        <div class="info-card">
-          <span class="info-icon">✉️</span>
-          <div>
-            <div class="info-title">Email</div>
-            <div class="info-val"><a href="mailto:verticalsur.rn@gmail.com">verticalsur.rn@gmail.com</a></div>
-          </div>
-        </div>
-        <div class="info-card">
-          <span class="info-icon">📍</span>
-          <div>
-            <div class="info-title">Ubicación</div>
-            <div class="info-val">General Roca, Río Negro — Chacra 142</div>
-          </div>
-        </div>
-        <div class="info-card">
-          <span class="info-icon">🕐</span>
-          <div>
-            <div class="info-title">Horario de atención</div>
-            <div class="info-val">Lunes a Viernes: 8:00 – 18:00 hs<br>Sábados: 8:00 – 13:00 hs</div>
-          </div>
-        </div>
-        <div>
-          <div class="info-title" style="margin-bottom:.8rem; font-weight:600; color:var(--navy);">Seguinos en redes</div>
-          <div class="social-strip">
-            <a href="https://wa.me/5492984520559" target="_blank" class="social-btn social-wa">
+<section id="contacto" class="section-pad">
+  <div class="container">
+    <div class="contacto-inner">
+      <div class="contacto-left reveal-left">
+        <span class="tag">Hablemos</span>
+        <h2 class="h2" style="margin:.7rem 0 1rem;color:var(--white)">Pedí tu presupuesto o <span>documentación técnica</span></h2>
+        <p class="lead" style="margin-bottom:2.5rem">Respondemos en menos de 24 horas. Para licitaciones y concursos, coordinamos la entrega completa de documentación.</p>
+        <div class="contact-cards">
+          <div class="contact-card">
+            <div class="contact-card-icon">
               <svg viewBox="0 0 32 32"><path d="M16 .5C7.44.5.5 7.44.5 16c0 2.74.71 5.42 2.07 7.77L.5 31.5l8-2.04A15.44 15.44 0 0016 31.5C24.56 31.5 31.5 24.56 31.5 16S24.56.5 16 .5zm7.52 17.43c-.41-.2-2.42-1.18-2.8-1.32-.37-.13-.64-.2-.91.2-.27.4-1.05 1.32-1.29 1.59-.24.27-.47.3-.88.1-.41-.2-1.73-.63-3.3-2.01-1.22-1.07-2.04-2.4-2.28-2.8-.24-.41-.03-.63.18-.83.18-.18.41-.47.61-.7.2-.24.27-.41.41-.68.13-.27.07-.5-.03-.7-.1-.2-.91-2.19-1.25-3-.33-.79-.66-.68-.91-.69h-.77c-.27 0-.7.1-1.06.5-.37.4-1.4 1.37-1.4 3.33s1.43 3.87 1.63 4.13c.2.27 2.82 4.3 6.83 6.02.95.41 1.7.66 2.28.84.96.3 1.83.26 2.52.16.77-.12 2.37-.97 2.7-1.9.34-.94.34-1.74.24-1.9-.1-.18-.37-.27-.78-.47z"/></svg>
-              WhatsApp
-            </a>
-            <a href="https://instagram.com/verticalsur.rn" target="_blank" class="social-btn social-ig">
-              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-              Instagram
-            </a>
-            <a href="https://facebook.com/verticalsur.rn" target="_blank" class="social-btn social-fb">
-              <svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073c0 6.027 4.388 11.022 10.125 11.927v-8.437H7.078v-3.49h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796v8.437C19.612 23.095 24 18.1 24 12.073z"/></svg>
-              Facebook
-            </a>
+            </div>
+            <div>
+              <div class="contact-card-title">WhatsApp</div>
+              <div class="contact-card-val"><a href="https://wa.me/5492984520559?text=Hola%20Vertical%20Sur%2C%20quiero%20consultar" target="_blank">+54 9 2984 520559</a></div>
+            </div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-card-icon">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </div>
+            <div>
+              <div class="contact-card-title">Email</div>
+              <div class="contact-card-val"><a href="mailto:verticalsur.rn@gmail.com">verticalsur.rn@gmail.com</a></div>
+            </div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-card-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </div>
+            <div>
+              <div class="contact-card-title">Ubicación</div>
+              <div class="contact-card-val" style="color:rgba(160,185,210,.85)">General Roca, Río Negro — Chacra 142</div>
+            </div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-card-icon">
+              <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23L12 14V7z"/></svg>
+            </div>
+            <div>
+              <div class="contact-card-title">Horario</div>
+              <div class="contact-card-val" style="color:rgba(160,185,210,.85)">Lun–Vie 8:00–18:00 hs · Sáb 8:00–13:00 hs</div>
+            </div>
           </div>
         </div>
-        <div style="background: var(--navy); border-radius: 6px; padding: 1.5rem; border-left: 4px solid var(--orange);">
-          <p style="color:#c0d0e0; font-size:0.92rem; line-height:1.7;">
-            💡 <strong style="color:var(--orange);">¿Sos empresa?</strong> Trabajamos con administraciones, constructoras e industrias. Emitimos factura A y B, y entregamos toda la documentación de seguridad requerida.
-          </p>
+        <div class="social-row">
+          <a href="https://wa.me/5492984520559" target="_blank" class="soc-btn soc-wa">
+            <svg viewBox="0 0 32 32"><path d="M16 .5C7.44.5.5 7.44.5 16c0 2.74.71 5.42 2.07 7.77L.5 31.5l8-2.04A15.44 15.44 0 0016 31.5C24.56 31.5 31.5 24.56 31.5 16S24.56.5 16 .5zm7.52 17.43c-.41-.2-2.42-1.18-2.8-1.32-.37-.13-.64-.2-.91.2-.27.4-1.05 1.32-1.29 1.59-.24.27-.47.3-.88.1-.41-.2-1.73-.63-3.3-2.01-1.22-1.07-2.04-2.4-2.28-2.8-.24-.41-.03-.63.18-.83.18-.18.41-.47.61-.7.2-.24.27-.41.41-.68.13-.27.07-.5-.03-.7-.1-.2-.91-2.19-1.25-3-.33-.79-.66-.68-.91-.69h-.77c-.27 0-.7.1-1.06.5-.37.4-1.4 1.37-1.4 3.33s1.43 3.87 1.63 4.13c.2.27 2.82 4.3 6.83 6.02.95.41 1.7.66 2.28.84.96.3 1.83.26 2.52.16.77-.12 2.37-.97 2.7-1.9.34-.94.34-1.74.24-1.9-.1-.18-.37-.27-.78-.47z"/></svg>
+            WhatsApp
+          </a>
+          <a href="https://instagram.com/verticalsur.rn" target="_blank" class="soc-btn soc-ig">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            Instagram
+          </a>
+          <a href="https://facebook.com/verticalsur.rn" target="_blank" class="soc-btn soc-fb">
+            <svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073c0 6.027 4.388 11.022 10.125 11.927v-8.437H7.078v-3.49h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796v8.437C19.612 23.095 24 18.1 24 12.073z"/></svg>
+            Facebook
+          </a>
+        </div>
+        <div class="empresa-note">
+          <p><strong>Para licitaciones y concursos de precios:</strong> envianos los requisitos del pliego a <a href="mailto:verticalsur.rn@gmail.com" style="color:var(--orange)">verticalsur.rn@gmail.com</a> y preparamos la carpeta técnica y administrativa completa sin cargo.</p>
         </div>
       </div>
-
-      <div class="contact-form reveal">
+      <div class="contact-form reveal-right">
         <h3>Solicitar presupuesto</h3>
+        <p class="contact-form-sub">Completá el formulario y te respondemos en menos de 24 horas hábiles con presupuesto sin cargo.</p>
         <div class="form-row">
-          <div class="form-group">
-            <label>Nombre *</label>
-            <input type="text" id="f-nombre" placeholder="Tu nombre"/>
-          </div>
-          <div class="form-group">
-            <label>Empresa</label>
-            <input type="text" id="f-empresa" placeholder="Nombre de empresa (opcional)"/>
-          </div>
+          <div class="fg"><label>Nombre / Responsable *</label><input type="text" id="f-nombre" placeholder="Tu nombre"/></div>
+          <div class="fg"><label>Organismo / Empresa</label><input type="text" id="f-empresa" placeholder="Ej: Municipio de Roca, Esc. N°12..."/></div>
         </div>
         <div class="form-row">
-          <div class="form-group">
-            <label>Teléfono *</label>
-            <input type="tel" id="f-tel" placeholder="+54 299 XXX-XXXX"/>
-          </div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" id="f-email" placeholder="tu@email.com"/>
-          </div>
+          <div class="fg"><label>Teléfono *</label><input type="tel" id="f-tel" placeholder="+54 299 XXX-XXXX"/></div>
+          <div class="fg"><label>Email</label><input type="email" id="f-email" placeholder="secretaria@municipio.gob.ar"/></div>
         </div>
-        <div class="form-group">
-          <label>Tipo de servicio</label>
-          <select id="f-servicio">
-            <option value="">Seleccioná un servicio...</option>
+        <div class="fg">
+          <label>Tipo de solicitud</label>
+          <select id="f-serv">
+            <option value="">Seleccioná una opción...</option>
+            <optgroup label="Institucional / Público">
+              <option>Presupuesto para licitación pública</option>
+              <option>Concurso de precios municipal</option>
+              <option>Contratación directa institucional</option>
+              <option>Mantenimiento escolar</option>
+            </optgroup>
             <optgroup label="Servicios en Altura">
               <option>Montaje / desmontaje de torres</option>
               <option>Antenas y Starlink</option>
               <option>Luminarias en altura</option>
               <option>Cartelería en altura</option>
-              <option>Limpieza de vidrios en edificios</option>
-              <option>Trabajos con cuerdas y rappel</option>
+              <option>Limpieza de vidrios</option>
               <option>Pintura en altura</option>
             </optgroup>
             <optgroup label="Mantenimiento y Reparaciones">
@@ -694,11 +1260,8 @@
             <option>Otro / consulta general</option>
           </select>
         </div>
-        <div class="form-group">
-          <label>Descripción del trabajo</label>
-          <textarea id="f-desc" placeholder="Contanos brevemente qué necesitás, ubicación, urgencia, etc."></textarea>
-        </div>
-        <button class="btn-send" onclick="sendForm()">▶ Enviar por WhatsApp</button>
+        <div class="fg"><label>Descripción del trabajo o requerimiento</label><textarea id="f-desc" placeholder="Describí el trabajo, ubicación, plazos requeridos, normativa aplicable, etc."></textarea></div>
+        <button class="btn-submit" onclick="sendWA()">Enviar consulta por WhatsApp</button>
       </div>
     </div>
   </div>
@@ -707,138 +1270,103 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand">
-      <div class="logo-main" style="color:white;">VERTICAL <span style="color:var(--orange);">SUR</span></div>
-      <div class="logo-line" style="margin:6px 0;"></div>
-      <div class="logo-sub">SERVICIOS <em style="color:var(--orange);">EN ALTURA</em> &amp; MANTENIMIENTO</div>
-      <p>Soluciones profesionales en altura, mantenimiento y construcción. General Roca, Río Negro y toda la región del Alto Valle.</p>
-      <div class="footer-social">
-        <a href="https://wa.me/5492984520559" target="_blank" title="WhatsApp">
-          <svg viewBox="0 0 32 32"><path d="M16 .5C7.44.5.5 7.44.5 16c0 2.74.71 5.42 2.07 7.77L.5 31.5l8-2.04A15.44 15.44 0 0016 31.5C24.56 31.5 31.5 24.56 31.5 16S24.56.5 16 .5zm7.52 17.43c-.41-.2-2.42-1.18-2.8-1.32-.37-.13-.64-.2-.91.2-.27.4-1.05 1.32-1.29 1.59-.24.27-.47.3-.88.1-.41-.2-1.73-.63-3.3-2.01-1.22-1.07-2.04-2.4-2.28-2.8-.24-.41-.03-.63.18-.83.18-.18.41-.47.61-.7.2-.24.27-.41.41-.68.13-.27.07-.5-.03-.7-.1-.2-.91-2.19-1.25-3-.33-.79-.66-.68-.91-.69h-.77c-.27 0-.7.1-1.06.5-.37.4-1.4 1.37-1.4 3.33s1.43 3.87 1.63 4.13c.2.27 2.82 4.3 6.83 6.02.95.41 1.7.66 2.28.84.96.3 1.83.26 2.52.16.77-.12 2.37-.97 2.7-1.9.34-.94.34-1.74.24-1.9-.1-.18-.37-.27-.78-.47z"/></svg>
-        </a>
-        <a href="https://instagram.com/verticalsur.rn" target="_blank" title="Instagram">
-          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        </a>
-        <a href="https://facebook.com/verticalsur.rn" target="_blank" title="Facebook">
-          <svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073c0 6.027 4.388 11.022 10.125 11.927v-8.437H7.078v-3.49h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796v8.437C19.612 23.095 24 18.1 24 12.073z"/></svg>
-        </a>
+    <div>
+      <div class="footer-brand-name">VERTICAL <span>SUR</span></div>
+      <div class="footer-line"></div>
+      <div class="footer-sub">SERVICIOS <em>EN ALTURA</em> &amp; MANTENIMIENTO INTEGRAL</div>
+      <p class="footer-desc">Empresa de mantenimiento, servicios en altura e infraestructura técnica. Proveedores de municipios, escuelas, empresas y organismos públicos del Alto Valle y la Patagonia.</p>
+      <div class="footer-soc">
+        <a href="https://wa.me/5492984520559" target="_blank" title="WhatsApp"><svg viewBox="0 0 32 32"><path d="M16 .5C7.44.5.5 7.44.5 16c0 2.74.71 5.42 2.07 7.77L.5 31.5l8-2.04A15.44 15.44 0 0016 31.5C24.56 31.5 31.5 24.56 31.5 16S24.56.5 16 .5zm7.52 17.43c-.41-.2-2.42-1.18-2.8-1.32-.37-.13-.64-.2-.91.2-.27.4-1.05 1.32-1.29 1.59-.24.27-.47.3-.88.1-.41-.2-1.73-.63-3.3-2.01-1.22-1.07-2.04-2.4-2.28-2.8-.24-.41-.03-.63.18-.83.18-.18.41-.47.61-.7.2-.24.27-.41.41-.68.13-.27.07-.5-.03-.7-.1-.2-.91-2.19-1.25-3-.33-.79-.66-.68-.91-.69h-.77c-.27 0-.7.1-1.06.5-.37.4-1.4 1.37-1.4 3.33s1.43 3.87 1.63 4.13c.2.27 2.82 4.3 6.83 6.02.95.41 1.7.66 2.28.84.96.3 1.83.26 2.52.16.77-.12 2.37-.97 2.7-1.9.34-.94.34-1.74.24-1.9-.1-.18-.37-.27-.78-.47z"/></svg></a>
+        <a href="https://instagram.com/verticalsur.rn" target="_blank" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+        <a href="https://facebook.com/verticalsur.rn" target="_blank" title="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073c0 6.027 4.388 11.022 10.125 11.927v-8.437H7.078v-3.49h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796v8.437C19.612 23.095 24 18.1 24 12.073z"/></svg></a>
       </div>
     </div>
-    <div class="footer-links">
+    <div class="footer-col">
       <h4>Navegación</h4>
       <ul>
-        <li><a href="#quienes">Quiénes somos</a></li>
+        <li><a href="#sectores">Sectores que atendemos</a></li>
         <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#documentacion">Documentación técnica</a></li>
+        <li><a href="#proceso">Proceso de trabajo</a></li>
         <li><a href="#trabajos">Trabajos realizados</a></li>
-        <li><a href="#porque">Por qué elegirnos</a></li>
         <li><a href="#faq">Preguntas frecuentes</a></li>
-        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#contacto">Contacto y presupuesto</a></li>
       </ul>
     </div>
-    <div class="footer-links">
+    <div class="footer-col">
       <h4>Servicios</h4>
       <ul>
         <li><a href="#servicios">Torres y antenas</a></li>
-        <li><a href="#servicios">Starlink</a></li>
-        <li><a href="#servicios">Plomería y Gas</a></li>
+        <li><a href="#servicios">Starlink rural e institucional</a></li>
+        <li><a href="#servicios">Plomería y gas</a></li>
         <li><a href="#servicios">Electricidad</a></li>
         <li><a href="#servicios">Impermeabilización</a></li>
-        <li><a href="#servicios">Herrería y Hojalatería</a></li>
+        <li><a href="#servicios">Herrería y hojalatería</a></li>
+        <li><a href="#servicios">Albañilería</a></li>
       </ul>
     </div>
-    <div class="footer-links">
+    <div class="footer-col">
       <h4>Contacto</h4>
       <ul>
         <li><a href="https://wa.me/5492984520559" target="_blank">+54 9 2984 520559</a></li>
         <li><a href="mailto:verticalsur.rn@gmail.com">verticalsur.rn@gmail.com</a></li>
-        <li><a href="#contacto">Gral. Roca, Río Negro — Chacra 142</a></li>
+        <li><a href="#contacto">Gral. Roca, RN — Chacra 142</a></li>
+        <li><a href="#contacto">Lun–Vie: 8:00–18:00 hs</a></li>
+        <li><a href="#documentacion">Documentación técnica</a></li>
+        <li><a href="#contacto">Licitaciones y concursos</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2026 Vertical Sur – Servicios en Altura &amp; Mantenimiento Integral.</span>
-    <span>General Roca, Río Negro, Argentina</span>
+    <span>© 2026 Vertical Sur – Mantenimiento Integral &amp; Servicios en Altura. General Roca, Río Negro.</span>
+    <span>Factura A y B · ART vigente · Técnicos matriculados</span>
   </div>
 </footer>
 
-<!-- WhatsApp float -->
-<a href="https://wa.me/5492984520559?text=Hola%20Vertical%20Sur%2C%20quiero%20consultar%20por%20un%20presupuesto" class="wa-float" target="_blank" title="Escribinos por WhatsApp">
-  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-    <path d="M16 .5C7.44.5.5 7.44.5 16c0 2.74.71 5.42 2.07 7.77L.5 31.5l8-2.04A15.44 15.44 0 0016 31.5C24.56 31.5 31.5 24.56 31.5 16S24.56.5 16 .5zm0 28.2a13.64 13.64 0 01-7.08-1.97l-.5-.3-5.2 1.33 1.37-4.96-.33-.52A13.7 13.7 0 1116 28.7zm7.52-10.27c-.41-.2-2.42-1.18-2.8-1.32-.37-.13-.64-.2-.91.2-.27.4-1.05 1.32-1.29 1.59-.24.27-.47.3-.88.1-.41-.2-1.73-.63-3.3-2.01-1.22-1.07-2.04-2.4-2.28-2.8-.24-.41-.03-.63.18-.83.18-.18.41-.47.61-.7.2-.24.27-.41.41-.68.13-.27.07-.5-.03-.7-.1-.2-.91-2.19-1.25-3-.33-.79-.66-.68-.91-.69h-.77c-.27 0-.7.1-1.06.5-.37.4-1.4 1.37-1.4 3.33s1.43 3.87 1.63 4.13c.2.27 2.82 4.3 6.83 6.02.95.41 1.7.66 2.28.84.96.3 1.83.26 2.52.16.77-.12 2.37-.97 2.7-1.9.34-.94.34-1.74.24-1.9-.1-.18-.37-.27-.78-.47z"/>
-  </svg>
+<!-- WA flotante -->
+<a href="https://wa.me/5492984520559?text=Hola%20Vertical%20Sur%2C%20quiero%20consultar%20por%20un%20presupuesto" class="wa-float" target="_blank" title="WhatsApp">
+  <svg viewBox="0 0 32 32"><path d="M16 .5C7.44.5.5 7.44.5 16c0 2.74.71 5.42 2.07 7.77L.5 31.5l8-2.04A15.44 15.44 0 0016 31.5C24.56 31.5 31.5 24.56 31.5 16S24.56.5 16 .5zm0 28.2a13.64 13.64 0 01-7.08-1.97l-.5-.3-5.2 1.33 1.37-4.96-.33-.52A13.7 13.7 0 1116 28.7zm7.52-10.27c-.41-.2-2.42-1.18-2.8-1.32-.37-.13-.64-.2-.91.2-.27.4-1.05 1.32-1.29 1.59-.24.27-.47.3-.88.1-.41-.2-1.73-.63-3.3-2.01-1.22-1.07-2.04-2.4-2.28-2.8-.24-.41-.03-.63.18-.83.18-.18.41-.47.61-.7.2-.24.27-.41.41-.68.13-.27.07-.5-.03-.7-.1-.2-.91-2.19-1.25-3-.33-.79-.66-.68-.91-.69h-.77c-.27 0-.7.1-1.06.5-.37.4-1.4 1.37-1.4 3.33s1.43 3.87 1.63 4.13c.2.27 2.82 4.3 6.83 6.02.95.41 1.7.66 2.28.84.96.3 1.83.26 2.52.16.77-.12 2.37-.97 2.7-1.9.34-.94.34-1.74.24-1.9-.1-.18-.37-.27-.78-.47z"/></svg>
 </a>
 
 <script>
-  // ── Scroll reveal con fallback garantizado ──
-  const reveals = document.querySelectorAll('.reveal');
-
-  if ('IntersectionObserver' in window) {
-    const revealObs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e, i) {
-        if (e.isIntersecting) {
-          setTimeout(function() { e.target.classList.add('visible'); }, i * 80);
-          revealObs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.08 });
-    reveals.forEach(function(r) { revealObs.observe(r); });
-  } else {
-    reveals.forEach(function(r) { r.classList.add('visible'); });
-  }
-
-  // Fallback: forzar visible tras 2.5 seg por si el observer falla
-  setTimeout(function() {
-    document.querySelectorAll('.reveal:not(.visible)').forEach(function(el) {
-      el.classList.add('visible');
-    });
-  }, 2500);
-
-  // ── Mobile hamburger ──
-  var hamburger = document.getElementById('hamburger');
-  var navMenu = document.getElementById('nav-menu');
-  hamburger.addEventListener('click', function() {
-    hamburger.classList.toggle('open');
-    navMenu.classList.toggle('open');
-  });
-  navMenu.querySelectorAll('a').forEach(function(a) {
-    a.addEventListener('click', function() {
-      hamburger.classList.remove('open');
-      navMenu.classList.remove('open');
-    });
-  });
-
-  // ── FAQ accordion ──
-  function toggleFaq(btn) {
-    var item = btn.closest('.faq-item');
-    var isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(function(i) { i.classList.remove('open'); });
-    if (!isOpen) item.classList.add('open');
-  }
-
-  // ── Formulario a WhatsApp ──
-  function sendForm() {
-    var nombre  = document.getElementById('f-nombre').value.trim();
-    var empresa = document.getElementById('f-empresa').value.trim();
-    var tel     = document.getElementById('f-tel').value.trim();
-    var email   = document.getElementById('f-email').value.trim();
-    var serv    = document.getElementById('f-servicio').value;
-    var desc    = document.getElementById('f-desc').value.trim();
-
-    if (!nombre || !tel) {
-      alert('Por favor completá al menos tu nombre y teléfono.');
-      return;
-    }
-
-    var msg = 'Hola Vertical Sur, les escribo desde la web!\n\n';
-    msg += '*Nombre:* ' + nombre + '\n';
-    if (empresa) msg += '*Empresa:* ' + empresa + '\n';
-    msg += '*Telefono:* ' + tel + '\n';
-    if (email)   msg += '*Email:* ' + email + '\n';
-    if (serv)    msg += '*Servicio:* ' + serv + '\n';
-    if (desc)    msg += '*Detalle:* ' + desc + '\n';
-
-    window.open('https://wa.me/5492984520559?text=' + encodeURIComponent(msg), '_blank');
-  }
+var nav=document.getElementById('main-nav');
+window.addEventListener('scroll',function(){nav.classList[window.scrollY>40?'add':'remove']('scrolled')},{passive:true});
+var ham=document.getElementById('hamburger'),menu=document.getElementById('nav-menu');
+ham.addEventListener('click',function(){ham.classList.toggle('open');menu.classList.toggle('open')});
+menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){ham.classList.remove('open');menu.classList.remove('open')})});
+(function(){
+  var els=document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
+  if(!('IntersectionObserver' in window)){els.forEach(function(el){el.classList.add('visible')});return}
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e,i){
+      if(e.isIntersecting){setTimeout(function(){e.target.classList.add('visible')},i*70);obs.unobserve(e.target)}
+    })
+  },{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(el){obs.observe(el)});
+  setTimeout(function(){document.querySelectorAll('.reveal:not(.visible),.reveal-left:not(.visible),.reveal-right:not(.visible)').forEach(function(el){el.classList.add('visible')})},3000);
+})();
+function toggleFaq(btn){
+  var item=btn.closest('.faq-item'),isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(function(i){i.classList.remove('open')});
+  if(!isOpen)item.classList.add('open');
+}
+function sendWA(){
+  var n=document.getElementById('f-nombre').value.trim();
+  var e=document.getElementById('f-empresa').value.trim();
+  var t=document.getElementById('f-tel').value.trim();
+  var m=document.getElementById('f-email').value.trim();
+  var s=document.getElementById('f-serv').value;
+  var d=document.getElementById('f-desc').value.trim();
+  if(!n||!t){alert('Por favor completá tu nombre y teléfono.');return}
+  var msg='Hola Vertical Sur, les escribo desde el sitio web.\n\n';
+  msg+='*Nombre:* '+n+'\n';
+  if(e)msg+='*Organismo / Empresa:* '+e+'\n';
+  msg+='*Telefono:* '+t+'\n';
+  if(m)msg+='*Email:* '+m+'\n';
+  if(s)msg+='*Tipo de solicitud:* '+s+'\n';
+  if(d)msg+='*Detalle:* '+d+'\n';
+  window.open('https://wa.me/5492984520559?text='+encodeURIComponent(msg),'_blank');
+}
 </script>
 </body>
 </html>
