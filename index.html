@@ -95,9 +95,19 @@ button{cursor:pointer;font-family:inherit}
 
 /* HERO */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
-.hero-vid{position:absolute;inset:0;z-index:0}
-.hero-vid video{width:100%;height:100%;object-fit:cover;object-position:center}
-.hero-vid .vid-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1}
+/* Hero interactive background */
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hbg-slide{position:absolute;inset:0;opacity:0;transition:opacity .65s cubic-bezier(.4,0,.2,1)}
+.hbg-slide.hbg-active{opacity:1}
+.hbg-slide img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+/* Cursor zone indicators (hidden — purely functional) */
+.hero-zones{position:absolute;inset:0;z-index:4;display:flex;pointer-events:none}
+.hero-zone{flex:1;pointer-events:auto;cursor:default}
+/* Mobile: only first image, no interaction */
+@media(max-width:768px){
+  .hbg-slide{transition:none}
+  .hero-zones{display:none}
+}
 .hero-ob{position:absolute;inset:0;background:rgba(10,14,23,.62);z-index:1}
 .hero-og{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,14,23,.95) 34%,rgba(10,14,23,.45) 70%,transparent 100%),linear-gradient(to top,rgba(10,14,23,.88) 0%,transparent 58%);z-index:2}
 .hero-grain{position:absolute;inset:0;z-index:3;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px}
@@ -426,6 +436,474 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05)}
 .nav-active { color: var(--white) !important; }
 .nav-active::after { width: 100% !important; }
 
+
+/* ═══════════════════════════════════════════════════════════════
+   SISTEMA / "Lo que hacemos" — Network Map
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Section wrapper */
+.sys-section{
+  background:var(--ink);
+  padding:var(--py) 0 calc(var(--py) * 1.1);
+  position:relative;
+  overflow:hidden;
+}
+
+/* Ambient radial glow */
+.sys-section::before{
+  content:'';
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:min(1100px,140vw);
+  height:min(1100px,140vw);
+  background:radial-gradient(circle,rgba(247,147,30,.05) 0%,rgba(90,174,224,.025) 38%,transparent 65%);
+  pointer-events:none;
+  z-index:0;
+}
+
+/* Canvas for animated SVG-like lines (drawn via JS) */
+.sys-canvas{
+  position:absolute;
+  inset:0;
+  width:100%;height:100%;
+  pointer-events:none;
+  z-index:1;
+}
+
+.sys-header{
+  text-align:center;
+  margin-bottom:clamp(3.2rem,6vw,5.5rem);
+  position:relative;
+  z-index:2;
+}
+
+/* ── MAP CONTAINER ── */
+.sys-map{
+  position:relative;
+  max-width:900px;
+  margin:0 auto;
+  height:clamp(460px,58vw,580px);
+  z-index:2;
+}
+
+/* ── NUCLEUS ── */
+.sys-nucleus{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  z-index:5;
+  display:flex;align-items:center;justify-content:center;
+}
+/* Animated outer ring */
+.sys-nucleus-ring{
+  position:absolute;
+  border-radius:50%;
+  border:1px solid rgba(247,147,30,.18);
+  animation:sysRingPulse 3.6s ease-in-out infinite;
+  pointer-events:none;
+  width:clamp(148px,17vw,188px);
+  height:clamp(148px,17vw,188px);
+}
+.sys-nucleus-ring--2{
+  width:clamp(192px,22vw,240px);
+  height:clamp(192px,22vw,240px);
+  border-color:rgba(247,147,30,.07);
+  animation-delay:1.2s;
+}
+@keyframes sysRingPulse{
+  0%,100%{transform:scale(1);opacity:.7}
+  50%{transform:scale(1.06);opacity:.35}
+}
+/* Core circle */
+.sys-nucleus-core{
+  position:relative;
+  width:clamp(110px,13vw,142px);
+  height:clamp(110px,13vw,142px);
+  border-radius:50%;
+  background:radial-gradient(circle at 40% 36%,var(--ink-4),var(--ink-3));
+  border:1.5px solid rgba(247,147,30,.4);
+  box-shadow:
+    0 0 0 1px rgba(247,147,30,.08),
+    0 0 32px rgba(247,147,30,.1),
+    inset 0 1px 0 rgba(255,255,255,.06);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:3px;
+}
+.sys-nucleus-name{
+  font-family:var(--ff-disp);
+  font-size:clamp(.7rem,1.1vw,.88rem);
+  letter-spacing:.12em;
+  color:var(--amber);
+  text-align:center;
+  line-height:1.15;
+}
+.sys-nucleus-name em{
+  font-style:normal;
+  color:rgba(255,255,255,.42);
+  font-size:.7em;
+}
+.sys-nucleus-sub{
+  font-family:var(--ff-mono);
+  font-size:.5rem;
+  letter-spacing:.18em;
+  color:rgba(255,255,255,.18);
+  text-transform:uppercase;
+}
+
+/* ── NODES ── */
+.sys-node{
+  position:absolute;
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  text-decoration:none;
+  color:inherit;
+  z-index:4;
+  padding:14px 16px;
+  border-radius:100px;           /* pill default */
+  border:1px solid rgba(255,255,255,.07);
+  background:rgba(17,24,39,.7);  /* ink-2 at 70% */
+  backdrop-filter:blur(6px);
+  max-width:clamp(160px,19vw,210px);
+  transition:
+    background .3s,
+    border-color .3s,
+    transform .35s cubic-bezier(.16,1,.3,1),
+    box-shadow .35s;
+  cursor:pointer;
+}
+.sys-node:hover{
+  background:rgba(30,45,68,.92);
+  border-color:rgba(247,147,30,.4);
+  transform:var(--sys-hover-t, translateY(-4px)) scale(1.03);
+  box-shadow:
+    0 16px 48px rgba(0,0,0,.5),
+    0 0 0 1px rgba(247,147,30,.2),
+    0 0 28px rgba(247,147,30,.08);
+}
+
+/* Dot indicator */
+.sys-node-dot{
+  width:7px;height:7px;
+  border-radius:50%;
+  background:rgba(247,147,30,.35);
+  border:1px solid rgba(247,147,30,.5);
+  flex-shrink:0;
+  margin-top:4px;
+  transition:background .3s,box-shadow .3s;
+}
+.sys-node:hover .sys-node-dot{
+  background:var(--amber);
+  box-shadow:0 0 8px rgba(247,147,30,.6);
+}
+
+/* Node content */
+.sys-node-content{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+.sys-node-index{
+  font-family:var(--ff-mono);
+  font-size:.52rem;
+  letter-spacing:.18em;
+  color:rgba(247,147,30,.35);
+  line-height:1;
+}
+.sys-node-title{
+  font-family:var(--ff-disp);
+  font-size:clamp(.88rem,1.2vw,1rem);
+  letter-spacing:.05em;
+  color:var(--white);
+  line-height:1.1;
+}
+.sys-node-desc{
+  font-size:.7rem;
+  color:var(--muted);
+  line-height:1.45;
+  margin-top:3px;
+  display:none;              /* shown on primary & CTA, hidden on standard */
+}
+.sys-node-link{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  font-family:var(--ff-mono);
+  font-size:.58rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.28);
+  margin-top:4px;
+  transition:color .25s;
+  display:none;
+}
+.sys-node:hover .sys-node-link{color:var(--amber);display:inline-flex}
+
+/* ── PRIMARY NODE (Servicios — visually dominant) ── */
+.sys-node--primary{
+  border-radius:12px;          /* less pill, more structural */
+  max-width:clamp(180px,21vw,230px);
+  border-color:rgba(247,147,30,.2);
+  background:rgba(22,32,48,.85);
+  padding:18px 20px;
+}
+.sys-node--primary .sys-node-desc{display:block}
+.sys-node--primary .sys-node-link{display:inline-flex}
+.sys-node--primary .sys-node-title{
+  font-size:clamp(1rem,1.4vw,1.15rem);
+}
+.sys-node--primary:hover{
+  border-color:rgba(247,147,30,.55);
+  box-shadow:
+    0 20px 56px rgba(0,0,0,.55),
+    0 0 0 1px rgba(247,147,30,.25),
+    0 0 40px rgba(247,147,30,.1);
+}
+
+/* ── CTA NODE (Hablemos) ── */
+.sys-node--cta{
+  border-radius:12px;
+  border-color:rgba(247,147,30,.28);
+  background:rgba(247,147,30,.06);
+  max-width:clamp(170px,19vw,215px);
+}
+.sys-node--cta .sys-node-desc{display:block}
+.sys-node--cta .sys-node-link{display:inline-flex;color:rgba(247,147,30,.5)}
+.sys-node--cta:hover{
+  background:rgba(247,147,30,.1);
+  border-color:rgba(247,147,30,.6);
+}
+
+/* ── ORGANIC NODE POSITIONS (desktop) ──
+   900×580px reference. Angles vary deliberately (not uniform pentagon).
+   N1 Servicios  → upper-right   (dominant)
+   N2 Sectores   → upper-left    (slightly higher)
+   N3 Documentación → lower-left
+   N4 Proceso    → lower-right
+   N5 Hablemos   → bottom-center (slight right lean)
+*/
+.sys-map{ --nx:50%; --ny:50% }
+/* Positions use top/left with manual offsets for organic feel */
+#sysN1{ top:4%;  right:3%;  --sys-hover-t:translate(-2px,-5px) }
+#sysN2{ top:7%;  left:2%;   --sys-hover-t:translate(2px,-5px) }
+#sysN3{ bottom:22%; left:0%; --sys-hover-t:translate(2px,3px) }
+#sysN4{ bottom:18%; right:5%; --sys-hover-t:translate(-2px,3px) }
+#sysN5{ bottom:3%;  left:50%; transform:translateX(-50%);
+        --sys-hover-t:translate(0px,-5px) }
+#sysN5:hover{ transform:translateX(-50%) translateY(-4px) scale(1.03) }
+
+/* ── ANIMATED CONNECTION LINES (canvas driven) ── */
+/* Canvas lines drawn in JS — see script */
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  .sys-map{ height:clamp(400px,72vw,520px) }
+  .sys-node{ max-width:clamp(140px,16vw,180px); padding:12px 14px }
+  .sys-node--primary,.sys-node--cta{ max-width:clamp(150px,17vw,190px) }
+  .sys-node-desc{ font-size:.65rem }
+}
+@media(max-width:640px){
+  .sys-map{
+    height:auto;
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    max-width:100%;
+  }
+  .sys-canvas{ display:none }
+  .sys-nucleus{ display:none }
+  /* Reset all absolute positioning */
+  #sysN1,#sysN2,#sysN3,#sysN4,#sysN5{
+    position:static;
+    transform:none!important;
+    max-width:100%;
+    border-radius:3px;
+    padding:16px 18px;
+    background:var(--ink-3);
+  }
+  #sysN1:hover,#sysN2:hover,#sysN3:hover,#sysN4:hover,#sysN5:hover{
+    transform:none!important;
+  }
+  .sys-node-desc,.sys-node-link{ display:block!important }
+  .sys-section::before{ display:none }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   NODE MODAL — overlay, box, animations
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Page blur target */
+.nmod-blur > *:not(.nmod-overlay){
+  filter:blur(5px) brightness(.65);
+  transition:filter .35s ease;
+  pointer-events:none;
+  user-select:none;
+}
+
+/* Overlay */
+.nmod-overlay{
+  position:fixed;
+  inset:0;
+  z-index:9000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:clamp(16px,4vw,40px);
+  background:rgba(5,8,15,.55);
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .32s ease, visibility .32s ease;
+}
+.nmod-overlay.nmod-open{
+  opacity:1;
+  visibility:visible;
+}
+
+/* Modal box */
+.nmod-box{
+  position:relative;
+  background:var(--ink-3);
+  border:1px solid rgba(247,147,30,.22);
+  border-radius:6px;
+  max-width:540px;
+  width:100%;
+  max-height:82vh;
+  overflow-y:auto;
+  padding:2.4rem 2.2rem 2rem;
+  box-shadow:
+    0 32px 80px rgba(0,0,0,.7),
+    0 0 0 1px rgba(247,147,30,.08),
+    0 0 48px rgba(247,147,30,.07);
+  transform:scale(.93) translateY(14px);
+  transition:transform .36s cubic-bezier(.16,1,.3,1);
+  scrollbar-width:thin;
+  scrollbar-color:rgba(247,147,30,.3) transparent;
+}
+.nmod-overlay.nmod-open .nmod-box{
+  transform:scale(1) translateY(0);
+}
+
+/* Amber top accent line */
+.nmod-accent{
+  position:absolute;
+  top:0;left:0;right:0;
+  height:2px;
+  background:linear-gradient(90deg,var(--amber),rgba(247,147,30,.2));
+  border-radius:6px 6px 0 0;
+}
+
+/* Close button */
+.nmod-close{
+  position:absolute;
+  top:14px;right:14px;
+  width:32px;height:32px;
+  border-radius:50%;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.1);
+  color:rgba(255,255,255,.55);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  transition:background .2s, color .2s, border-color .2s;
+}
+.nmod-close:hover{
+  background:rgba(247,147,30,.12);
+  border-color:rgba(247,147,30,.35);
+  color:var(--amber);
+}
+
+/* Modal body content styles */
+.nmod-eyebrow{
+  font-family:var(--ff-mono);
+  font-size:.62rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:rgba(247,147,30,.55);
+  margin-bottom:.7rem;
+}
+.nmod-title{
+  font-family:var(--ff-disp);
+  font-size:clamp(1.6rem,3.5vw,2.4rem);
+  letter-spacing:.04em;
+  color:var(--white);
+  line-height:.95;
+  margin-bottom:1.2rem;
+}
+.nmod-lead{
+  font-size:clamp(.88rem,1.4vw,.98rem);
+  color:rgba(255,255,255,.62);
+  line-height:1.72;
+  margin-bottom:1.6rem;
+}
+.nmod-rule{
+  width:36px;height:2px;
+  background:var(--amber);
+  margin-bottom:1.4rem;
+  border-radius:2px;
+}
+.nmod-list{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:.55rem;
+  margin-bottom:1.8rem;
+}
+.nmod-list li{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:.86rem;
+  color:rgba(255,255,255,.7);
+  line-height:1.5;
+}
+.nmod-list li::before{
+  content:'';
+  width:18px;height:1px;
+  background:var(--amber);
+  flex-shrink:0;
+}
+.nmod-footer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  padding-top:1.4rem;
+  border-top:1px solid rgba(255,255,255,.06);
+  flex-wrap:wrap;
+}
+.nmod-link{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  font-family:var(--ff-mono);
+  font-size:.68rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--amber);
+  text-decoration:none;
+  transition:gap .2s;
+}
+.nmod-link:hover{ gap:11px }
+.nmod-link svg{ transition:transform .2s }
+.nmod-link:hover svg{ transform:translateX(3px) }
+.nmod-tag{
+  font-family:var(--ff-mono);
+  font-size:.58rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.2);
+}
+
+/* Mobile */
+@media(max-width:480px){
+  .nmod-box{ padding:1.8rem 1.4rem 1.6rem }
+  .nmod-title{ font-size:1.5rem }
+}
+
 </style>
 </head>
 <body>
@@ -453,19 +931,32 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05)}
 </nav>
 <!-- HERO -->
 <section id="inicio" class="hero">
-  <div class="hero-vid">
-    <video id="hv" autoplay muted loop playsinline preload="auto"
-      poster="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&h=900&fit=crop&q=80">
-      <source src="https://videos.pexels.com/video-files/3122853/3122853-hd_1920_1080_25fps.mp4" type="video/mp4"/>
-    </video>
-    <img class="vid-poster"
-      src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&h=900&fit=crop&q=80"
-      alt="Vertical Sur trabajos en altura"/>
+  <!-- Interactive background images -->
+  <div class="hero-bg" id="heroBg" aria-hidden="true">
+    <div class="hbg-slide hbg-active" data-idx="0">
+      <img src="https://i.postimg.cc/J02Kx2qp/image-35645920.png" alt="" fetchpriority="high" decoding="async"/>
+    </div>
+    <div class="hbg-slide" data-idx="1">
+      <img src="https://i.postimg.cc/KYSqCC2z/image-3fc2ed87.png" alt="" loading="eager" decoding="async"/>
+    </div>
+    <div class="hbg-slide" data-idx="2">
+      <img src="https://i.postimg.cc/wMv0hphL/image-80c4a85c.png" alt="" loading="eager" decoding="async"/>
+    </div>
+    <div class="hbg-slide" data-idx="3">
+      <img src="https://i.postimg.cc/Wz3XMvMw/image-c35ddf05.png" alt="" loading="lazy" decoding="async"/>
+    </div>
   </div>
   <div class="hero-ob"></div>
   <div class="hero-og"></div>
   <div class="hero-grain"></div>
   <div class="hero-rule"></div>
+  <!-- Cursor zones for image switching -->
+  <div class="hero-zones" id="heroZones">
+    <div class="hero-zone" data-zone="0"></div>
+    <div class="hero-zone" data-zone="1"></div>
+    <div class="hero-zone" data-zone="2"></div>
+    <div class="hero-zone" data-zone="3"></div>
+  </div>
   <div class="hero-body">
     <p class="hero-pre">Proveedor habilitado · Sector público y privado · Alto Valle, Patagonia</p>
     <h1 class="hero-h1">MANTENIMIENTO, OBRAS<br/>Y <span class="hl">SOLUCIONES</span> TÉCNICAS<br/>CON RESPALDO<br/>PROFESIONAL</h1>
@@ -498,87 +989,88 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05)}
 
 
 <!-- HOME INTRO TEASERS -->
-<section style="background:var(--ink-2);padding:var(--py) 0;">
-  <div class="wrap">
-    <div style="text-align:center;margin-bottom:3.5rem;" data-r="up">
-      <span class="eye">Todo en un solo lugar</span>
+<section class="sys-section" id="sysSection">
+  <canvas class="sys-canvas" id="sysCanvas" aria-hidden="true"></canvas>
+
+  <div class="wrap" style="position:relative;z-index:2;">
+
+    <div class="sys-header" data-r="up">
+      <span class="eye">Estructura de trabajo</span>
       <h2 class="h-disp sz-lg">Lo que <span class="c-amber">hacemos</span></h2>
-      <p class="body-m" style="max-width:560px;margin:.9rem auto 0;">Servicios técnicos para el sector público y privado en el Alto Valle patagónico. Personal matriculado, equipamiento propio, documentación completa.</p>
+      <p class="body-m" style="max-width:500px;margin:.9rem auto 0;">Una plataforma técnica integrada para el sector público y privado del Alto Valle patagónico.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.05);">
 
-      <a href="sectores.html" style="display:block;background:var(--ink-2);overflow:hidden;transition:background .25s;text-decoration:none;" onmouseover="this.style.background='var(--ink-3)'" onmouseout="this.style.background='var(--ink-2)'">
-        <div style="position:relative;height:200px;overflow:hidden;">
-          <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&h=300&fit=crop&q=80" alt="Sectores" loading="lazy" style="width:100%;height:100%;object-fit:cover;filter:brightness(.45);transition:transform .6s;display:block;"/>
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,14,23,.9) 0%,transparent 55%)"></div>
-          <span style="position:absolute;bottom:12px;left:18px;font-family:var(--ff-disp);font-size:1.15rem;letter-spacing:.05em;color:#fff;">Sectores</span>
+    <div class="sys-map" id="sysMap" data-r="zoom">
+
+      <!-- Nucleus -->
+      <div class="sys-nucleus" id="sysNucleus">
+        <div class="sys-nucleus-ring"></div>
+        <div class="sys-nucleus-ring sys-nucleus-ring--2"></div>
+        <div class="sys-nucleus-core">
+          <span class="sys-nucleus-name">VERTICAL<br/><em>SUR</em></span>
+          <span class="sys-nucleus-sub">ALTO VALLE</span>
         </div>
-        <div style="padding:20px 22px 24px;">
-          <p style="font-size:.84rem;color:var(--muted);line-height:1.6;">Municipios, escuelas, salud, industrias y sector rural. Documentación lista para licitaciones y concursos.</p>
-          <span style="display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:600;color:var(--amber);margin-top:10px;letter-spacing:.05em;text-transform:uppercase;">Ver sectores <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+
+      <!-- Node: Servicios (primary — larger) -->
+      <a href="#" class="sys-node sys-node--primary" id="sysN1" data-modal="servicios">
+        <div class="sys-node-dot"></div>
+        <div class="sys-node-content">
+          <span class="sys-node-index">01</span>
+          <span class="sys-node-title">Servicios</span>
+          <span class="sys-node-desc">Altura, electricidad, construcción y mantenimiento integral.</span>
+          <span class="sys-node-link">Ver servicios <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
         </div>
       </a>
 
-      <a href="servicios.html" style="display:block;background:var(--ink-2);overflow:hidden;transition:background .25s;text-decoration:none;" onmouseover="this.style.background='var(--ink-3)'" onmouseout="this.style.background='var(--ink-2)'">
-        <div style="position:relative;height:200px;overflow:hidden;">
-          <img src="https://i.postimg.cc/1X7zLXP9/trabajo-electrico-jpg.jpg" alt="Servicios" loading="lazy" style="width:100%;height:100%;object-fit:cover;filter:brightness(.45);display:block;"/>
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,14,23,.9) 0%,transparent 55%)"></div>
-          <span style="position:absolute;bottom:12px;left:18px;font-family:var(--ff-disp);font-size:1.15rem;letter-spacing:.05em;color:#fff;">Servicios</span>
-        </div>
-        <div style="padding:20px 22px 24px;">
-          <p style="font-size:.84rem;color:var(--muted);line-height:1.6;">Trabajos en altura, mantenimiento integral, construcción y electricidad con personal especializado y certificado.</p>
-          <span style="display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:600;color:var(--amber);margin-top:10px;letter-spacing:.05em;text-transform:uppercase;">Ver todos los servicios <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-        </div>
-      </a>
-
-      <a href="trabajos.html" style="display:block;background:var(--ink-2);overflow:hidden;transition:background .25s;text-decoration:none;" onmouseover="this.style.background='var(--ink-3)'" onmouseout="this.style.background='var(--ink-2)'">
-        <div style="position:relative;height:200px;overflow:hidden;">
-          <img src="https://images.unsplash.com/photo-1467533003447-e295ff1b0435?w=600&h=300&fit=crop&q=80" alt="Trabajos" loading="lazy" style="width:100%;height:100%;object-fit:cover;filter:brightness(.45);display:block;"/>
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,14,23,.9) 0%,transparent 55%)"></div>
-          <span style="position:absolute;bottom:12px;left:18px;font-family:var(--ff-disp);font-size:1.15rem;letter-spacing:.05em;color:#fff;">Trabajos realizados</span>
-        </div>
-        <div style="padding:20px 22px 24px;">
-          <p style="font-size:.84rem;color:var(--muted);line-height:1.6;">Portfolio de proyectos ejecutados en el Alto Valle y la Patagonia: escuelas, municipios e industrias.</p>
-          <span style="display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:600;color:var(--amber);margin-top:10px;letter-spacing:.05em;text-transform:uppercase;">Ver portfolio <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      <!-- Node: Sectores -->
+      <a href="#" class="sys-node" id="sysN2" data-modal="sectores">
+        <div class="sys-node-dot"></div>
+        <div class="sys-node-content">
+          <span class="sys-node-index">02</span>
+          <span class="sys-node-title">Sectores</span>
+          <span class="sys-node-desc">Municipios, escuelas, salud, industrias y sector rural.</span>
+          <span class="sys-node-link">Ver sectores <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
         </div>
       </a>
 
-      <a href="documentacion.html" style="display:block;background:var(--ink-2);overflow:hidden;transition:background .25s;text-decoration:none;" onmouseover="this.style.background='var(--ink-3)'" onmouseout="this.style.background='var(--ink-2)'">
-        <div style="position:relative;height:200px;overflow:hidden;">
-          <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=300&fit=crop&q=80" alt="Documentacion" loading="lazy" style="width:100%;height:100%;object-fit:cover;filter:brightness(.45);display:block;"/>
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,14,23,.9) 0%,transparent 55%)"></div>
-          <span style="position:absolute;bottom:12px;left:18px;font-family:var(--ff-disp);font-size:1.15rem;letter-spacing:.05em;color:#fff;">Documentación</span>
-        </div>
-        <div style="padding:20px 22px 24px;">
-          <p style="font-size:.84rem;color:var(--muted);line-height:1.6;">ART, seguros, matrículas y planes de trabajo listos para licitaciones, concursos y contratos públicos.</p>
-          <span style="display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:600;color:var(--amber);margin-top:10px;letter-spacing:.05em;text-transform:uppercase;">Ver documentación <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-        </div>
-      </a>
-
-      <a href="proceso.html" style="display:block;background:var(--ink-2);overflow:hidden;transition:background .25s;text-decoration:none;" onmouseover="this.style.background='var(--ink-3)'" onmouseout="this.style.background='var(--ink-2)'">
-        <div style="position:relative;height:200px;overflow:hidden;">
-          <img src="https://i.postimg.cc/pTKZP9Lg/pomelli-image(17).jpg" alt="Proceso" loading="lazy" style="width:100%;height:100%;object-fit:cover;filter:brightness(.45);display:block;"/>
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,14,23,.9) 0%,transparent 55%)"></div>
-          <span style="position:absolute;bottom:12px;left:18px;font-family:var(--ff-disp);font-size:1.15rem;letter-spacing:.05em;color:#fff;">Proceso de trabajo</span>
-        </div>
-        <div style="padding:20px 22px 24px;">
-          <p style="font-size:.84rem;color:var(--muted);line-height:1.6;">5 pasos claros: desde el primer contacto hasta la entrega con garantía documentada y respaldo técnico.</p>
-          <span style="display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:600;color:var(--amber);margin-top:10px;letter-spacing:.05em;text-transform:uppercase;">Ver proceso <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      <!-- Node: Documentación -->
+      <a href="#" class="sys-node" id="sysN3" data-modal="documentacion">
+        <div class="sys-node-dot"></div>
+        <div class="sys-node-content">
+          <span class="sys-node-index">03</span>
+          <span class="sys-node-title">Documentación</span>
+          <span class="sys-node-desc">ART, matrículas y legajo técnico listo para licitaciones.</span>
+          <span class="sys-node-link">Ver documentación <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
         </div>
       </a>
 
-      <a href="contacto.html" style="display:block;background:var(--ink-3);overflow:hidden;transition:background .25s;text-decoration:none;border-left:3px solid var(--amber);" onmouseover="this.style.background='var(--ink-4)'" onmouseout="this.style.background='var(--ink-3)'">
-        <div style="padding:40px 28px;min-height:200px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;">
-          <span class="eye" style="margin-bottom:.8rem;">Presupuesto sin cargo</span>
-          <h3 class="h-disp sz-sm" style="margin-bottom:1rem;color:var(--white);">Hablemos hoy mismo</h3>
-          <p style="font-size:.84rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.6;">Respondemos en menos de 24 horas. Documentación completa lista para licitaciones y contratos públicos.</p>
-          <span class="btn btn-fill">Solicitar presupuesto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      <!-- Node: Proceso -->
+      <a href="#" class="sys-node" id="sysN4" data-modal="proceso">
+        <div class="sys-node-dot"></div>
+        <div class="sys-node-content">
+          <span class="sys-node-index">04</span>
+          <span class="sys-node-title">Proceso</span>
+          <span class="sys-node-desc">5 pasos desde el primer contacto hasta la entrega documentada.</span>
+          <span class="sys-node-link">Ver proceso <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+
+      <!-- Node: Hablemos (CTA) -->
+      <a href="#" class="sys-node sys-node--cta" id="sysN5" data-modal="hablemos">
+        <div class="sys-node-dot"></div>
+        <div class="sys-node-content">
+          <span class="sys-node-index" style="color:var(--amber);opacity:1;">→</span>
+          <span class="sys-node-title">Hablemos</span>
+          <span class="sys-node-desc">Presupuesto en 24 hs. Documentación completa lista para contratar.</span>
+          <span class="sys-node-link" style="color:var(--amber);">Solicitar presupuesto <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
         </div>
       </a>
 
     </div>
   </div>
 </section>
+
 
 
 <!-- CONFIANZA -->
@@ -641,7 +1133,9 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05)}
       <div class="ft-sub">SERVICIOS <em>EN ALTURA</em> &amp; MANTENIMIENTO</div>
       <p class="ft-desc">Empresa de mantenimiento, servicios en altura e infraestructura técnica. Proveedores del sector público y privado en el Alto Valle patagónico.</p>
       <div class="ft-soc">
+        <a href="https://wa.me/5492984520559" target="_blank" title="WhatsApp"><svg viewBox="0 0 32 32"><path d="M16 .5C7.44.5.5 7.44.5 16c0 2.74.71 5.42 2.07 7.77L.5 31.5l8-2.04A15.44 15.44 0 0016 31.5C24.56 31.5 31.5 24.56 31.5 16S24.56.5 16 .5zm7.52 17.43c-.41-.2-2.42-1.18-2.8-1.32-.37-.13-.64-.2-.91.2-.27.4-1.05 1.32-1.29 1.59-.24.27-.47.3-.88.1-.41-.2-1.73-.63-3.3-2.01-1.22-1.07-2.04-2.4-2.28-2.8-.24-.41-.03-.63.18-.83.18-.18.41-.47.61-.7.2-.24.27-.41.41-.68.13-.27.07-.5-.03-.7-.1-.2-.91-2.19-1.25-3-.33-.79-.66-.68-.91-.69h-.77c-.27 0-.7.1-1.06.5-.37.4-1.4 1.37-1.4 3.33s1.43 3.87 1.63 4.13c.2.27 2.82 4.3 6.83 6.02.95.41 1.7.66 2.28.84.96.3 1.83.26 2.52.16.77-.12 2.37-.97 2.7-1.9.34-.94.34-1.74.24-1.9-.1-.18-.37-.27-.78-.47z"/></svg></a>
         <a href="https://instagram.com/verticalsur.rn" target="_blank" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+        <a href="https://facebook.com/verticalsur.rn" target="_blank" title="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073c0 6.027 4.388 11.022 10.125 11.927v-8.437H7.078v-3.49h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796v8.437C19.612 23.095 24 18.1 24 12.073z"/></svg></a>
       </div>
     </div>
     <div class="ft-col">
@@ -672,7 +1166,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05)}
       <h4>Contacto</h4>
       <ul>
         <li><a href="https://wa.me/5492984520559" target="_blank">+54 9 2984 520559</a></li>
-        <li><a href="/cdn-cgi/l/email-protection#c4b2a1b6b0ada7a5a8b7b1b6eab6aa84a3a9a5ada8eaa7aba9"><span class="__cf_email__" data-cfemail="1a6c7f686e73797b76696f683468745a7d777b737634797577">[email&#160;protected]</span></a></li>
+        <li><a href="mailto:verticalsur.rn@gmail.com">verticalsur.rn@gmail.com</a></li>
         <li><a href="contacto.html">General Roca, Río Negro</a></li>
         <li><a href="contacto.html">Chacra 142 — Alto Valle</a></li>
         <li><a href="contacto.html">Lun–Vie: 8:00–18:00 hs</a></li>
@@ -689,7 +1183,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05)}
       </span>
       <span class="ft-info-item">
         <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-        <a href="/cdn-cgi/l/email-protection#780e1d0a0c111b19140b0d0a560a16381f15191114561b1715"><span class="__cf_email__" data-cfemail="d6a0b3a4a2bfb5b7baa5a3a4f8a4b896b1bbb7bfbaf8b5b9bb">[email&#160;protected]</span></a>
+        <a href="mailto:verticalsur.rn@gmail.com">verticalsur.rn@gmail.com</a>
       </span>
       <span class="ft-info-item">
         <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23L12 14V7z"/></svg>
@@ -716,21 +1210,332 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05)}
   class="wa" target="_blank" title="Contactar por WhatsApp">
   <svg viewBox="0 0 32 32"><path d="M16 .5C7.44.5.5 7.44.5 16c0 2.74.71 5.42 2.07 7.77L.5 31.5l8-2.04A15.44 15.44 0 0016 31.5C24.56 31.5 31.5 24.56 31.5 16S24.56.5 16 .5zm0 28.2a13.64 13.64 0 01-7.08-1.97l-.5-.3-5.2 1.33 1.37-4.96-.33-.52A13.7 13.7 0 1116 28.7zm7.52-10.27c-.41-.2-2.42-1.18-2.8-1.32-.37-.13-.64-.2-.91.2-.27.4-1.05 1.32-1.29 1.59-.24.27-.47.3-.88.1-.41-.2-1.73-.63-3.3-2.01-1.22-1.07-2.04-2.4-2.28-2.8-.24-.41-.03-.63.18-.83.18-.18.41-.47.61-.7.2-.24.27-.41.41-.68.13-.27.07-.5-.03-.7-.1-.2-.91-2.19-1.25-3-.33-.79-.66-.68-.91-.69h-.77c-.27 0-.7.1-1.06.5-.37.4-1.4 1.37-1.4 3.33s1.43 3.87 1.63 4.13c.2.27 2.82 4.3 6.83 6.02.95.41 1.7.66 2.28.84.96.3 1.83.26 2.52.16.77-.12 2.37-.97 2.7-1.9.34-.94.34-1.74.24-1.9-.1-.18-.37-.27-.78-.47z"/></svg>
 </a>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-var nav=document.getElementById('nav');
-window.addEventListener('scroll',function(){nav.classList[window.scrollY>55?'add':'remove']('sticked');},{passive:true});
-var burger=document.getElementById('burger'),ul=document.getElementById('nav-ul');
-burger.addEventListener('click',function(){burger.classList.toggle('on');ul.classList.toggle('open');});
-ul.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){burger.classList.remove('on');ul.classList.remove('open');});});
+
+<!-- ═══ NODE MODAL ═══════════════════════════════════════════════════════ -->
+<div class="nmod-overlay" id="nmodOverlay" role="dialog" aria-modal="true" aria-labelledby="nmodTitle">
+  <div class="nmod-box" id="nmodBox">
+
+    <!-- Close button -->
+    <button class="nmod-close" id="nmodClose" aria-label="Cerrar">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+
+    <!-- Amber accent line -->
+    <div class="nmod-accent"></div>
+
+    <!-- Dynamic content injected by JS -->
+    <div class="nmod-body" id="nmodBody"></div>
+
+  </div>
+</div>
+<!-- ═══ END MODAL ═════════════════════════════════════════════════════════ -->
+
+<script>
 (function(){
-  var els=document.querySelectorAll('[data-r]');
-  if(!('IntersectionObserver' in window)){els.forEach(function(el){el.classList.add('on');});return;}
-  var io=new IntersectionObserver(function(entries){
+  // NAV sticky
+  var nav = document.getElementById('nav');
+  if(nav){
+    window.addEventListener('scroll', function(){
+      nav.classList[window.scrollY > 55 ? 'add' : 'remove']('sticked');
+    }, {passive: true});
+  }
+
+  // Burger menu
+  var burger = document.getElementById('burger');
+  var ul = document.getElementById('nav-ul');
+  if(burger && ul){
+    burger.addEventListener('click', function(){
+      burger.classList.toggle('on');
+      ul.classList.toggle('open');
+    });
+    ul.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        burger.classList.remove('on');
+        ul.classList.remove('open');
+      });
+    });
+  }
+
+  // Scroll reveal — with robust fallback
+  var els = document.querySelectorAll('[data-r]');
+
+  function revealAll(){
+    els.forEach(function(el){ el.classList.add('on'); });
+  }
+
+  if(!('IntersectionObserver' in window)){
+    revealAll();
+    return;
+  }
+
+  var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
-      if(!e.isIntersecting)return;
-      var delay=parseFloat(e.target.getAttribute('data-d')||0)*1000;
-      setTimeout(function(){e.target.classList.add('on');},delay);
+      if(!e.isIntersecting) return;
+      var delay = parseFloat(e.target.getAttribute('data-d') || 0) * 1000;
+      setTimeout(function(){ e.target.classList.add('on'); }, delay);
       io.unobserve(e.target);
     });
-  },{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
-  els.forEach(function(el){io.obse
+  }, {threshold: 0.08, rootMargin: '0px 0px -40px 0px'});
+
+  els.forEach(function(el){ io.observe(el); });
+
+  // Hard fallback: reveal anything still hidden after 3s
+  setTimeout(function(){
+    document.querySelectorAll('[data-r]:not(.on)').forEach(function(el){
+      el.classList.add('on');
+    });
+  }, 3000);
+
+  // ── HERO IMAGE SWITCHER ───────────────────────────────────────────────────
+  (function(){
+    var slides   = document.querySelectorAll('.hbg-slide');
+    var zones    = document.querySelectorAll('.hero-zone');
+    var hero     = document.getElementById('inicio');
+    if(!slides.length || !hero) return;
+
+    var current  = 0;
+    var pending  = -1;
+    var debounce = null;
+
+    function activate(idx){
+      if(idx === current) return;
+      slides[current].classList.remove('hbg-active');
+      slides[idx].classList.add('hbg-active');
+      current = idx;
+    }
+
+    // Zone-based switching (mousemove on whole hero)
+    hero.addEventListener('mousemove', function(e){
+      var rect  = hero.getBoundingClientRect();
+      var ratio = (e.clientX - rect.left) / rect.width;   // 0 … 1
+      var idx   = Math.min(3, Math.floor(ratio * 4));      // 0,1,2,3
+
+      if(idx === pending) return;
+      pending = idx;
+
+      // Small debounce (80ms) prevents flickering at zone edges
+      clearTimeout(debounce);
+      debounce = setTimeout(function(){ activate(pending); }, 80);
+    });
+
+    // Reset to first on leave
+    hero.addEventListener('mouseleave', function(){
+      clearTimeout(debounce);
+      pending = 0;
+      debounce = setTimeout(function(){ activate(0); }, 300);
+    });
+
+    // Touch: keep first image, no interaction
+  })();
+  // ── END HERO IMAGE SWITCHER ───────────────────────────────────────────────
+
+  // ── SYSTEM MAP — Canvas connector lines ───────────────────────────────────
+  (function(){
+    var canvas  = document.getElementById('sysCanvas');
+    var map     = document.getElementById('sysMap');
+    var nucleus = document.getElementById('sysNucleus');
+    var nodeIds = ['sysN1','sysN2','sysN3','sysN4','sysN5'];
+    if(!canvas || !map || !nucleus) return;
+
+    var ctx     = canvas.getContext('2d');
+    var lines   = [];    // {x1,y1,x2,y2,active}
+    var raf     = null;
+    var tick    = 0;
+
+    // Resize canvas to match section
+    function resize(){
+      var r = canvas.parentElement.getBoundingClientRect();
+      canvas.width  = r.width;
+      canvas.height = r.height;
+      buildLines();
+    }
+
+    function center(el){
+      var pr = canvas.parentElement.getBoundingClientRect();
+      var er = el.getBoundingClientRect();
+      return {
+        x: er.left - pr.left + er.width  * .5,
+        y: er.top  - pr.top  + er.height * .5
+      };
+    }
+
+    function buildLines(){
+      lines = [];
+      var nc = center(nucleus);
+      nodeIds.forEach(function(id){
+        var nd = document.getElementById(id);
+        if(!nd) return;
+        var np = center(nd);
+        lines.push({x1:nc.x, y1:nc.y, x2:np.x, y2:np.y, active:false, id:id});
+      });
+      drawFrame();
+    }
+
+    function drawFrame(){
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      tick += .018;
+
+      lines.forEach(function(l){
+        var len = Math.sqrt(Math.pow(l.x2-l.x1,2) + Math.pow(l.y2-l.y1,2));
+        var dx  = (l.x2-l.x1)/len;
+        var dy  = (l.y2-l.y1)/len;
+
+        if(l.active){
+          // Active: bright solid gradient line
+          var grad = ctx.createLinearGradient(l.x1,l.y1,l.x2,l.y2);
+          grad.addColorStop(0,  'rgba(247,147,30,.55)');
+          grad.addColorStop(1,  'rgba(247,147,30,.12)');
+          ctx.beginPath();
+          ctx.moveTo(l.x1,l.y1);
+          ctx.lineTo(l.x2,l.y2);
+          ctx.strokeStyle = grad;
+          ctx.lineWidth   = 1.5;
+          ctx.setLineDash([]);
+          ctx.stroke();
+
+          // Animated particle flowing along the line
+          var t = (tick * .5) % 1;
+          var px = l.x1 + (l.x2-l.x1)*t;
+          var py = l.y1 + (l.y2-l.y1)*t;
+          ctx.beginPath();
+          ctx.arc(px, py, 2.5, 0, Math.PI*2);
+          ctx.fillStyle = 'rgba(247,147,30,.9)';
+          ctx.fill();
+        } else {
+          // Idle: faint dashed, gently pulsing opacity
+          var pulse = .12 + Math.sin(tick + lines.indexOf(l) * .8) * .04;
+          ctx.beginPath();
+          ctx.moveTo(l.x1,l.y1);
+          ctx.lineTo(l.x2,l.y2);
+          ctx.strokeStyle = 'rgba(247,147,30,' + pulse + ')';
+          ctx.lineWidth   = 1;
+          ctx.setLineDash([4, 7]);
+          ctx.stroke();
+        }
+      });
+
+      ctx.setLineDash([]);
+      raf = requestAnimationFrame(drawFrame);
+    }
+
+    // Hover activation
+    nodeIds.forEach(function(id){
+      var nd = document.getElementById(id);
+      if(!nd) return;
+      nd.addEventListener('mouseenter', function(){
+        lines.forEach(function(l){ if(l.id===id) l.active=true; });
+      });
+      nd.addEventListener('mouseleave', function(){
+        lines.forEach(function(l){ if(l.id===id) l.active=false; });
+      });
+    });
+
+    // Init
+    if(!window.matchMedia('(max-width:640px)').matches){
+      resize();
+      window.addEventListener('resize', resize, {passive:true});
+    }
+  })();
+  // ── END SYSTEM MAP ─────────────────────────────────────────────────────────
+
+  // ── NODE MODALS ──────────────────────────────────────────────────────────
+  (function(){
+    var overlay = document.getElementById('nmodOverlay');
+    var box     = document.getElementById('nmodBox');
+    var body    = document.getElementById('nmodBody');
+    var closeBtn= document.getElementById('nmodClose');
+    if(!overlay || !body) return;
+
+    var DATA = {
+      sectores: {
+        eyebrow: '02 · Sectores',
+        title: 'Sectores',
+        lead: 'Atendemos distintos sectores con soluciones técnicas adaptadas a cada necesidad.',
+        items: ['Entidades provinciales','Sector público y privado','Industria petrolera','Salud','Inmobiliarias','Consorcios y administraciones','Comercios y empresas del Alto Valle'],
+        link: 'sectores.html', linkLabel: 'Ver página completa'
+      },
+      servicios: {
+        eyebrow: '01 · Servicios',
+        title: 'Servicios',
+        lead: 'Trabajos en altura, mantenimiento integral, construcción y electricidad con personal certificado y documentación vigente.',
+        items: ['Torres y antenas','Plomería y gas','Electricidad matriculada','Impermeabilización y techos','Herrería y hojalatería','Albañilería y construcción','Mantenimiento rural'],
+        link: 'servicios.html', linkLabel: 'Ver todos los servicios'
+      },
+      documentacion: {
+        eyebrow: '03 · Documentación',
+        title: 'Documentación',
+        lead: 'Contamos con toda la documentación exigida para contratación formal en el sector público y privado.',
+        items: ['ART patronal vigente','Matrículas habilitantes','Seguros de responsabilidad civil','Planes de trabajo y seguridad','CUIT activo — facturación A y B','Legajo técnico completo','Registro de proveedores municipales'],
+        link: 'documentacion.html', linkLabel: 'Ver documentación técnica'
+      },
+      proceso: {
+        eyebrow: '04 · Proceso',
+        title: 'Proceso de trabajo',
+        lead: '5 pasos claros desde el primer contacto hasta la entrega con garantía documentada.',
+        items: ['01 — Consulta y relevamiento','02 — Propuesta técnica y presupuesto','03 — Planificación y documentación','04 — Ejecución del trabajo','05 — Entrega con respaldo y garantía'],
+        link: 'proceso.html', linkLabel: 'Ver proceso completo'
+      },
+      hablemos: {
+        eyebrow: '→ Contacto',
+        title: 'Hablemos',
+        lead: 'Respondemos en menos de 24 horas. Documentación completa lista para licitaciones y contratos públicos.',
+        items: ['Presupuesto sin cargo','Evaluación técnica del trabajo','Propuesta detallada por escrito','Personal disponible Lun–Vie 8:00–18:00 hs'],
+        link: 'contacto.html', linkLabel: 'Ir a contacto', cta: true
+      }
+    };
+
+    function buildContent(key){
+      var d = DATA[key];
+      if(!d) return '<p style="color:var(--muted)">Contenido no disponible.</p>';
+      var items = d.items.map(function(t){ return '<li>' + t + '</li>'; }).join('');
+      var ctaStyle = d.cta ? ' style="background:var(--amber);color:#fff;padding:10px 24px;border-radius:2px;font-weight:600;font-family:var(--ff-body);"' : '';
+      return (
+        '<div class="nmod-eyebrow">' + d.eyebrow + '</div>' +
+        '<h2 class="nmod-title" id="nmodTitle">' + d.title + '</h2>' +
+        '<div class="nmod-rule"></div>' +
+        '<p class="nmod-lead">' + d.lead + '</p>' +
+        '<ul class="nmod-list">' + items + '</ul>' +
+        '<div class="nmod-footer">' +
+          '<a href="' + d.link + '" class="nmod-link"' + ctaStyle + '>' +
+            d.linkLabel +
+            ' <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>' +
+          '</a>' +
+          '<span class="nmod-tag">Vertical Sur</span>' +
+        '</div>'
+      );
+    }
+
+    function openModal(key){
+      body.innerHTML = buildContent(key);
+      document.body.classList.add('nmod-blur');
+      overlay.classList.add('nmod-open');
+      document.body.style.overflow = 'hidden';
+      setTimeout(function(){ closeBtn.focus(); }, 50);
+    }
+
+    function closeModal(){
+      overlay.classList.remove('nmod-open');
+      document.body.classList.remove('nmod-blur');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.sys-node[data-modal]').forEach(function(node){
+      node.addEventListener('click', function(e){
+        e.preventDefault();
+        openModal(node.getAttribute('data-modal'));
+      });
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', function(e){ if(e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeModal(); });
+  })();
+  // ── END NODE MODALS ───────────────────────────────────────────────────────
+
+})();
+</script>
+
+</body>
+</html>
