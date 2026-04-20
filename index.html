@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vertical Sur — Mantenimiento Integral & Obras | General Roca, Patagonia</title>
-<meta name="description" content="Un solo contrato para obras, mantenimiento, electricidad, plomería y gas en el Alto Valle patagónico. Organismos, industrias y consorcios. Personal certificado, documentación completa y respuesta en 24 hs.">
+<meta name="description" content="Construcción y mantenimiento con servicios técnicos integrales en el Alto Valle patagónico. Obras, electricidad, plomería y gas para hogares, empresas y organismos. Personal habilitado, documentación completa y respuesta en 24 hs.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
@@ -211,7 +211,7 @@ nav {
 }
 .hero h1 {
   font-family: var(--font-disp);
-  font-size: clamp(54px, 9vw, 112px);
+  font-size: clamp(42px, 6.8vw, 96px);
   font-weight: 800;
   line-height: 1.0;
   letter-spacing: -0.025em;
@@ -227,9 +227,19 @@ nav {
   -webkit-text-stroke: 1px rgba(244,242,236,0.22);
   color: transparent;
 }
+/* Segunda línea del hero — levemente menor y diferenciada */
+.hero-h1-line2 {
+  display: block;
+  font-size: 0.68em;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+  color: var(--gray1);
+  margin-top: 6px;
+}
 .hero-sub {
-  max-width: 580px;
-  font-size: 17px; line-height: 1.7;
+  max-width: 640px;
+  font-size: 17px; line-height: 1.75;
   color: var(--gray1);
   margin-bottom: 44px;
 }
@@ -1111,7 +1121,7 @@ footer {
   nav .nav-links { display: none; }
   .hamburger { display: flex; }
   .nav-right .btn-ghost { display: none; }
-  .hero h1 { font-size: clamp(44px, 13vw, 68px); }
+  .hero h1 { font-size: clamp(36px, 10.5vw, 58px); }
   .hero-stats { flex-wrap: wrap; gap: 24px; padding-top: 28px; }
   .hero-stat {
     flex: 0 0 calc(50% - 12px);
@@ -1143,7 +1153,480 @@ footer {
   .process-steps { grid-template-columns: 1fr; }
   .contact-grid { gap: 32px; }
   .pain-grid { grid-template-columns: 1fr; }
-  .hero h1 { font-size: clamp(40px, 12vw, 60px); }
+  .hero h1 { font-size: clamp(30px, 9.5vw, 46px); }
+}
+
+/* ══════════════════════════════════════════════
+   ─── CALCULADORA DE MATERIALES ───
+══════════════════════════════════════════════ */
+.calc-section {
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 96px 0;
+}
+
+/* Wizard container */
+.calc-wizard {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+/* Step indicators */
+.calc-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 52px;
+}
+.calc-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  position: relative;
+}
+.step-num {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--bg4);
+  border: 1.5px solid var(--gray3);
+  color: var(--gray2);
+  font-family: var(--font-disp);
+  font-size: 14px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .35s, border-color .35s, color .35s;
+}
+.step-label {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--gray2);
+  transition: color .35s;
+}
+.calc-step.active .step-num {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: #0c0c0a;
+}
+.calc-step.active .step-label { color: var(--amber); }
+.calc-step.done .step-num {
+  background: rgba(232,149,10,0.15);
+  border-color: var(--amber-dim);
+  color: var(--amber);
+}
+.calc-step.done .step-label { color: var(--gray1); }
+.calc-step-line {
+  flex: 1;
+  height: 1px;
+  background: var(--gray3);
+  min-width: 60px;
+  max-width: 120px;
+  margin: 0 12px;
+  margin-bottom: 22px;
+  transition: background .35s;
+}
+.calc-step-line.active { background: var(--amber-dim); }
+
+/* Screens */
+.calc-screen {
+  display: none;
+  animation: fadeUp .45s cubic-bezier(.4,0,.2,1) both;
+}
+.calc-screen.active { display: block; }
+
+.calc-screen-title {
+  font-family: var(--font-disp);
+  font-size: clamp(22px, 3.5vw, 30px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  margin-bottom: 32px;
+}
+
+/* Screen 1 — type selector */
+.calc-types-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+/* Gas — aviso legal obligatorio */
+.calc-gas-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: rgba(232,149,10,0.06);
+  border: 1px solid var(--amber-dim);
+  border-left: 3px solid var(--amber);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  margin-bottom: 28px;
+}
+.calc-gas-warning-icon {
+  flex-shrink: 0;
+  width: 36px; height: 36px;
+  background: var(--amber-bg);
+  border: 1px solid rgba(232,149,10,0.22);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+}
+.calc-gas-warning-icon svg { width: 18px; height: 18px; stroke: var(--amber); fill: none; stroke-width: 2; stroke-linecap: round; }
+.calc-gas-warning-text {
+  font-size: 12px; color: var(--gray1); line-height: 1.6;
+}
+.calc-gas-warning-text strong { color: var(--amber); display: block; margin-bottom: 2px; font-size: 11px; letter-spacing: .07em; text-transform: uppercase; }
+
+/* Nota de resultado (ej. gas) */
+.calc-result-nota {
+  background: rgba(232,149,10,0.06);
+  border: 1px solid var(--amber-dim);
+  border-left: 3px solid var(--amber);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin-bottom: 28px;
+  font-size: 13px; color: var(--gray1); line-height: 1.65;
+  display: none;
+}
+.calc-result-nota strong { color: var(--amber); }
+
+/* Checkbox toggle (plomería) */
+.calc-checkbox-group { display: flex; flex-direction: column; gap: 10px; }
+.calc-checkbox-item {
+  display: flex; align-items: center; gap: 12px;
+  cursor: pointer; user-select: none;
+}
+.calc-checkbox-item input[type="checkbox"] { display: none; }
+.calc-checkbox-box {
+  width: 22px; height: 22px; flex-shrink: 0;
+  background: var(--bg4);
+  border: 1.5px solid var(--gray3);
+  border-radius: 3px;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s, border-color .2s;
+}
+.calc-checkbox-item input:checked + .calc-checkbox-box {
+  background: var(--amber-bg);
+  border-color: var(--amber);
+}
+.calc-checkbox-item input:checked + .calc-checkbox-box::after {
+  content: '';
+  display: block; width: 10px; height: 6px;
+  border-left: 2px solid var(--amber);
+  border-bottom: 2px solid var(--amber);
+  transform: rotate(-45deg) translateY(-1px);
+}
+.calc-checkbox-label {
+  font-size: 14px; color: var(--gray1);
+  font-weight: 500;
+}
+.calc-type-btn {
+  background: var(--bg3);
+  border: 1.5px solid var(--gray3);
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  text-align: left;
+  cursor: pointer;
+  transition: background .25s, border-color .25s, transform .2s;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+}
+.calc-type-btn::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: var(--amber);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .3s cubic-bezier(.4,0,.2,1);
+}
+.calc-type-btn:hover { background: var(--bg4); border-color: var(--amber-dim); transform: translateY(-2px); }
+.calc-type-btn:hover::after { transform: scaleX(1); }
+.calc-type-icon {
+  width: 48px; height: 48px;
+  background: var(--amber-bg);
+  border: 1px solid rgba(232,149,10,0.22);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 6px;
+}
+.calc-type-icon svg { width: 24px; height: 24px; stroke: var(--amber); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.calc-type-name {
+  font-family: var(--font-disp);
+  font-size: 18px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: -0.01em;
+  color: var(--white);
+  line-height: 1.15;
+}
+.calc-type-desc {
+  font-size: 13px; color: var(--gray2);
+  line-height: 1.5;
+}
+
+/* Screen 2 — inputs */
+.calc-form-card {
+  background: var(--bg3);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--amber);
+  padding: 40px 40px 36px;
+  border-radius: var(--radius);
+}
+.calc-type-label {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .15em; text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 22px;
+  display: flex; align-items: center; gap: 8px;
+}
+.calc-type-label::before { content:''; display:block; width:16px; height:1px; background:var(--amber); }
+.calc-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 28px; }
+.calc-fields.single { grid-template-columns: 1fr; }
+.calc-fields.triple { grid-template-columns: 1fr 1fr 1fr; }
+.calc-field { display: flex; flex-direction: column; gap: 7px; }
+.calc-field.full { grid-column: 1 / -1; }
+.calc-field label {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--gray2);
+}
+.calc-input {
+  background: var(--bg4);
+  border: 1px solid var(--gray3);
+  border-radius: var(--radius);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 16px;
+  padding: 13px 16px;
+  width: 100%;
+  transition: border-color .2s, box-shadow .2s;
+  outline: none;
+  -moz-appearance: textfield;
+}
+.calc-input::-webkit-inner-spin-button,
+.calc-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+.calc-input:focus {
+  border-color: var(--amber-dim);
+  box-shadow: 0 0 0 3px rgba(232,149,10,0.10);
+}
+.calc-input.error { border-color: #c0392b; box-shadow: 0 0 0 3px rgba(192,57,43,0.1); }
+.calc-select {
+  background: var(--bg4);
+  border: 1px solid var(--gray3);
+  border-radius: var(--radius);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 15px;
+  padding: 13px 16px;
+  width: 100%;
+  cursor: pointer;
+  transition: border-color .2s;
+  outline: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238a8880' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+}
+.calc-select:focus { border-color: var(--amber-dim); }
+.calc-select option { background: #1e1e1a; color: var(--white); }
+.calc-error-msg {
+  font-size: 12px; color: #e05c52;
+  margin-top: 4px; display: none;
+}
+
+.calc-btn-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.calc-btn {
+  background: var(--amber);
+  color: #0c0c0a;
+  font-family: var(--font-body);
+  font-size: 12px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: 14px 28px;
+  border: none; cursor: pointer;
+  border-radius: var(--radius);
+  transition: background .2s, transform .15s;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.calc-btn:hover { background: var(--amber2); transform: translateY(-1px); }
+.calc-btn svg { width: 15px; height: 15px; }
+.calc-btn-back {
+  background: transparent;
+  border: 1px solid var(--gray3);
+  color: var(--gray2);
+  font-family: var(--font-body);
+  font-size: 12px; font-weight: 600;
+  letter-spacing: .07em; text-transform: uppercase;
+  padding: 14px 22px;
+  cursor: pointer; border-radius: var(--radius);
+  transition: border-color .2s, color .2s;
+  display: inline-flex; align-items: center; gap: 7px;
+}
+.calc-btn-back:hover { border-color: var(--gray2); color: var(--white); }
+
+/* Screen 3 — results */
+.calc-result-header {
+  display: flex; align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px; flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+.calc-result-tag {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--amber); margin-bottom: 10px;
+}
+.calc-result-tag::before { content:''; display:block; width:14px; height:1px; background:var(--amber); }
+.calc-result-heading {
+  font-family: var(--font-disp);
+  font-size: clamp(22px, 3vw, 28px);
+  font-weight: 800; text-transform: uppercase;
+  letter-spacing: -0.015em;
+  color: var(--white); line-height: 1.1;
+}
+.calc-disclaimer {
+  font-size: 12px; color: var(--gray2);
+  background: var(--bg4);
+  border: 1px solid var(--gray3);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  max-width: 340px;
+  line-height: 1.55;
+}
+.calc-disclaimer strong { color: var(--gray1); }
+
+.calc-materials {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 36px;
+}
+.calc-material-card {
+  background: var(--bg3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px 22px 20px;
+  position: relative;
+  overflow: hidden;
+}
+.calc-material-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--amber), transparent);
+}
+.calc-material-icon {
+  width: 36px; height: 36px;
+  background: var(--amber-bg);
+  border: 1px solid rgba(232,149,10,0.18);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 14px;
+}
+.calc-material-icon svg { width: 18px; height: 18px; stroke: var(--amber); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.calc-material-qty {
+  font-family: var(--font-disp);
+  font-size: 32px; font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--white); line-height: 1;
+  margin-bottom: 4px;
+}
+.calc-material-qty span { font-size: 16px; color: var(--amber); margin-left: 2px; font-weight: 600; }
+.calc-material-name {
+  font-size: 12px; color: var(--gray2);
+  letter-spacing: .03em; line-height: 1.4;
+}
+
+/* CTA block */
+.calc-cta-block {
+  background: var(--bg3);
+  border: 1px solid var(--line);
+  border-left: 3px solid #25D366;
+  border-radius: var(--radius);
+  padding: 36px 40px;
+  display: flex; align-items: center;
+  gap: 32px; flex-wrap: wrap;
+  position: relative; overflow: hidden;
+}
+.calc-cta-block::before {
+  content: '';
+  position: absolute; top: -40px; right: -40px;
+  width: 180px; height: 180px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(37,211,102,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.calc-cta-text { flex: 1; min-width: 220px; }
+.calc-cta-eyebrow {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: #4dda7e; margin-bottom: 10px;
+  display: flex; align-items: center; gap: 8px;
+}
+.calc-cta-eyebrow::before { content:''; display:block; width:14px; height:1px; background:#4dda7e; }
+.calc-cta-title {
+  font-family: var(--font-disp);
+  font-size: clamp(17px, 2.5vw, 21px); font-weight: 800;
+  text-transform: uppercase; letter-spacing: -0.01em;
+  color: var(--white); line-height: 1.2;
+  margin-bottom: 10px;
+}
+.calc-cta-sub {
+  font-size: 14px; color: var(--gray2);
+  line-height: 1.65; max-width: 420px;
+}
+.calc-cta-sub strong { color: var(--white); font-weight: 600; }
+.calc-wa-btn {
+  background: #1a7a3c;
+  border: 1.5px solid #25D366;
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 13px; font-weight: 700;
+  letter-spacing: .06em; text-transform: uppercase;
+  padding: 16px 26px; cursor: pointer;
+  border-radius: var(--radius);
+  transition: background .2s, transform .15s;
+  display: inline-flex; align-items: center; gap: 10px;
+  text-decoration: none; white-space: nowrap;
+  flex-shrink: 0;
+  animation: waPulse 2.8s ease-out infinite;
+}
+.calc-wa-btn:hover {
+  background: #1e8f44; border-color: #2de070;
+  transform: translateY(-2px); animation: none;
+}
+.calc-wa-btn svg { width: 18px; height: 18px; fill: #fff; }
+
+.calc-restart-row {
+  display: flex; align-items: center; gap: 16px;
+  margin-top: 20px; flex-wrap: wrap;
+}
+.calc-restart-btn {
+  background: transparent; border: none;
+  color: var(--gray2);
+  font-family: var(--font-body);
+  font-size: 12px; font-weight: 600;
+  letter-spacing: .07em; text-transform: uppercase;
+  cursor: pointer; padding: 0;
+  transition: color .2s;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.calc-restart-btn:hover { color: var(--white); }
+.calc-restart-btn svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
+
+/* ─── CALC RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .calc-types-grid { grid-template-columns: repeat(2, 1fr); }
+  .calc-fields { grid-template-columns: 1fr; }
+  .calc-fields.triple { grid-template-columns: 1fr; }
+  .calc-form-card { padding: 28px 22px; }
+  .calc-cta-block { padding: 28px 22px; flex-direction: column; align-items: flex-start; }
+  .calc-wa-btn { width: 100%; justify-content: center; }
+  .calc-step-line { min-width: 32px; }
+  .calc-materials { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .calc-types-grid { grid-template-columns: 1fr; }
+  .calc-materials { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -1159,6 +1642,7 @@ footer {
     <ul class="nav-links">
       <li><a href="#servicios">Servicios</a></li>
       <li><a href="#trabajos">Trabajos</a></li>
+      <li><a href="#calculadora">Calculadora</a></li>
       <li><a href="#nosotros">Nosotros</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
@@ -1197,15 +1681,15 @@ footer {
     <div class="hero-tag fade-up">General Roca, Río Negro — Patagonia</div>
 
     <h1 class="fade-up delay-1">
-      Un proveedor.<br>
-      <em>Todo</em> resuelto.
+      Construcción y<br><em>mantenimiento</em>
+      <span class="hero-h1-line2">con servicios técnicos integrales</span>
     </h1>
 
     <p class="hero-sub fade-up delay-2">
       Obras, mantenimiento, electricidad, plomería y gas para
-      <strong>organismos públicos, industrias y consorcios del Alto Valle.</strong>
-      Personal propio habilitado, documentación completa desde el día uno
-      y respuesta técnica garantizada en <strong>24 horas.</strong>
+      <strong>hogares, empresas y organismos del Alto Valle.</strong>
+      Desde pequeñas reformas hasta proyectos completos,
+      con personal habilitado y <strong>respuesta técnica en 24 hs.</strong>
     </p>
 
     <div class="hero-actions fade-up delay-3">
@@ -1681,6 +2165,348 @@ footer {
   </div>
 </section>
 
+<!-- ═══ CALCULADORA DE MATERIALES ═══ -->
+<section class="calc-section" id="calculadora">
+  <div class="container">
+
+    <div class="section-tag">Herramienta de estimación</div>
+    <h2 class="section-title">Calculá tus<br>materiales.</h2>
+    <p class="section-body" style="margin-bottom: 52px;">Ingresá las medidas de tu proyecto y obtené una estimación instantánea de materiales. Valores orientativos para planificar mejor tu obra.</p>
+
+    <div class="calc-wizard" id="calcWizard">
+
+      <!-- ── STEP INDICATORS ── -->
+      <div class="calc-steps">
+        <div class="calc-step active" id="stepDot1">
+          <span class="step-num">1</span>
+          <span class="step-label">Tipo</span>
+        </div>
+        <div class="calc-step-line" id="stepLine1"></div>
+        <div class="calc-step" id="stepDot2">
+          <span class="step-num">2</span>
+          <span class="step-label">Medidas</span>
+        </div>
+        <div class="calc-step-line" id="stepLine2"></div>
+        <div class="calc-step" id="stepDot3">
+          <span class="step-num">3</span>
+          <span class="step-label">Resultado</span>
+        </div>
+      </div>
+
+      <!-- ══ SCREEN 1: TIPO DE CÁLCULO ══ -->
+      <div class="calc-screen active" id="screen1">
+        <h3 class="calc-screen-title">¿Qué querés calcular?</h3>
+        <div class="calc-types-grid">
+
+          <!-- Pared -->
+          <button class="calc-type-btn" onclick="selectType('pared')">
+            <div class="calc-type-icon">
+              <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="4" rx="1"/><rect x="2" y="10" width="20" height="4" rx="1"/><rect x="2" y="17" width="20" height="4" rx="1"/></svg>
+            </div>
+            <div class="calc-type-name">Construcción de Pared</div>
+            <div class="calc-type-desc">Ladrillos, cemento y arena para paredes nuevas</div>
+          </button>
+
+          <!-- Techo -->
+          <button class="calc-type-btn" onclick="selectType('techo')">
+            <div class="calc-type-icon">
+              <svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9"/><path d="M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>
+            </div>
+            <div class="calc-type-name">Techo / Chapas</div>
+            <div class="calc-type-desc">Cantidad de chapas, tirantes y tornillos</div>
+          </button>
+
+          <!-- Revoque -->
+          <button class="calc-type-btn" onclick="selectType('revoque')">
+            <div class="calc-type-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/><path d="M2 4h2v16H2zM20 4h2v16h-2z"/></svg>
+            </div>
+            <div class="calc-type-name">Revoque</div>
+            <div class="calc-type-desc">Cemento y arena para terminaciones de paredes</div>
+          </button>
+
+          <!-- Pintura -->
+          <button class="calc-type-btn" onclick="selectType('pintura')">
+            <div class="calc-type-icon">
+              <svg viewBox="0 0 24 24"><path d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42-.39-.39-1.02-.39-1.41 0l-6.59 6.59c-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1z"/><path d="M20 4v4c0 .55.45 1 1 1s1-.45 1-1V3c0-.55-.45-1-1-1h-5c-.55 0-1 .45-1 1s.45 1 1 1h4z" style="display:none"/></svg>
+            </div>
+            <div class="calc-type-name">Pintura</div>
+            <div class="calc-type-desc">Litros de pintura según superficie y manos</div>
+          </button>
+
+          <!-- Electricidad -->
+          <button class="calc-type-btn" onclick="selectType('electricidad')">
+            <div class="calc-type-icon">
+              <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="calc-type-name">Electricidad</div>
+            <div class="calc-type-desc">Cable, bocas, térmicas y cañerías para instalación eléctrica</div>
+          </button>
+
+          <!-- Plomería -->
+          <button class="calc-type-btn" onclick="selectType('plomeria')">
+            <div class="calc-type-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2v6m0 8v6M2 12h6m8 0h6"/><circle cx="12" cy="12" r="3"/><path d="M4.93 4.93l4.24 4.24m5.66 5.66l4.24 4.24M19.07 4.93l-4.24 4.24M9.17 14.83l-4.24 4.24"/></svg>
+            </div>
+            <div class="calc-type-name">Plomería</div>
+            <div class="calc-type-desc">Cañerías, conexiones y llaves de paso para agua fría y caliente</div>
+          </button>
+
+          <!-- Gas -->
+          <button class="calc-type-btn" onclick="selectType('gas')">
+            <div class="calc-type-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2c-4 4-6 8-2 12 1 1 2 2 2 4"/><path d="M12 18c0 2-2 4-2 4h4s-2-2-2-4z"/><path d="M8 10c0 0 1-3 4-4"/></svg>
+            </div>
+            <div class="calc-type-name">Gas</div>
+            <div class="calc-type-desc">Caños, conexiones y reguladores para instalación de gas</div>
+          </button>
+
+        </div>
+      </div><!-- /screen1 -->
+
+      <!-- ══ SCREEN 2: INPUTS DINÁMICOS ══ -->
+      <div class="calc-screen" id="screen2">
+        <div class="calc-form-card">
+
+          <!-- Label dinámico según tipo -->
+          <div class="calc-type-label" id="calcTypeLabel">Construcción de Pared</div>
+
+          <!-- FORM PARED -->
+          <div id="formPared">
+            <div class="calc-fields triple">
+              <div class="calc-field">
+                <label for="paredLargo">Largo (metros)</label>
+                <input class="calc-input" type="number" id="paredLargo" placeholder="Ej: 5.5" min="0.1" step="0.1">
+              </div>
+              <div class="calc-field">
+                <label for="paredAlto">Alto (metros)</label>
+                <input class="calc-input" type="number" id="paredAlto" placeholder="Ej: 2.8" min="0.1" step="0.1">
+              </div>
+              <div class="calc-field">
+                <label for="paredTipo">Tipo de ladrillo</label>
+                <select class="calc-select" id="paredTipo">
+                  <option value="comun">Ladrillo común</option>
+                  <option value="hueco">Ladrillo hueco</option>
+                </select>
+              </div>
+            </div>
+            <p style="font-size:12px;color:var(--gray2);margin-top:-6px;margin-bottom:22px;">
+              Ingresá las medidas de la superficie de la pared (sin descontar aberturas).
+            </p>
+          </div>
+
+          <!-- FORM TECHO -->
+          <div id="formTecho" style="display:none">
+            <div class="calc-fields triple">
+              <div class="calc-field">
+                <label for="techoLargo">Largo del techo (m)</label>
+                <input class="calc-input" type="number" id="techoLargo" placeholder="Ej: 8" min="0.5" step="0.1">
+              </div>
+              <div class="calc-field">
+                <label for="techoAncho">Ancho del techo (m)</label>
+                <input class="calc-input" type="number" id="techoAncho" placeholder="Ej: 4" min="0.5" step="0.1">
+              </div>
+              <div class="calc-field">
+                <label for="techoTipo">Tipo de chapa</label>
+                <select class="calc-select" id="techoTipo">
+                  <option value="corta">Chapa simple (3 m)</option>
+                  <option value="larga">Chapa larga (6 m)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- FORM REVOQUE -->
+          <div id="formRevoque" style="display:none">
+            <div class="calc-fields single">
+              <div class="calc-field">
+                <label for="revoqueM2">Superficie a revocar (m²)</label>
+                <input class="calc-input" type="number" id="revoqueM2" placeholder="Ej: 30" min="1" step="0.5">
+              </div>
+            </div>
+            <p style="font-size:12px;color:var(--gray2);margin-top:-6px;margin-bottom:22px;">
+              Superficie total de las paredes a revocar en metros cuadrados.
+            </p>
+          </div>
+
+          <!-- FORM PINTURA -->
+          <div id="formPintura" style="display:none">
+            <div class="calc-fields">
+              <div class="calc-field">
+                <label for="pinturaM2">Superficie a pintar (m²)</label>
+                <input class="calc-input" type="number" id="pinturaM2" placeholder="Ej: 40" min="1" step="0.5">
+              </div>
+              <div class="calc-field">
+                <label for="pinturaManos">Cantidad de manos</label>
+                <select class="calc-select" id="pinturaManos">
+                  <option value="1">1 mano</option>
+                  <option value="2" selected>2 manos</option>
+                  <option value="3">3 manos</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- FORM ELECTRICIDAD -->
+          <div id="formElectricidad" style="display:none">
+            <p style="font-size:12px;color:var(--gray2);margin-bottom:18px;line-height:1.6;">
+              Estimación para instalación eléctrica residencial estándar. Valores orientativos según reglamentación AEA 90364.
+            </p>
+            <div class="calc-fields triple">
+              <div class="calc-field">
+                <label for="elecM2">Metros cuadrados</label>
+                <input class="calc-input" type="number" id="elecM2" placeholder="Ej: 80" min="10" step="1">
+              </div>
+              <div class="calc-field">
+                <label for="elecAmbientes">Cantidad de ambientes</label>
+                <input class="calc-input" type="number" id="elecAmbientes" placeholder="Ej: 4" min="1" max="20" step="1">
+              </div>
+              <div class="calc-field">
+                <label for="elecNivel">Nivel de instalación</label>
+                <select class="calc-select" id="elecNivel">
+                  <option value="basico">Básico — esencial</option>
+                  <option value="medio" selected>Medio — estándar</option>
+                  <option value="completo">Completo — confort</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- FORM PLOMERÍA -->
+          <div id="formPlomeria" style="display:none">
+            <p style="font-size:12px;color:var(--gray2);margin-bottom:18px;line-height:1.6;">
+              Distribución estimada de agua fría y caliente para vivienda unifamiliar.
+            </p>
+            <div class="calc-fields">
+              <div class="calc-field">
+                <label for="plomBanos">Cantidad de baños</label>
+                <input class="calc-input" type="number" id="plomBanos" placeholder="Ej: 2" min="1" max="10" step="1">
+              </div>
+              <div class="calc-field full" style="margin-top:4px;">
+                <label style="margin-bottom:10px;">Instalaciones adicionales</label>
+                <div class="calc-checkbox-group">
+                  <label class="calc-checkbox-item">
+                    <input type="checkbox" id="plomCocina" checked>
+                    <span class="calc-checkbox-box"></span>
+                    <span class="calc-checkbox-label">Cocina</span>
+                  </label>
+                  <label class="calc-checkbox-item">
+                    <input type="checkbox" id="plomLavadero">
+                    <span class="calc-checkbox-box"></span>
+                    <span class="calc-checkbox-label">Lavadero</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FORM GAS -->
+          <div id="formGas" style="display:none">
+            <!-- Aviso legal obligatorio -->
+            <div class="calc-gas-warning">
+              <div class="calc-gas-warning-icon">
+                <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              </div>
+              <div class="calc-gas-warning-text">
+                <strong>⚠ Importante — Instalación de gas</strong>
+                La instalación final debe ser realizada y aprobada exclusivamente por un <strong style="color:var(--white)">gasista matriculado</strong>. Este cálculo es solo orientativo para planificar materiales.
+              </div>
+            </div>
+            <div class="calc-fields triple">
+              <div class="calc-field">
+                <label for="gasCocina">Cocinas / hornos</label>
+                <input class="calc-input" type="number" id="gasCocina" placeholder="Ej: 1" min="0" max="5" step="1" value="0">
+              </div>
+              <div class="calc-field">
+                <label for="gasCalefactor">Calefactores / estufas</label>
+                <input class="calc-input" type="number" id="gasCalefactor" placeholder="Ej: 2" min="0" max="10" step="1" value="0">
+              </div>
+              <div class="calc-field">
+                <label for="gasTermotanque">Termotanques / calefones</label>
+                <input class="calc-input" type="number" id="gasTermotanque" placeholder="Ej: 1" min="0" max="5" step="1" value="0">
+              </div>
+            </div>
+            <p style="font-size:12px;color:var(--gray2);margin-top:-6px;margin-bottom:22px;">
+              Ingresá 0 en los artefactos que no tenés. Al menos uno debe ser mayor a 0.
+            </p>
+          </div>
+
+          <!-- Error global -->
+          <p class="calc-error-msg" id="calcErrorMsg" style="display:none;margin-bottom:14px;">⚠ Por favor completá todos los campos antes de continuar.</p>
+
+          <!-- Botones -->
+          <div class="calc-btn-row">
+            <button class="calc-btn" onclick="calcularResultados()">
+              Calcular materiales
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            <button class="calc-btn-back" onclick="goTo(1)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+              Cambiar tipo
+            </button>
+          </div>
+
+        </div>
+      </div><!-- /screen2 -->
+
+      <!-- ══ SCREEN 3: RESULTADOS ══ -->
+      <div class="calc-screen" id="screen3">
+
+        <div class="calc-result-header">
+          <div>
+            <div class="calc-result-tag">Estimación de materiales</div>
+            <div class="calc-result-heading" id="resultTitle">Lista de materiales</div>
+          </div>
+          <div class="calc-disclaimer">
+            <strong>⚡ Valores orientativos.</strong><br>
+            Incluyen un 10% de desperdicio estimado. Para un presupuesto exacto con mano de obra, consultanos.
+          </div>
+        </div>
+
+        <!-- Cards de materiales (generadas por JS) -->
+        <div class="calc-materials" id="calcMaterialsList"></div>
+
+        <!-- Nota especial (visible solo para Gas) -->
+        <div class="calc-result-nota" id="calcResultNota">
+          <strong>⚠ Recordá:</strong> La instalación final debe ser realizada y aprobada exclusivamente por un <strong>gasista matriculado</strong>. Este estimado es solo orientativo para planificar materiales y consultar presupuesto.
+        </div>
+
+        <!-- CTA WhatsApp -->
+        <div class="calc-cta-block">
+          <div class="calc-cta-text">
+            <div class="calc-cta-eyebrow">¿Lo hacemos por vos?</div>
+            <div class="calc-cta-title">Presupuesto completo<br>con materiales y mano de obra</div>
+            <p class="calc-cta-sub">
+              ¿Querés que lo hagamos por vos? Te enviamos presupuesto completo con <strong>materiales + mano de obra</strong>, plazos reales y documentación completa. Sin costo, sin compromiso.
+            </p>
+          </div>
+          <a class="calc-wa-btn" id="calcWaBtn" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+            Solicitar presupuesto por WhatsApp
+          </a>
+        </div>
+
+        <!-- Reiniciar -->
+        <div class="calc-restart-row">
+          <button class="calc-restart-btn" onclick="reiniciarCalc()">
+            <svg viewBox="0 0 24 24"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+            Hacer otro cálculo
+          </button>
+          <span style="color:var(--gray3);font-size:12px;">·</span>
+          <button class="calc-restart-btn" onclick="goTo(2)">
+            <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            Modificar medidas
+          </button>
+        </div>
+
+      </div><!-- /screen3 -->
+
+    </div><!-- /calc-wizard -->
+  </div>
+</section>
+
+<div class="amber-divider"></div>
+
 <!-- ═══ CONTACTO ═══ -->
 <section class="contact" id="contacto">
   <div class="container">
@@ -1920,7 +2746,359 @@ window.addEventListener('scroll', () => {
   });
 });
 
-// ─── FORM SUBMIT HANDLER ───
+
+// ══════════════════════════════════════════════
+// ─── CALCULADORA DE MATERIALES ───
+// ══════════════════════════════════════════════
+
+// Estado global de la calculadora
+const calcState = {
+  currentType: null,  // 'pared' | 'techo' | 'revoque' | 'pintura'
+  currentStep: 1,
+};
+
+// ── Navegar entre pantallas ──
+function goTo(step) {
+  // Ocultar todas las pantallas
+  document.querySelectorAll('.calc-screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen' + step).classList.add('active');
+
+  // Actualizar indicadores de paso
+  [1, 2, 3].forEach(i => {
+    const dot = document.getElementById('stepDot' + i);
+    dot.classList.remove('active', 'done');
+    if (i < step) dot.classList.add('done');
+    else if (i === step) dot.classList.add('active');
+  });
+  const l1 = document.getElementById('stepLine1');
+  const l2 = document.getElementById('stepLine2');
+  if (step >= 2) l1.classList.add('active'); else l1.classList.remove('active');
+  if (step >= 3) l2.classList.add('active'); else l2.classList.remove('active');
+
+  calcState.currentStep = step;
+
+  // Scroll suave hacia la sección si venimos de otro paso
+  if (step > 1) {
+    const calcSection = document.getElementById('calculadora');
+    if (calcSection) {
+      calcSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+}
+
+// ── Seleccionar tipo de cálculo ──
+function selectType(tipo) {
+  calcState.currentType = tipo;
+
+  // Ocultar todos los formularios
+  ['formPared', 'formTecho', 'formRevoque', 'formPintura', 'formElectricidad', 'formPlomeria', 'formGas'].forEach(id => {
+    document.getElementById(id).style.display = 'none';
+  });
+
+  // Mostrar el correspondiente y actualizar label
+  const labels = {
+    pared:          'Construcción de Pared',
+    techo:          'Techo / Chapas',
+    revoque:        'Revoque',
+    pintura:        'Pintura',
+    electricidad:   'Electricidad',
+    plomeria:       'Plomería',
+    gas:            'Gas',
+  };
+
+  // Mapeo tipo → id del form
+  const formIds = {
+    pared: 'formPared', techo: 'formTecho', revoque: 'formRevoque',
+    pintura: 'formPintura', electricidad: 'formElectricidad',
+    plomeria: 'formPlomeria', gas: 'formGas',
+  };
+  document.getElementById(formIds[tipo]).style.display = 'block';
+  document.getElementById('calcTypeLabel').textContent = labels[tipo];
+
+  // Limpiar errores
+  document.getElementById('calcErrorMsg').style.display = 'none';
+  document.querySelectorAll('.calc-input').forEach(i => i.classList.remove('error'));
+
+  goTo(2);
+}
+
+// ── Validar y calcular ──
+function calcularResultados() {
+  document.getElementById('calcErrorMsg').style.display = 'none';
+  document.querySelectorAll('.calc-input').forEach(i => i.classList.remove('error'));
+
+  const tipo = calcState.currentType;
+  let resultado = null;
+  let valid = true;
+
+  // Helper validación
+  function getNum(id) {
+    const el = document.getElementById(id);
+    const v = parseFloat(el.value);
+    if (!v || v <= 0) { el.classList.add('error'); valid = false; return 0; }
+    return v;
+  }
+
+  if (tipo === 'pared') {
+    const largo = getNum('paredLargo');
+    const alto  = getNum('paredAlto');
+    if (!valid) { document.getElementById('calcErrorMsg').style.display = 'block'; return; }
+    const tipoBrick = document.getElementById('paredTipo').value;
+    const m2 = largo * alto;
+    const desperdicio = 1.10;
+
+    let ladrillos, cementoBolsas, arenam3;
+    if (tipoBrick === 'comun') {
+      ladrillos = Math.ceil(55 * m2 * desperdicio);
+      cementoBolsas = Math.ceil(m2 * 0.32 * desperdicio);
+      arenam3 = parseFloat((m2 * 0.027 * desperdicio).toFixed(2));
+    } else {
+      ladrillos = Math.ceil(20 * m2 * desperdicio);
+      cementoBolsas = Math.ceil(m2 * 0.28 * desperdicio);
+      arenam3 = parseFloat((m2 * 0.022 * desperdicio).toFixed(2));
+    }
+
+    const tipoLabel = tipoBrick === 'comun' ? 'ladrillo común' : 'ladrillo hueco';
+    resultado = {
+      titulo: `Pared ${largo}×${alto} m — ${tipoLabel}`,
+      materiales: [
+        { icono: 'brick',   qty: ladrillos,     unidad: 'u',  nombre: 'Ladrillos' },
+        { icono: 'cement',  qty: cementoBolsas, unidad: 'bolsas', nombre: 'Cemento' },
+        { icono: 'arena',   qty: arenam3,       unidad: 'm³', nombre: 'Arena (gruesa)' },
+      ],
+      waMsg: `Hola! Usé la calculadora de Vertical Sur para calcular una *pared de ${largo}m × ${alto}m* con *${tipoLabel}*. El estimado me dio: ${ladrillos} ladrillos, ${cementoBolsas} bolsas de cemento y ${arenam3} m³ de arena. ¿Me pueden enviar un presupuesto completo con materiales y mano de obra?`
+    };
+
+  } else if (tipo === 'techo') {
+    const largo = getNum('techoLargo');
+    const ancho = getNum('techoAncho');
+    if (!valid) { document.getElementById('calcErrorMsg').style.display = 'block'; return; }
+    const tipoChapa = document.getElementById('techoTipo').value;
+    const longChapa = tipoChapa === 'corta' ? 3 : 6;
+    const anchoUtil = 0.85; // ancho útil de chapa estándar
+
+    const filas = Math.ceil(ancho / anchoUtil);
+    const chapasXFila = Math.ceil(largo / longChapa);
+    const chapas = Math.ceil(filas * chapasXFila * 1.08); // 8% desperdicio
+    const tirantes = Math.ceil((Math.ceil(largo / 1.5) + 1) * (Math.ceil(ancho / 2.5) + 1));
+    const tornillos = chapas * 14;
+
+    const tipoLabel = tipoChapa === 'corta' ? 'chapa 3m' : 'chapa 6m';
+    resultado = {
+      titulo: `Techo ${largo}×${ancho} m — ${tipoLabel}`,
+      materiales: [
+        { icono: 'roof',      qty: chapas,    unidad: 'u',   nombre: 'Chapas' },
+        { icono: 'wood',      qty: tirantes,  unidad: 'u',   nombre: 'Tirantes' },
+        { icono: 'screw',     qty: tornillos, unidad: 'u',   nombre: 'Tornillos' },
+      ],
+      waMsg: `Hola! Usé la calculadora de Vertical Sur para calcular un *techo de ${largo}m × ${ancho}m* con *${tipoLabel}*. El estimado me dio: ${chapas} chapas, ${tirantes} tirantes y ${tornillos} tornillos. ¿Me pueden enviar un presupuesto completo con materiales y mano de obra?`
+    };
+
+  } else if (tipo === 'revoque') {
+    const m2 = getNum('revoqueM2');
+    if (!valid) { document.getElementById('calcErrorMsg').style.display = 'block'; return; }
+    const desperdicio = 1.10;
+    const cemento = Math.ceil(m2 * 0.5 * desperdicio);
+    const arena = parseFloat((m2 * 0.030 * desperdicio).toFixed(2));
+
+    resultado = {
+      titulo: `Revoque — ${m2} m²`,
+      materiales: [
+        { icono: 'cement', qty: cemento, unidad: 'bolsas', nombre: 'Cemento' },
+        { icono: 'arena',  qty: arena,   unidad: 'm³',     nombre: 'Arena fina' },
+      ],
+      waMsg: `Hola! Usé la calculadora de Vertical Sur para calcular el *revoque de ${m2} m²*. El estimado me dio: ${cemento} bolsas de cemento y ${arena} m³ de arena fina. ¿Me pueden enviar un presupuesto completo con materiales y mano de obra?`
+    };
+
+  } else if (tipo === 'pintura') {
+    const m2   = getNum('pinturaM2');
+    if (!valid) { document.getElementById('calcErrorMsg').style.display = 'block'; return; }
+    const manos = parseInt(document.getElementById('pinturaManos').value);
+    // Rendimiento promedio: 11 m² por litro por mano
+    const litros = Math.ceil((m2 * manos) / 11);
+    const bidones20 = Math.ceil(litros / 20);
+
+    resultado = {
+      titulo: `Pintura — ${m2} m² · ${manos} ${manos === 1 ? 'mano' : 'manos'}`,
+      materiales: [
+        { icono: 'paint',  qty: litros,    unidad: 'litros', nombre: 'Pintura látex' },
+        { icono: 'bucket', qty: bidones20, unidad: 'u',      nombre: 'Bidones 20 L aprox.' },
+      ],
+      waMsg: `Hola! Usé la calculadora de Vertical Sur para calcular la *pintura de ${m2} m²* en ${manos} ${manos === 1 ? 'mano' : 'manos'}. El estimado me dio: ${litros} litros (aprox. ${bidones20} bidones de 20 L). ¿Me pueden enviar un presupuesto completo con materiales y mano de obra?`
+    };
+
+  } else if (tipo === 'electricidad') {
+    // ── ELECTRICIDAD ──
+    const m2        = getNum('elecM2');
+    const ambientes = getNum('elecAmbientes');
+    if (!valid) { document.getElementById('calcErrorMsg').style.display = 'block'; return; }
+    const nivel = document.getElementById('elecNivel').value;
+
+    // Multiplicadores según nivel
+    const mult = { basico: 0.8, medio: 1.0, completo: 1.3 };
+    const f = mult[nivel];
+
+    // Cable sección 2.5mm² (circuitos iluminación + tomacorrientes)
+    const metrosCable = Math.ceil((m2 * 6 + ambientes * 8) * f);
+    // Bocas: iluminación + tomacorrientes por ambiente
+    const bocasIlum  = Math.ceil(ambientes * (nivel === 'basico' ? 1 : nivel === 'medio' ? 2 : 3));
+    const bocasToma  = Math.ceil(ambientes * (nivel === 'basico' ? 2 : nivel === 'medio' ? 4 : 6));
+    const bocasTotal = bocasIlum + bocasToma;
+    // Llaves térmicas (tablero)
+    const termicas   = Math.ceil(ambientes * f * 0.9) + 2; // + general + diferencial
+    // Caños corrugados (≈ 1 metro de caño por 3m de cable)
+    const canios     = Math.ceil(metrosCable / 3);
+
+    const nivelLabel = { basico: 'básico', medio: 'estándar', completo: 'completo' }[nivel];
+    resultado = {
+      titulo: `Electricidad — ${m2} m² · ${ambientes} ambientes · nivel ${nivelLabel}`,
+      subtitulo: 'Estimación para instalación eléctrica residencial estándar',
+      materiales: [
+        { icono: 'cable',    qty: metrosCable, unidad: 'm',  nombre: 'Cable 2,5 mm²' },
+        { icono: 'socket',   qty: bocasTotal,  unidad: 'u',  nombre: `Bocas eléctricas (${bocasIlum} luz + ${bocasToma} tomas)` },
+        { icono: 'breaker',  qty: termicas,    unidad: 'u',  nombre: 'Llaves térmicas' },
+        { icono: 'conduit',  qty: canios,      unidad: 'm',  nombre: 'Caños corrugados' },
+      ],
+      waMsg: `Hola! Usé la calculadora de Vertical Sur para estimar la *instalación eléctrica de ${m2} m²* (${ambientes} ambientes, nivel ${nivelLabel}). El estimado me dio: ${metrosCable} m de cable, ${bocasTotal} bocas eléctricas, ${termicas} llaves térmicas y ${canios} m de caños corrugados. ¿Me pueden enviar un presupuesto completo con materiales y mano de obra?`
+    };
+
+  } else if (tipo === 'plomeria') {
+    // ── PLOMERÍA ──
+    const banos = getNum('plomBanos');
+    if (!valid) { document.getElementById('calcErrorMsg').style.display = 'block'; return; }
+    const tieneCocina   = document.getElementById('plomCocina').checked;
+    const tieneLavadero = document.getElementById('plomLavadero').checked;
+
+    // Base por baño: 12m cañería, 4 conexiones, 2 llaves de paso
+    let metros     = banos * 12;
+    let conexiones = banos * 4 + 2; // +2 entrada general
+    let llaves     = banos * 2 + 1; // +1 general
+    if (tieneCocina)   { metros += 8;  conexiones += 3; llaves += 1; }
+    if (tieneLavadero) { metros += 6;  conexiones += 2; llaves += 1; }
+    metros = Math.ceil(metros * 1.10); // 10% desperdicio
+
+    const extras = [tieneCocina && 'cocina', tieneLavadero && 'lavadero'].filter(Boolean).join(' + ');
+    const extraLabel = extras ? ` · ${extras}` : '';
+    resultado = {
+      titulo: `Plomería — ${banos} ${banos === 1 ? 'baño' : 'baños'}${extraLabel}`,
+      subtitulo: 'Distribución estimada de agua fría y caliente',
+      materiales: [
+        { icono: 'pipe',    qty: metros,     unidad: 'm',  nombre: 'Cañería (agua fría/caliente)' },
+        { icono: 'fitting', qty: conexiones, unidad: 'u',  nombre: 'Conexiones y codos' },
+        { icono: 'valve',   qty: llaves,     unidad: 'u',  nombre: 'Llaves de paso' },
+      ],
+      waMsg: `Hola! Usé la calculadora de Vertical Sur para estimar la *plomería de ${banos} ${banos === 1 ? 'baño' : 'baños'}${extraLabel}*. El estimado me dio: ${metros} m de cañería, ${conexiones} conexiones y ${llaves} llaves de paso. ¿Me pueden enviar un presupuesto completo con materiales y mano de obra?`
+    };
+
+  } else if (tipo === 'gas') {
+    // ── GAS ──
+    const cocinas      = parseInt(document.getElementById('gasCocina').value)      || 0;
+    const calefactores = parseInt(document.getElementById('gasCalefactor').value)  || 0;
+    const termotanques = parseInt(document.getElementById('gasTermotanque').value) || 0;
+    const totalArtefactos = cocinas + calefactores + termotanques;
+
+    if (totalArtefactos === 0) {
+      document.getElementById('calcErrorMsg').textContent = '⚠ Ingresá al menos 1 artefacto para calcular.';
+      document.getElementById('calcErrorMsg').style.display = 'block';
+      return;
+    }
+
+    // Estimación: cada artefacto necesita aprox. 5-8 m de caño + tramo común
+    const metrosCano     = Math.ceil(totalArtefactos * 6 + 4);
+    const conexionesGas  = Math.ceil(totalArtefactos * 2 + 2); // uniones + codos
+    const reguladores    = Math.ceil(totalArtefactos / 3) + 1; // 1 por cada 3 artefactos + regulador general
+
+    const artefactosDesc = [
+      cocinas      > 0 && `${cocinas} cocina${cocinas > 1 ? 's' : ''}`,
+      calefactores > 0 && `${calefactores} calefactor${calefactores > 1 ? 'es' : ''}`,
+      termotanques > 0 && `${termotanques} termotanque${termotanques > 1 ? 's' : ''}`,
+    ].filter(Boolean).join(', ');
+
+    resultado = {
+      titulo: `Gas — ${artefactosDesc}`,
+      subtitulo: 'Estimación orientativa de materiales. La instalación debe ser aprobada por gasista matriculado.',
+      nota: true, // activa el bloque de advertencia en resultados
+      materiales: [
+        { icono: 'gastube',  qty: metrosCano,    unidad: 'm',  nombre: 'Caño de gas' },
+        { icono: 'fitting',  qty: conexionesGas, unidad: 'u',  nombre: 'Conexiones y codos' },
+        { icono: 'regulator',qty: reguladores,   unidad: 'u',  nombre: 'Reguladores' },
+      ],
+      waMsg: `Hola! Usé la calculadora de Vertical Sur para estimar la *instalación de gas* para: ${artefactosDesc}. El estimado me dio: ${metrosCano} m de caño, ${conexionesGas} conexiones y ${reguladores} reguladores. ¿Me pueden enviar un presupuesto completo con materiales y mano de obra?`
+    };
+  }
+
+  if (resultado) renderResultados(resultado);
+}
+
+// ── Renderizar resultados ──
+function renderResultados(data) {
+  // Íconos SVG por tipo de material
+  const iconos = {
+    // Construcción
+    brick:    '<svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="4" rx="1"/><rect x="2" y="14" width="20" height="4" rx="1"/><line x1="12" y1="7" x2="12" y2="11"/><line x1="7" y1="14" x2="7" y2="18"/><line x1="17" y1="14" x2="17" y2="18"/></svg>',
+    cement:   '<svg viewBox="0 0 24 24"><path d="M5 3h14l1 7H4L5 3z"/><path d="M4 10v11h16V10"/><line x1="12" y1="10" x2="12" y2="21"/></svg>',
+    arena:    '<svg viewBox="0 0 24 24"><path d="M2 22l3-8h14l3 8H2z"/><path d="M8 14l4-11 4 11"/></svg>',
+    roof:     '<svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9"/><path d="M5 10v9h14v-9"/></svg>',
+    wood:     '<svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="3" rx="1"/><rect x="2" y="10" width="20" height="3" rx="1"/><rect x="2" y="16" width="20" height="3" rx="1"/></svg>',
+    screw:    '<svg viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><path d="M9 5h6M10 9h4M11 13h2"/></svg>',
+    paint:    '<svg viewBox="0 0 24 24"><path d="M19 11c0 1.657-3.134 3-7 3S5 12.657 5 11V6.5C5 4.567 8.134 3 12 3s7 1.567 7 3.5V11z"/><path d="M5 9c0 1.657 3.134 3 7 3s7-1.343 7-3"/><path d="M19 14v4a2 2 0 01-4 0v-4"/></svg>',
+    bucket:   '<svg viewBox="0 0 24 24"><path d="M7 4h10l2 6v8a2 2 0 01-2 2H7a2 2 0 01-2-2v-8l2-6z"/><line x1="5" y1="10" x2="19" y2="10"/></svg>',
+    // Electricidad
+    cable:    '<svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linejoin="round"/></svg>',
+    socket:   '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="12" r="1.5"/><circle cx="15" cy="12" r="1.5"/></svg>',
+    breaker:  '<svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="7" x2="12" y2="11"/><circle cx="12" cy="14" r="1.5"/></svg>',
+    conduit:  '<svg viewBox="0 0 24 24"><path d="M3 12h18"/><path d="M3 7c0-1.5 2-1.5 2 0v10c0 1.5 2 1.5 2 0V7c0-1.5 2-1.5 2 0v10c0 1.5 2 1.5 2 0V7c0-1.5 2-1.5 2 0v10"/></svg>',
+    // Plomería
+    pipe:     '<svg viewBox="0 0 24 24"><path d="M3 12h18"/><path d="M3 8h18M3 16h18"/><path d="M7 4v16M17 4v16"/></svg>',
+    fitting:  '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>',
+    valve:    '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="22"/><line x1="2" y1="12" x2="8" y2="12"/><path d="M8 8l8 8M16 8l-8 8"/></svg>',
+    // Gas
+    gastube:  '<svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="20" rx="3"/><path d="M9 7H4a2 2 0 000 4h5M15 7h5a2 2 0 010 4h-5"/></svg>',
+    regulator:'<svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="8" rx="2"/><path d="M8 8V6a1 1 0 011-1h6a1 1 0 011 1v2"/><circle cx="12" cy="12" r="2"/><path d="M12 14v3"/></svg>',
+  };
+
+  // Actualizar título
+  document.getElementById('resultTitle').textContent = data.titulo;
+
+  // Mostrar/ocultar nota legal (gas)
+  const notaEl = document.getElementById('calcResultNota');
+  notaEl.style.display = data.nota ? 'block' : 'none';
+
+  // Generar cards
+  const container = document.getElementById('calcMaterialsList');
+  container.innerHTML = data.materiales.map(m => `
+    <div class="calc-material-card">
+      <div class="calc-material-icon">${iconos[m.icono] || iconos.cement}</div>
+      <div class="calc-material-qty">${m.qty}<span>${m.unidad}</span></div>
+      <div class="calc-material-name">${m.nombre}</div>
+    </div>
+  `).join('');
+
+  // WhatsApp URL
+  const waNum = '5492984520559';
+  const waMsg = encodeURIComponent(data.waMsg);
+  document.getElementById('calcWaBtn').href = `https://wa.me/${waNum}?text=${waMsg}`;
+
+  goTo(3);
+}
+
+// ── Reiniciar calculadora ──
+function reiniciarCalc() {
+  calcState.currentType = null;
+
+  // Limpiar inputs
+  document.querySelectorAll('.calc-input').forEach(i => { i.value = ''; i.classList.remove('error'); });
+  const errEl = document.getElementById('calcErrorMsg');
+  errEl.textContent = '⚠ Por favor completá todos los campos antes de continuar.';
+  errEl.style.display = 'none';
+
+  // Ocultar nota gas
+  document.getElementById('calcResultNota').style.display = 'none';
+
+  goTo(1);
+  document.getElementById('calculadora').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 const formSubmit = document.querySelector('.form-submit');
 if (formSubmit) {
   formSubmit.addEventListener('click', function(e) {
